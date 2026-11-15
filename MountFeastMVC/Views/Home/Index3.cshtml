@@ -1,0 +1,1710 @@
+﻿@{
+    ViewBag.Title = "Mount Feast Hotel at Naran | 3 Star Hotel in Naran";
+    ViewBag.keywords = "Hotel at Naran";
+
+    ViewBag.Description = "Mount Feast Hotel at Naran is the best place to stay. Our hotel in Naran Pakistan offers luxurious rooms, equipped with all the amenities. Book Online.";
+
+    List<MountFeastMVC.Models.PropertySearch> results = new List<MountFeastMVC.Models.PropertySearch>();
+
+
+    if (TempData.ContainsKey("roomList"))
+    {
+        results = (List<MountFeastMVC.Models.PropertySearch>)TempData["roomList"];
+    }
+}
+
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
+    <link href="~/Content/SearchBar/Rangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/SearchBar/Css/Mobile Search/One.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+    #DatepickerParentEl .daterangepicker {
+        top: 0px !important;
+        left: 0px !important;
+        right: auto !important;
+        display: block !important;
+        position: relative !important;
+    }
+</style>
+
+<script type="text/javascript">
+    //jQuery.noConflict();
+    var StartDate = new Date();
+    var EndDate = new Date();
+    var ChildValue = 0;
+    var AdultValue = 0;
+    var RoomValue = 0;
+
+    function CalculatePlusAdult() {
+        var value = parseInt($("#AdultValue").html());
+        value = value + 1;
+        $("#AdultValue").html(value);
+        $("#AdultValueUpper").html(value + "&nbsp adults");
+        $('.adults-select').val(value);
+        AdultValue = value;
+    }
+    function CalculateMinusAdult() {
+        var value = parseInt($("#AdultValue").html());
+        value = value - 1;
+        if (value <= 0) {
+            return;
+        }
+        $("#AdultValue").html(value);
+        $("#AdultValueUpper").html(value + "&nbsp adults");
+        $('.adults-select').val(value);
+        AdultValue = value;
+    }
+    function CalculatePlusChildren() {
+        var value = parseInt($("#ChildValue").html());
+        value = value + 1;
+        $("#ChildValue").html(value);
+        $("#ChildrenValueUpper").html(value + "&nbsp children");
+        $('.children-select').val(value);
+        ChildValue = value;
+        ShowHideChildSelect(value);
+    }
+    function CalculateMinusChildren() {
+        var value = parseInt($("#ChildValue").html());
+        value = value - 1;
+        if (value < 0) {
+            return;
+        }
+        $("#ChildValue").html(value);
+        $("#ChildrenValueUpper").html(value + "&nbsp children");
+        $('.children-select').val(value);
+        ChildValue = value;
+        ShowHideChildSelect(value);
+    }
+    function CalculatePlusRooms() {
+        var value = parseInt($("#RoomValue").html());
+        value = value + 1;
+        $("#RoomValue").html(value);
+        $("#RoomValueUpper").html(value + "&nbsp rooms");
+        $('.room-select').val(value);
+        RoomValue = value
+
+    }
+    function CalculateMinusRooms() {
+        var value = parseInt($("#RoomValue").html());
+        value = value - 1;
+        if (value <= 0) {
+            return;
+        }
+        $("#RoomValue").html(value);
+        $("#RoomValueUpper").html(value + "&nbsp rooms");
+        $('.room-select').val(value);
+        RoomValue = value
+    }
+    function ShowHideChildSelect(Customvalue) {
+        if (Customvalue == 0) {
+            $("#AgeEntryContainer").hide();
+            $("#AgeEntryContainer2").hide();
+            $("#AgeEntryContainer3").hide();
+            $("#AgeEntryContainer4").hide();
+        }
+        else if (Customvalue == 1) {
+            $("#AgeEntryContainer").show();
+            $("#AgeEntryContainer2").hide();
+            $("#AgeEntryContainer3").hide();
+            $("#AgeEntryContainer4").hide();
+        }
+        else if (Customvalue == 2) {
+            $("#AgeEntryContainer").show();
+            $("#AgeEntryContainer2").show();
+            $("#AgeEntryContainer3").hide();
+            $("#AgeEntryContainer4").hide();
+        }
+        else if (Customvalue == 3) {
+            $("#AgeEntryContainer").show();
+            $("#AgeEntryContainer2").show();
+            $("#AgeEntryContainer3").show();
+            $("#AgeEntryContainer4").hide();
+        }
+        else if (Customvalue == 4) {
+            $("#AgeEntryContainer").show();
+            $("#AgeEntryContainer2").show();
+            $("#AgeEntryContainer3").show();
+            $("#AgeEntryContainer4").show();
+        }
+    }
+
+    $(document).ready(function () {
+        if ($(window).width() < 700) {
+            $('#MobileDaterangePicker').daterangepicker({
+                opens: 'center',
+                parentEl: '#DatepickerParentEl',
+                alwaysShowCalendars: true,
+                locale: {
+                    format: 'YYYY/MM/DD',
+                    separator: " to"
+                },
+                minDate: new Date(),
+                endDate: new Date(),
+            }, function (start, end) {
+                var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                var startDayName = days[new Date(start).getDay()];
+                var endDayName = days[new Date(end).getDay()];
+                HideDatepickerContainer();
+                StartDate = moment(start).format('MM/DD/YYYY');
+                EndDate = moment(end).format('MM/DD/YYYY');
+                $('#ci_date_text').text(startDayName + " " + start.format('DD MMM YYYY'));
+                $('#co_date_text').text(endDayName + " " + end.format('DD MMM YYYY'));
+
+            });
+        }
+        else {
+            $('#DesktopDaterangePicker').daterangepicker({
+                opens: 'left',
+                locale: {
+                    format: 'DD MMM YYYY',
+                    separator: " to"
+                },
+                "autoApply": true,
+                autoUpdateInput: false,
+                minDate: new Date(),
+                endDate: new Date(),
+            }, function (start, end, label,) {
+                StartDate = moment(start).format('MM/DD/YYYY');
+                EndDate = moment(end).format('MM/DD/YYYY');
+
+            });
+            $('#DesktopDaterangePicker').on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            });
+
+            $('#DesktopDaterangePicker').on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+        }
+
+    });
+    function SearchResults() {
+        window.location.href = "/home/propertysearch?CheckIn=" + StartDate + "&CheckOut=" + EndDate + "&Adults=" + AdultValue + "&Children=" + ChildValue + "&NoOfRooms=" + RoomValue;
+    }
+    function ToggleView(InputContainer) {
+        var e = document.getElementById(InputContainer);
+        if (e.style.display == 'block') {
+            e.style.display = 'none';
+        }
+        else {
+            e.style.display = 'block';
+
+        }
+    }
+    function CheckDisplay() {
+        if ($("#DatepickerContainer").style.display == "block") {
+            document.body.style.overflow = "hidden";
+        }
+        else {
+            document.body.style.overflow = "scroll";
+
+        }
+    }
+
+</script>
+
+<style>
+    @@media (min-width: 900px) {
+        .carousel-inner {
+            overflow: visible;
+        }
+    }
+
+    @@media (max-width: 900px) {
+        .main-header .navbar {
+            padding: 10px !important
+        }
+    }
+</style>
+
+<input type="hidden" id="AvoidReload" value="false" />
+<!-- Banner start -->
+<div class="banner" id="banner">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item item-100vh active">
+                <img src="../content/assets/img/Slider/Mount Feast Banner.jpg" alt="banner-slider-1" />
+                <div class="carousel-caption banner-slider-inner d-flex h-100">
+                    <div class="container align-self-center">
+                        <div class="row">
+                            <div class="col-lg-7 wow fadeInLeft delay-04s align-self-center">
+                                <div class="banner-detail-box text-start">
+                                    <h2 data-animation="animated fadeInDown delay-05s">
+                                        Welcome to <span>Mount Feast Hotel </span>At
+                                        <span>Naran</span>
+                                    </h2>
+                                    <p data-animation="animated fadeInUp delay-1s">
+                                        A secure and harmonious retreat nestled among the lush
+                                        Valley, Mount Feast Hotel at Naran seamlessly captures the
+                                        beauty while offering every modern comfort. Arriving guests
+                                        marvel at our Art Deco styles. Scenic views of the tranquil
+                                        Himalaya Mountains complement the inviting architecture.
+                                    </p>
+                                    <a class="btn-2 btn-defaults"
+                                       href="https://www.mountfeasthotel.com/places-to-visit-in-naran"
+                                       data-animation="animated fadeInUp delay-15s">
+                                        <span>Explore</span> <i class="arrow"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5 wow fadeInRight delay-04s">
+                                <div class="banner-search-box d-none-992">
+                                    <!-- Search area start -->
+                                    <div class="search-area clearfix">
+                                        <div class="search-area-inner">
+                                            <div class="search-contents ">
+                                                <!--Custom Search Bar Start-->
+                                                <div class="xp__fieldset js--sb-fieldset accommodation " style="display:none" id="WindowSearch" data-view="accommodation">
+                                                    <form id="PropertySearch">
+
+                                                        <div class="row">
+                                                            <input id="datepicker" width="200" />
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <div data-visible="accommodation,flights" class=" col-12 col-sm-12 col-md-12 col-lg-12" data-component="search/group/group-with-modal" data-sb-id="main" tabindex="0">
+                                                                <div data-component="xp-index/guest-errors" data-sb-id="main" data-view-id="accommodation" role="alert">
+                                                                </div>
+                                                                <label id="xp__guests__toggle" for="xp__guests__input" onclick="ToggleView('InputContainer')" class="xp__input" data-group-toggle="InputContainer" role="button" aria-expanded="false" aria-controls="InputContainer">
+                                                                    <span class="invisible_spoken">Rooms and occupancy</span>
+                                                                    <span class="xp__guests__count">
+                                                                        <span id="AdultValueUpper">1 adults</span>
+                                                                        <span data-visible="accommodation">
+                                                                            &nbsp;·&nbsp;
+                                                                            <span id="ChildrenValueUpper">0 children</span>
+                                                                        </span>
+                                                                        <span data-visible="accommodation">
+                                                                            &nbsp;·&nbsp;
+                                                                            <span id="RoomValueUpper">1 room</span>
+                                                                        </span>
+                                                                    </span>
+                                                                </label>
+
+                                                                <div id="InputContainer" class="xp__guests__inputs focussable " data-group-modal="" style="display: none;" role="region" aria-label="Rooms and occupancy">
+                                                                    <div data-component="search/group/group" data-sb-id="main" data-sb-width="medium" data-sb-bbtool-searchbox="0" data-sb-group-children-hide="0" data-sb-group-children-ages-hide="0" data-sb-group-infants-hide="1" data-sb-group-pets-hide="0" data-sb-group-rooms-hide="0" data-sb-group-block-labels="0" data-sb-group-use_adults_label="0" data-sb-group-always-expanded="0" data-sb-group-use-bui-stepper="1" data-sb-group-bui-steppers-accessible="1" data-fe_sb_group_descriptive_dropdowns="0" data-fe_sb_universal_design="0" data-fe_sb_xpi="1" data-fe_remove_duplicate_ids="0" data-fe_sb_unique_id="" data-sb_reorder_rooms_block="1" data-sb-facelift="0" data-fe_sb_show_children_age_bracket="1" data-fe_sb_mandatory_child_ages="1" data-fe_sb_child_ages_ui_update="0" data-fe_sb_dont_use_default_child_age="1">
+                                                                        <div class="u-clearfix" data-render="">
+                                                                            <div class="sb-group__field sb-group__field-adults">
+                                                                                <div class="bui-stepper" data-bui-component="InputStepper">
+                                                                                    <div class="bui-stepper__title-wrapper">
+                                                                                        <label class="bui-stepper__title" for="group_adults">Adults</label>
+                                                                                    </div>
+                                                                                    <div class="bui-stepper__wrapper sb-group__stepper-a11y">
+                                                                                        <input style="display: none" type="number" class="bui-stepper__input" data-bui-ref="input-stepper-field" id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count="">
+                                                                                        <button class="bui-button bui-button--secondary bui-stepper__subtract-button " onclick="CalculateMinusAdult()" data-bui-ref="input-stepper-subtract-button" type="button" aria-label="Decrease number of Adults" aria-describedby="group_adults_desc">
+                                                                                            <span class="bui-button__text">−</span>
+                                                                                        </button>
+                                                                                        <span class="bui-stepper__display" data-bui-ref="input-stepper-value" id="AdultValue" aria-hidden="true" data-value="">1</span>
+                                                                                        <button class="bui-button bui-button--secondary bui-stepper__add-button " onclick="CalculatePlusAdult()" data-bui-ref="input-stepper-add-button" type="button" aria-label="Increase number of Adults" aria-describedby="group_adults_desc">
+                                                                                            <span class="bui-button__text">+</span>
+                                                                                        </button>
+                                                                                        <span class="bui-u-sr-only" aria-live="assertive" id="group_adults_desc">2 Adults</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="sb-group__field sb-group-children ">
+                                                                                <div class="bui-stepper" data-bui-component="InputStepper">
+                                                                                    <div class="bui-stepper__title-wrapper">
+                                                                                        <label class="bui-stepper__title" for="group_children">Children</label>
+
+                                                                                        <span class="bui-stepper__subtitle">Ages 0 – 17</span>
+                                                                                    </div>
+                                                                                    <div class="bui-stepper__wrapper sb-group__stepper-a11y">
+                                                                                        <input style="display: none" type="number" class="bui-stepper__input" data-bui-ref="input-stepper-field" id="group_children" name="group_children" min="0" max="10" value="2" data-group-children-count="">
+                                                                                        <button class="bui-button bui-button--secondary bui-stepper__subtract-button " onclick="CalculateMinusChildren()" data-bui-ref="input-stepper-subtract-button" type="button" aria-label="Decrease number of Children" aria-describedby="group_children_desc">
+                                                                                            <span class="bui-button__text">−</span>
+                                                                                        </button>
+                                                                                        <span class="bui-stepper__display" data-bui-ref="input-stepper-value" id="ChildValue" aria-hidden="true">0</span>
+                                                                                        <button class="bui-button bui-button--secondary bui-stepper__add-button " onclick="CalculatePlusChildren()" data-bui-ref="input-stepper-add-button" type="button" aria-label="Increase number of Children" aria-describedby="group_children_desc">
+                                                                                            <span class="bui-button__text">+</span>
+                                                                                        </button>
+                                                                                        <span class="bui-u-sr-only" aria-live="assertive" id="group_children_desc">0 Children</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="sb-group__children__field clearfix col-6" id="AgeEntryContainer" style="display:none">
+                                                                                    <select name="age" data-group-child-age="0" aria-label="Child 1 age">
+                                                                                        <option class="sb_child_ages_empty_zero" value="">
+                                                                                            Age needed
+                                                                                        </option>
+                                                                                        <option value="0">
+                                                                                            0 years old
+                                                                                        </option>
+                                                                                        <option value="1">
+                                                                                            1 year old
+                                                                                        </option>
+                                                                                        <option value="2">
+                                                                                            2 years old
+                                                                                        </option>
+                                                                                        <option value="3">
+                                                                                            3 years old
+                                                                                        </option>
+                                                                                        <option value="4">
+                                                                                            4 years old
+                                                                                        </option>
+                                                                                        <option value="5">
+                                                                                            5 years old
+                                                                                        </option>
+                                                                                        <option value="6">
+                                                                                            6 years old
+                                                                                        </option>
+                                                                                        <option value="7">
+                                                                                            7 years old
+                                                                                        </option>
+                                                                                        <option value="8">
+                                                                                            8 years old
+                                                                                        </option>
+                                                                                        <option value="9">
+                                                                                            9 years old
+                                                                                        </option>
+                                                                                        <option value="10" selected="">
+                                                                                            10 years old
+                                                                                        </option>
+                                                                                        <option value="11">
+                                                                                            11 years old
+                                                                                        </option>
+                                                                                        <option value="12">
+                                                                                            12 years old
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="sb-group__children__field clearfix col-6" id="AgeEntryContainer2" style="display:none">
+                                                                                    <select name="age" data-group-child-age="0" aria-label="Child 1 age">
+                                                                                        <option class="sb_child_ages_empty_zero" value="">
+                                                                                            Age needed
+                                                                                        </option>
+                                                                                        <option value="0">
+                                                                                            0 years old
+                                                                                        </option>
+                                                                                        <option value="1">
+                                                                                            1 year old
+                                                                                        </option>
+                                                                                        <option value="2">
+                                                                                            2 years old
+                                                                                        </option>
+                                                                                        <option value="3">
+                                                                                            3 years old
+                                                                                        </option>
+                                                                                        <option value="4">
+                                                                                            4 years old
+                                                                                        </option>
+                                                                                        <option value="5">
+                                                                                            5 years old
+                                                                                        </option>
+                                                                                        <option value="6">
+                                                                                            6 years old
+                                                                                        </option>
+                                                                                        <option value="7">
+                                                                                            7 years old
+                                                                                        </option>
+                                                                                        <option value="8">
+                                                                                            8 years old
+                                                                                        </option>
+                                                                                        <option value="9">
+                                                                                            9 years old
+                                                                                        </option>
+                                                                                        <option value="10" selected="">
+                                                                                            10 years old
+                                                                                        </option>
+                                                                                        <option value="11">
+                                                                                            11 years old
+                                                                                        </option>
+                                                                                        <option value="12">
+                                                                                            12 years old
+                                                                                        </option>
+
+                                                                                    </select>
+
+                                                                                </div>
+                                                                                <div class="sb-group__children__field clearfix col-6" id="AgeEntryContainer3" style="display:none">
+                                                                                    <select name="age" data-group-child-age="0" aria-label="Child 1 age">
+                                                                                        <option class="sb_child_ages_empty_zero" value="">
+                                                                                            Age needed
+                                                                                        </option>
+                                                                                        <option value="0">
+                                                                                            0 years old
+                                                                                        </option>
+                                                                                        <option value="1">
+                                                                                            1 year old
+                                                                                        </option>
+                                                                                        <option value="2">
+                                                                                            2 years old
+                                                                                        </option>
+                                                                                        <option value="3">
+                                                                                            3 years old
+                                                                                        </option>
+                                                                                        <option value="4">
+                                                                                            4 years old
+                                                                                        </option>
+                                                                                        <option value="5">
+                                                                                            5 years old
+                                                                                        </option>
+                                                                                        <option value="6">
+                                                                                            6 years old
+                                                                                        </option>
+                                                                                        <option value="7">
+                                                                                            7 years old
+                                                                                        </option>
+                                                                                        <option value="8">
+                                                                                            8 years old
+                                                                                        </option>
+                                                                                        <option value="9">
+                                                                                            9 years old
+                                                                                        </option>
+                                                                                        <option value="10" selected="">
+                                                                                            10 years old
+                                                                                        </option>
+                                                                                        <option value="11">
+                                                                                            11 years old
+                                                                                        </option>
+                                                                                        <option value="12">
+                                                                                            12 years old
+                                                                                        </option>
+
+                                                                                    </select>
+
+                                                                                </div>
+                                                                                <div class="sb-group__children__field clearfix col-6" id="AgeEntryContainer4" style="display:none">
+                                                                                    <select name="age" data-group-child-age="0" aria-label="Child 1 age">
+                                                                                        <option class="sb_child_ages_empty_zero" value="">
+                                                                                            Age needed
+                                                                                        </option>
+                                                                                        <option value="0">
+                                                                                            0 years old
+                                                                                        </option>
+                                                                                        <option value="1">
+                                                                                            1 year old
+                                                                                        </option>
+                                                                                        <option value="2">
+                                                                                            2 years old
+                                                                                        </option>
+                                                                                        <option value="3">
+                                                                                            3 years old
+                                                                                        </option>
+                                                                                        <option value="4">
+                                                                                            4 years old
+                                                                                        </option>
+                                                                                        <option value="5">
+                                                                                            5 years old
+                                                                                        </option>
+                                                                                        <option value="6">
+                                                                                            6 years old
+                                                                                        </option>
+                                                                                        <option value="7">
+                                                                                            7 years old
+                                                                                        </option>
+                                                                                        <option value="8">
+                                                                                            8 years old
+                                                                                        </option>
+                                                                                        <option value="9">
+                                                                                            9 years old
+                                                                                        </option>
+                                                                                        <option value="10" selected="">
+                                                                                            10 years old
+                                                                                        </option>
+                                                                                        <option value="11">
+                                                                                            11 years old
+                                                                                        </option>
+                                                                                        <option value="12">
+                                                                                            12 years old
+                                                                                        </option>
+
+                                                                                    </select>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="sb-group__field sb-group__field-rooms">
+                                                                                <div class="bui-stepper" data-bui-component="InputStepper">
+                                                                                    <div class="bui-stepper__title-wrapper">
+                                                                                        <label class="bui-stepper__title" for="no_rooms">Rooms</label>
+                                                                                    </div>
+                                                                                    <div class="bui-stepper__wrapper sb-group__stepper-a11y">
+                                                                                        <input style="display: none" type="number" class="bui-stepper__input" data-bui-ref="input-stepper-field" id="no_rooms" name="no_rooms" min="1" max="30" value="1" data-group-rooms-count="">
+                                                                                        <button class="bui-button bui-button--secondary bui-stepper__subtract-button sb-group__stepper-button-disabled" onclick="CalculateMinusRooms()" data-bui-ref="input-stepper-subtract-button" type="button" aria-label="Decrease number of Rooms" aria-describedby="no_rooms_desc">
+                                                                                            <span class="bui-button__text">−</span>
+                                                                                        </button>
+                                                                                        <span class="bui-stepper__display" data-bui-ref="input-stepper-value" id="RoomValue" aria-hidden="true">1</span>
+                                                                                        <button class="bui-button bui-button--secondary bui-stepper__add-button " data-bui-ref="input-stepper-add-button" onclick="CalculatePlusRooms()" type="button" aria-label="Increase number of Rooms" aria-describedby="no_rooms_desc">
+                                                                                            <span class="bui-button__text">+</span>
+                                                                                        </button>
+                                                                                        <span class="bui-u-sr-only" aria-live="assertive" id="no_rooms_desc">1 Rooms</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                                <div class="sb-searchbox-submit-col -button-messages">
+                                                                </div>
+                                                                <div class="sb-searchbox-submit-col -submit-button ">
+                                                                    <button data-sb-id="main" onclick="SearchResults()" type="button" class="sb-searchbox__button " data-et-click="      customGoal:cCHObTRVDEZRdPQBcGCfTKYCccaT:1 goal:www_index_search_button_click  ">
+                                                                        <span class="js-sb-submit-text ">
+                                                                            Search
+                                                                        </span>
+                                                                        <span class="sb-submit-helper"></span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @*}*@
+                                                    </form>
+                                                </div>
+
+                                                <!--Custom Search Bar End-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Custom Mobile Search Bar-->
+                        <div class="searchbox_cross_product__wrapper " id="MobileSearch" style="display:none">
+                            @*@using (Html.BeginForm("PropertySearch", "Home", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()*@
+                            <form id="form_search_location" class="js-searchbox_redesign searchForm b-no-tap-highlight searchbox_cross_product searchbox_cross_product--overlayed" name="frm" action="/searchresults.en-gb.html?label=gen173nr-1DCAEoggI46AdIM1gEaLUBiAEBmAEJuAEXyAEM2AED6AEBiAIBqAIDuAL6ipyWBsACAdICJGUwYzlkMDEwLTJmZTUtNGJmNC1hYWVhLWMxMmVmNmZkNjg4YdgCBOACAQ&amp;sid=f1f1bdb270788d3f038666e252719f90" method="get" data-component="searchbox/overlays/controller searchbox/destination/near-me searchbox/dynamic-los/dynamic-max-los ">
+                                <div class="searchbox_cross_product__wrapper-inner">
+                                    <input type="hidden" value="index" name="src">
+                                    <input type="hidden" name="rows" value="20">
+                                    <input type="hidden" name="error_url" value="https://www.booking.com/index.en-gb.html?label=gen173nr-1DCAEoggI46AdIM1gEaLUBiAEBmAEJuAEXyAEM2AED6AEBiAIBqAIDuAL6ipyWBsACAdICJGUwYzlkMDEwLTJmZTUtNGJmNC1hYWVhLWMxMmVmNmZkNjg4YdgCBOACAQ&amp;sid=f1f1bdb270788d3f038666e252719f90&amp;sb_price_type=total&amp;&amp;">
+                                    <input type="hidden" name="label" value="gen173nr-1DCAEoggI46AdIM1gEaLUBiAEBmAEJuAEXyAEM2AED6AEBiAIBqAIDuAL6ipyWBsACAdICJGUwYzlkMDEwLTJmZTUtNGJmNC1hYWVhLWMxMmVmNmZkNjg4YdgCBOACAQ">
+                                    <input type="hidden" name="lang" value="en-gb">
+                                    <input type="hidden" name="sid" value="f1f1bdb270788d3f038666e252719f90">
+                                    <input type="hidden" name="sb" value="1">
+                                    <input type="hidden" name="sb_lp" value="1">
+                                    <input type="hidden" name="search_form_id" value="f79471d12cf807ff">
+                                    <div class="searchbox_cross_product__overlay-mask"></div>
+
+                                    <div class="searchbox-calendar-bui bui-calendar--vertical" data-calendar="" data-auto-open-checkout-calendar="true" data-custom-los="90" data-calendar-blur="1" data-component="searchbox/calendar/wrapper" data-force-render="1" data-scroll-to-selected-month="1" data-calendar-max-date-possible="500">
+
+                                        <input type="hidden" name="checkin_monthday" value="1">
+                                        <input type="hidden" name="checkin_year_month" value="2022-8">
+                                        <input type="hidden" name="checkout_monthday" value="5">
+                                        <input type="hidden" name="checkout_year_month" value="2022-8">
+
+                                        <div onclick="ShowDatepickerContainer()" class="searchbox_cross_product__section-container searchbox_cross_product__section-container--double" data-section-overlayed="" data-section-overlayed-calendar-trigger="">
+                                            <div class="searchbox_cross_product__section searchbox_cross_product__section--calendar searchbox_cross_product__section--with-labels " data-has-calendar="checkin" data-calendar-section="">
+                                                <div class="searchbox_cross_product__section-top" data-section-header="1" aria-labelledby="checkin_date_a11y" role="button" tabindex="0" data-overlay-trigger-on-focus="">
+                                                    <div id="ci_date" class=" bar b-no-tap-highlight js-searchbox__input dualcal__checkin " data-action="toggle" data-clicked-before-ready="0" data-cal="checkin">
+                                                        <div class="searchbox_cross_product__date">
+                                                            <label class="" id="checkin_date_a11y">
+                                                                Check-in date
+                                                            </label>
+                                                            <div id="ci_date_field">
+                                                                <span id="ci_date_text" name class="m_cal_date_string js-loading-invisible" style="font-weight:800" data-checkin-text="">Mon 1 Aug 2022</span>
+                                                            </div>
+                                                            <svg class="bk-icon -fonticon-checkin searchbox-icon" fill="currentColor" height="24" width="24"><use xlink:href="#icon-fonticon-checkin"></use></svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="searchbox_cross_product__section searchbox_cross_product__section--calendar searchbox_cross_product__section--with-labels " data-has-calendar="checkout" data-calendar-section="">
+                                                <div class="searchbox_cross_product__section-top" data-section-header="1" aria-labelledby="checkout_date_a11y" role="button" tabindex="0" data-overlay-trigger-on-focus="">
+                                                    <div id="co_date" class=" bar b-no-tap-highlight js-searchbox__input dualcal__checkout " data-action="toggle" data-clicked-before-ready="0" data-cal="checkout">
+                                                        <div class="searchbox_cross_product__date">
+                                                            <label class="" id="checkout_date_a11y">
+                                                                Check-out date
+                                                            </label>
+                                                            <div id="co_date_field">
+                                                                <span id="co_date_text" class="m_cal_date_string js-loading-invisible " style="font-weight:800" data-checkout-text="">Fri 5 Aug 2022</span>
+                                                            </div>
+                                                            <svg class="bk-icon -fonticon-checkin searchbox-icon" fill="currentColor" height="24" width="24"><use xlink:href="#icon-fonticon-checkin"></use></svg>
+                                                        </div>
+                                                        <input type="hidden" id="co_date_input" name="checkout" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="searchbox_cross_product__section-container" onclick="ShowInputContainer()">
+                                        <div class="searchbox_cross_product__section searchbox_cross_product__section--groups searchbox_cross_product__section--with-labels" data-component="searchbox/groups/config" data-mandatory-ages-version="2" data-mandatory-ages="1" data-no-children="1">
+                                            <div class="searchbox_cross_product__section-top searchbox_cross_product__section-top--flex" data-section-header="1" data-section-overlayed="" data-section-overlayed-groups-trigger="">
+                                                <label class="searchbox_cross_product__groups-label searchbox_cross_product__groups-label--adults">
+                                                    <div class="searchbox_cross_product__groups-label-text searchbox_cross_product__groups-label-text--adults">Adults</div>
+                                                    <select class="bui-form__control searchbox_cross_product__groups-select adults-select" name="group_adults" data-role="guests" style="pointer-events: none;">
+                                                        <option value="1">1</option>
+                                                        <option selected="selected" value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                        <option value="21">21</option>
+                                                        <option value="22">22</option>
+                                                        <option value="23">23</option>
+                                                        <option value="24">24</option>
+                                                        <option value="25">25</option>
+                                                        <option value="26">26</option>
+                                                        <option value="27">27</option>
+                                                        <option value="28">28</option>
+                                                        <option value="29">29</option>
+                                                        <option value="30">30</option>
+                                                    </select>
+                                                </label>
+                                                <label class="searchbox_cross_product__groups-label searchbox_cross_product__groups-label--children">
+                                                    <div class="searchbox_cross_product__groups-label-text">Children</div>
+                                                    <select name="group_children" class="bui-form__control searchbox_cross_product__groups-select children-select" data-role="children" style="pointer-events: none;">
+                                                        <option selected="selected" value="0">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </label>
+                                                <label class="searchbox_cross_product__groups-label">
+                                                    <div class="searchbox_cross_product__groups-label-text">Rooms</div>
+                                                    <select class="bui-form__control searchbox_cross_product__groups-select room-select" name="no_rooms" data-role="rooms" style="pointer-events: none;">
+                                                        <option selected="selected" value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                        <option value="21">21</option>
+                                                        <option value="22">22</option>
+                                                        <option value="23">23</option>
+                                                        <option value="24">24</option>
+                                                        <option value="25">25</option>
+                                                        <option value="26">26</option>
+                                                        <option value="27">27</option>
+                                                        <option value="28">28</option>
+                                                        <option value="29">29</option>
+                                                        <option value="30">30</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="searchbox_cross_product__overlay--groups" data-section-overlayed-groups="" data-slide-up="" role="dialog" aria-label="Select guests/rooms">
+                                                <div class="searchbox_cross_product__overlay-container">
+                                                    <div class="searchbox_cross_product__overlay-header">
+                                                        <span class="searchbox_cross_product__overlay-close" data-section-overlay-apply="" tabindex="0" role="button" aria-label="Close" data-et-click="customGoal:INFdCDVZMYCAZbGcINNDaeKe:4"><svg aria-hidden="true" class="bk-icon -iconset-close" fill="#BDBDBD" height="24" width="24"><use xlink:href="#icon-iconset-close"></use></svg></span>
+                                                    </div>
+                                                    <div class="searchbox_cross_product__overlay-footer">
+                                                        <div class="group-prompt-child-ages">Add the correct age for each child in your group</div>
+                                                        <button class="bui-button bui-button--primary" type="button" data-section-overlay-apply="" data-et-click="customGoal:INFdCDVZMYCAZbGcINNDaeKe:3">
+                                                            <span class="bui-button__text">
+                                                                Done
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="searchbox_cross_product__overlay-content">
+                                                    <div class="searchbox_cross_product__overlay-content-inner">
+                                                        <div class="searchbox_cross_product__section-group">
+                                                            <div class="bui-stepper" data-bui-component="InputStepper">
+                                                                <div class="bui-stepper__title-wrapper">
+                                                                    <label class="bui-stepper__title" for="group_adults_overlay">Adults</label>
+                                                                </div>
+                                                                <div class="bui-stepper__wrapper">
+                                                                    <input type="range" class="bui-stepper__input" data-bui-ref="input-stepper-field" id="group_adults_overlay" name="group_adults_overlay" min="1" max="30" value="2" data-role="guests" aria-valuenow="2">
+                                                                    <button class="bui-button bui-button--secondary bui-stepper__subtract-button" data-bui-ref="input-stepper-subtract-button" type="button" aria-hidden="true">
+                                                                        <span class="bui-button__text">-</span>
+                                                                    </button>
+                                                                    <span class="bui-stepper__display" aria-hidden="true" data-bui-ref="input-stepper-value">2</span>
+                                                                    <button class="bui-button bui-button--secondary bui-stepper__add-button" data-bui-ref="input-stepper-add-button" type="button" aria-hidden="true">
+                                                                        <span class="bui-button__text">+</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="searchbox_cross_product__section-group">
+                                                            <div class="bui-stepper" data-bui-component="InputStepper">
+                                                                <div class="bui-stepper__title-wrapper">
+                                                                    <label class="bui-stepper__title" for="group_children_overlay">Children</label>
+                                                                </div>
+                                                                <div class="bui-stepper__wrapper">
+                                                                    <input type="range" class="bui-stepper__input" data-bui-ref="input-stepper-field" id="group_children_overlay" name="group_children_overlay" min="0" max="10" value="0" data-role="children" aria-valuenow="0">
+                                                                    <button class="bui-button bui-button--secondary bui-stepper__subtract-button" data-bui-ref="input-stepper-subtract-button" type="button" aria-hidden="true" disabled="true">
+                                                                        <span class="bui-button__text">-</span>
+                                                                    </button>
+                                                                    <span class="bui-stepper__display" aria-hidden="true" data-bui-ref="input-stepper-value">0</span>
+                                                                    <button class="bui-button bui-button--secondary bui-stepper__add-button" data-bui-ref="input-stepper-add-button" type="button" aria-hidden="true">
+                                                                        <span class="bui-button__text">+</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="searchbox_cross_product__section-group-children">
+                                                            <label class=" js-child-ages-label" data-children-ages-label="" style="display: none;">Age of child at check-out</label>
+                                                            <p>
+                                                                Add correct ages to see tailored options and prices
+                                                            </p>
+                                                            <div class="searchbox_cross_product__section-children-ages  js-child-ages" data-section-children="1" style="display: none;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="searchbox_cross_product__section-group">
+                                                            <div class="bui-stepper" data-bui-component="InputStepper">
+                                                                <div class="bui-stepper__title-wrapper">
+                                                                    <label class="bui-stepper__title" for="no_rooms_overlay">Rooms</label>
+                                                                </div>
+                                                                <div class="bui-stepper__wrapper">
+                                                                    <input type="range" class="bui-stepper__input" data-bui-ref="input-stepper-field" id="no_rooms_overlay" name="no_rooms_overlay" min="1" max="30" value="1" data-role="rooms" aria-valuenow="1">
+                                                                    <button class="bui-button bui-button--secondary bui-stepper__subtract-button" data-bui-ref="input-stepper-subtract-button" type="button" aria-hidden="true" disabled="true">
+                                                                        <span class="bui-button__text">-</span>
+                                                                    </button>
+                                                                    <span class="bui-stepper__display" aria-hidden="true" data-bui-ref="input-stepper-value">1</span>
+                                                                    <button class="bui-button bui-button--secondary bui-stepper__add-button" data-bui-ref="input-stepper-add-button" type="button" aria-hidden="true">
+                                                                        <span class="bui-button__text">+</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <template id="sb-age-option-container">
+                                        <div class="age_option-container  js-age-option-container">
+                                            <select name="age" class="age">
+                                                <option value="" selected="">
+                                                    Age needed
+                                                </option>
+                                                <option value="0">
+                                                    0 years old
+                                                </option>
+                                                <option value="1">
+                                                    1 year old
+                                                </option>
+                                                <option value="2">
+                                                    2 years old
+                                                </option>
+                                                <option value="3">
+                                                    3 years old
+                                                </option>
+                                                <option value="4">
+                                                    4 years old
+                                                </option>
+                                                <option value="5">
+                                                    5 years old
+                                                </option>
+                                                <option value="6">
+                                                    6 years old
+                                                </option>
+                                                <option value="7">
+                                                    7 years old
+                                                </option>
+                                                <option value="8">
+                                                    8 years old
+                                                </option>
+                                                <option value="9">
+                                                    9 years old
+                                                </option>
+                                                <option value="10">
+                                                    10 years old
+                                                </option>
+                                                <option value="11">
+                                                    11 years old
+                                                </option>
+                                                <option value="12">
+                                                    12 years old
+                                                </option>
+                                                <option value="13">
+                                                    13 years old
+                                                </option>
+                                                <option value="14">
+                                                    14 years old
+                                                </option>
+                                                <option value="15">
+                                                    15 years old
+                                                </option>
+                                                <option value="16">
+                                                    16 years old
+                                                </option>
+                                                <option value="17">
+                                                    17 years old
+                                                </option>
+                                            </select>
+                                            <svg class="bk-icon -iconset-dropdown" fill="#0071C2" height="16" width="16"><use xlink:href="#icon-iconset-dropdown"></use></svg>
+                                        </div>
+                                    </template>
+                                    <div data-et-view="
+"></div>
+
+                                    <button id="submit_search" onclick="SearchResults()" type="button" class="primary_cta js_submit_search js-searchbox__input b-no-tap-highlight m_bigger_search_button" title="Search hotels" data-et-click="  customGoal:cCHObAURAfVaeYPZZZECVVDJdDBKWPHDDWe:2   customGoal:cCHObTRVDEZRdPQBcGCfTKYCccaT:1 goal:mdot_index_search_button_click  ">
+                                        Search
+                                    </button>
+                                </div>
+                                <input type="hidden" name="lpsr" value="1">
+                            </form>
+
+                            @*}*@
+                        </div>
+                        <div id="DatepickerOverlay" style="display:none;width:100%;height:100%;position:fixed;background:black;opacity:0.5;top:0;left:0;z-index:1031;">
+                        </div>
+                        <div id="DatepickerContainer" class="xp__guests__inputs focussable " data-group-modal="" style="display: none; position: fixed; width: 100%; z-index: 1111111; top: unset; bottom: 0px; left: 0px; color: black !important; padding: 16px;" role="region" aria-label="Rooms and occupancy">
+                            <div data-component="search/group/group" class="" data-sb-id="main" data-sb-width="medium" data-sb-bbtool-searchbox="0" data-sb-group-children-hide="0" data-sb-group-children-ages-hide="0" data-sb-group-infants-hide="1" data-sb-group-pets-hide="0" data-sb-group-rooms-hide="0" data-sb-group-block-labels="0" data-sb-group-use_adults_label="0" data-sb-group-always-expanded="0" data-sb-group-use-bui-stepper="1" data-sb-group-bui-steppers-accessible="1" data-fe_sb_group_descriptive_dropdowns="0" data-fe_sb_universal_design="0" data-fe_sb_xpi="1" data-fe_remove_duplicate_ids="0" data-fe_sb_unique_id="" data-sb_reorder_rooms_block="1" data-sb-facelift="0" data-fe_sb_show_children_age_bracket="1" data-fe_sb_mandatory_child_ages="1" data-fe_sb_child_ages_ui_update="0" data-fe_sb_dont_use_default_child_age="1">
+                                <div style="text-align: right; font-weight: 100; font-size: 22px; padding-bottom: 9px;">
+                                    <i onclick="HideDatepickerContainer()" style="cursor:pointer" class="fa fa-close"></i>
+                                </div>
+                                <div class="u-clearfix" data-render="">
+                                    <div id="DatepickerParentEl">
+                                        <input id="MobileDaterangePicker" type="text" style="height:0;" name="daterange" class="xp__input" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="InputOverlay" style="display:none;width:100%;height:100%;position:fixed;background:black;opacity:0.5;top:0;left:0;z-index:1031;">
+                        </div>
+                        <div id="InputContainer" class="xp__guests__inputs focussable " data-group-modal="" style="display: none; position: fixed; width: 100%; z-index: 1111111; top: unset; bottom: 0px; left: 0px; color: black !important; padding: 16px;" role="region" aria-label="Rooms and occupancy">
+                            <div data-component="search/group/group" data-sb-id="main" data-sb-width="medium" data-sb-bbtool-searchbox="0" data-sb-group-children-hide="0" data-sb-group-children-ages-hide="0" data-sb-group-infants-hide="1" data-sb-group-pets-hide="0" data-sb-group-rooms-hide="0" data-sb-group-block-labels="0" data-sb-group-use_adults_label="0" data-sb-group-always-expanded="0" data-sb-group-use-bui-stepper="1" data-sb-group-bui-steppers-accessible="1" data-fe_sb_group_descriptive_dropdowns="0" data-fe_sb_universal_design="0" data-fe_sb_xpi="1" data-fe_remove_duplicate_ids="0" data-fe_sb_unique_id="" data-sb_reorder_rooms_block="1" data-sb-facelift="0" data-fe_sb_show_children_age_bracket="1" data-fe_sb_mandatory_child_ages="1" data-fe_sb_child_ages_ui_update="0" data-fe_sb_dont_use_default_child_age="1">
+                                <div style="text-align: right; font-weight: 100; font-size: 22px; padding-bottom: 9px;">
+                                    <i onclick="HideInputContainer()" style="cursor:pointer" class="fa fa-close"></i>
+                                </div>
+                                <div class="u-clearfix" data-render="">
+                                    <div class="sb-group__field sb-group__field-adults">
+                                        <div class="bui-stepper" data-bui-component="InputStepper">
+                                            <div class="bui-stepper__title-wrapper">
+                                                <label class="bui-stepper__title" for="group_adults">Adults</label>
+                                            </div>
+                                            <div class="bui-stepper__wrapper sb-group__stepper-a11y">
+                                                <input style="display: none" type="number" class="bui-stepper__input" data-bui-ref="input-stepper-field" id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count="">
+                                                <button class="bui-button bui-button--secondary bui-stepper__subtract-button " onclick="CalculateMinusAdult()" data-bui-ref="input-stepper-subtract-button" type="button" aria-label="Decrease number of Adults" aria-describedby="group_adults_desc">
+                                                    <span class="bui-button__text">−</span>
+                                                </button>
+                                                <span class="bui-stepper__display" data-bui-ref="input-stepper-value" id="AdultValue" aria-hidden="true" data-value="">1</span>
+                                                <button class="bui-button bui-button--secondary bui-stepper__add-button " onclick="CalculatePlusAdult()" data-bui-ref="input-stepper-add-button" type="button" aria-label="Increase number of Adults" aria-describedby="group_adults_desc">
+                                                    <span class="bui-button__text">+</span>
+                                                </button>
+                                                <span class="bui-u-sr-only" aria-live="assertive" id="group_adults_desc">2 Adults</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sb-group__field sb-group-children ">
+                                        <div class="bui-stepper" data-bui-component="InputStepper">
+                                            <div class="bui-stepper__title-wrapper" style="text-align: left;">
+                                                <label class="bui-stepper__title" for="group_children" style="text-align: left;">Children</label>
+                                                <span class="bui-stepper__subtitle">Ages 0 – 17</span>
+                                            </div>
+                                            <div class="bui-stepper__wrapper sb-group__stepper-a11y">
+                                                <input style="display: none" type="number" class="bui-stepper__input" data-bui-ref="input-stepper-field" id="group_children" name="group_children" min="0" max="10" value="2" data-group-children-count="">
+                                                <button class="bui-button bui-button--secondary bui-stepper__subtract-button " onclick="CalculateMinusChildren()" data-bui-ref="input-stepper-subtract-button" type="button" aria-label="Decrease number of Children" aria-describedby="group_children_desc">
+                                                    <span class="bui-button__text">−</span>
+                                                </button>
+                                                <span class="bui-stepper__display" data-bui-ref="input-stepper-value" id="ChildValue" aria-hidden="true">0</span>
+                                                <button class="bui-button bui-button--secondary bui-stepper__add-button " onclick="CalculatePlusChildren()" data-bui-ref="input-stepper-add-button" type="button" aria-label="Increase number of Children" aria-describedby="group_children_desc">
+                                                    <span class="bui-button__text">+</span>
+                                                </button>
+                                                <span class="bui-u-sr-only" aria-live="assertive" id="group_children_desc">2 Children</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="sb-group__children__field clearfix col-6" id="AgeEntryContainer" style="display:none">
+                                            <select name="age" data-group-child-age="0" aria-label="Child 1 age">
+                                                <option class="sb_child_ages_empty_zero" value="">
+                                                    Age needed
+                                                </option>
+                                                <option value="0">
+                                                    0 years old
+                                                </option>
+                                                <option value="1">
+                                                    1 year old
+                                                </option>
+                                                <option value="2">
+                                                    2 years old
+                                                </option>
+                                                <option value="3">
+                                                    3 years old
+                                                </option>
+                                                <option value="4">
+                                                    4 years old
+                                                </option>
+                                                <option value="5">
+                                                    5 years old
+                                                </option>
+                                                <option value="6">
+                                                    6 years old
+                                                </option>
+                                                <option value="7">
+                                                    7 years old
+                                                </option>
+                                                <option value="8">
+                                                    8 years old
+                                                </option>
+                                                <option value="9">
+                                                    9 years old
+                                                </option>
+                                                <option value="10" selected="">
+                                                    10 years old
+                                                </option>
+                                                <option value="11">
+                                                    11 years old
+                                                </option>
+                                                <option value="12">
+                                                    12 years old
+                                                </option>
+
+                                            </select>
+
+
+                                        </div>
+                                        <div class="sb-group__children__field clearfix col-6" id="AgeEntryContainer2" style="display:none">
+                                            <select name="age" data-group-child-age="0" aria-label="Child 1 age">
+                                                <option class="sb_child_ages_empty_zero" value="">
+                                                    Age needed
+                                                </option>
+                                                <option value="0">
+                                                    0 years old
+                                                </option>
+                                                <option value="1">
+                                                    1 year old
+                                                </option>
+                                                <option value="2">
+                                                    2 years old
+                                                </option>
+                                                <option value="3">
+                                                    3 years old
+                                                </option>
+                                                <option value="4">
+                                                    4 years old
+                                                </option>
+                                                <option value="5">
+                                                    5 years old
+                                                </option>
+                                                <option value="6">
+                                                    6 years old
+                                                </option>
+                                                <option value="7">
+                                                    7 years old
+                                                </option>
+                                                <option value="8">
+                                                    8 years old
+                                                </option>
+                                                <option value="9">
+                                                    9 years old
+                                                </option>
+                                                <option value="10" selected="">
+                                                    10 years old
+                                                </option>
+                                                <option value="11">
+                                                    11 years old
+                                                </option>
+                                                <option value="12">
+                                                    12 years old
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+                                        <div class="sb-group__children__field clearfix col-6" id="AgeEntryContainer3" style="display:none">
+                                            <select name="age" data-group-child-age="0" aria-label="Child 1 age">
+                                                <option class="sb_child_ages_empty_zero" value="">
+                                                    Age needed
+                                                </option>
+                                                <option value="0">
+                                                    0 years old
+                                                </option>
+                                                <option value="1">
+                                                    1 year old
+                                                </option>
+                                                <option value="2">
+                                                    2 years old
+                                                </option>
+                                                <option value="3">
+                                                    3 years old
+                                                </option>
+                                                <option value="4">
+                                                    4 years old
+                                                </option>
+                                                <option value="5">
+                                                    5 years old
+                                                </option>
+                                                <option value="6">
+                                                    6 years old
+                                                </option>
+                                                <option value="7">
+                                                    7 years old
+                                                </option>
+                                                <option value="8">
+                                                    8 years old
+                                                </option>
+                                                <option value="9">
+                                                    9 years old
+                                                </option>
+                                                <option value="10" selected="">
+                                                    10 years old
+                                                </option>
+                                                <option value="11">
+                                                    11 years old
+                                                </option>
+                                                <option value="12">
+                                                    12 years old
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+                                        <div class="sb-group__children__field clearfix col-6" id="AgeEntryContainer4" style="display:none">
+                                            <select name="age" data-group-child-age="0" aria-label="Child 1 age">
+                                                <option class="sb_child_ages_empty_zero" value="">
+                                                    Age needed
+                                                </option>
+                                                <option value="0">
+                                                    0 years old
+                                                </option>
+                                                <option value="1">
+                                                    1 year old
+                                                </option>
+                                                <option value="2">
+                                                    2 years old
+                                                </option>
+                                                <option value="3">
+                                                    3 years old
+                                                </option>
+                                                <option value="4">
+                                                    4 years old
+                                                </option>
+                                                <option value="5">
+                                                    5 years old
+                                                </option>
+                                                <option value="6">
+                                                    6 years old
+                                                </option>
+                                                <option value="7">
+                                                    7 years old
+                                                </option>
+                                                <option value="8">
+                                                    8 years old
+                                                </option>
+                                                <option value="9">
+                                                    9 years old
+                                                </option>
+                                                <option value="10" selected="">
+                                                    10 years old
+                                                </option>
+                                                <option value="11">
+                                                    11 years old
+                                                </option>
+                                                <option value="12">
+                                                    12 years old
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="sb-group__field">
+                                        <div class="bui-stepper" data-bui-component="InputStepper">
+                                            <div class="bui-stepper__title-wrapper">
+                                                <label class="bui-stepper__title" for="no_rooms">Rooms</label>
+                                            </div>
+                                            <div class="bui-stepper__wrapper sb-group__stepper-a11y">
+                                                <input style="display: none" type="number" class="bui-stepper__input" data-bui-ref="input-stepper-field" id="no_rooms" name="no_rooms" min="1" max="30" value="1" data-group-rooms-count="">
+                                                <button class="bui-button bui-button--secondary bui-stepper__subtract-button sb-group__stepper-button-disabled" onclick="CalculateMinusRooms()" data-bui-ref="input-stepper-subtract-button" type="button" aria-label="Decrease number of Rooms" aria-describedby="no_rooms_desc">
+                                                    <span class="bui-button__text">−</span>
+                                                </button>
+                                                <span class="bui-stepper__display" data-bui-ref="input-stepper-value" id="RoomValue" aria-hidden="true">1</span>
+                                                <button class="bui-button bui-button--secondary bui-stepper__add-button " data-bui-ref="input-stepper-add-button" onclick="CalculatePlusRooms()" type="button" aria-label="Increase number of Rooms" aria-describedby="no_rooms_desc">
+                                                    <span class="bui-button__text">+</span>
+                                                </button>
+                                                <span class="bui-u-sr-only" aria-live="assertive" id="no_rooms_desc">1 Rooms</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <button class="bui-button bui-button--primary" onclick="HideInputContainer()" style="width:100%" type="button">
+                                    <span class="bui-button__text">
+                                        Done
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner end -->
+<!-- Featured properties start -->
+<div class="content-area featured-properties">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h2>Available Rooms</h2>
+        </div>
+        <div class="row">
+            @foreach (var item in results)
+            {
+                string[] features = null;
+
+                <div class="col-lg-6 col-md-12 col-sm-12 wow fadeInLeft delay-04s">
+                    <div class="row g-0 property fp2">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <!-- Property img -->
+                            <div class="property-img">
+                                <div class="property-tag button alt featured">Featured</div>
+                                <div class="property-price">@item.TotalAmount</div>
+                                @*<img src="~/uploads/@item.imgURL" alt="fp-list" class="img-responsive hp-2">*@
+                                <img src="@Url.Action("Image", "Home", new { img = @item.imgURL })" alt="hotels in naran" class="img-responsive hp-2">
+
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 property-content">
+                            <!-- Info -->
+                            <div class="info">
+                                <!-- title -->
+                                <h2 class="title">
+                                    @*<a href="@Url.Action("RoomDetails", "SearchResult", new { Id = @item.RoomCateCode })">@item.RoomCategory</a>*@
+                                    <a role="button" onclick='return check()'>@item.RoomCategory</a>
+                                </h2>
+                                <!-- Property address -->
+                                <h3 class="property-address">
+                                </h3>
+                                <!-- Facilities List -->
+                                <ul class="facilities-list fl-2 clearfix">
+                                    @{
+                                        if (item.Features != null)
+                                        {
+                                            features = item.Features.Split(',');
+                                            for (int i = 0; i < 4; i++)
+                                            {
+                                                if (i < features.Length)
+                                                {
+                                                    if (features[i] != "")
+                                                    {
+                                                        <li style="font-size:10px">
+                                                            <i class="fa fa-check"></i>
+                                                            <span>@features[i].Replace('_', ' ')</span>
+                                                        </li>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                </ul>
+                                <!-- Property footer -->
+                            </div>
+                            <!-- Property footer -->
+                            <div class="property-footer">
+                                <span class="left">
+                                    <button onclick='return check()' class="btn btn-danger">Search Dates</button>
+                                </span>
+                                <span class="right">
+                                    @*<i class="fa fa-calendar"></i>@item.NoOfRooms <span>    Rooms Left</span>*@
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<!-- Popular Places strat -->
+<div class="popular-places pp2 content-area-12">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h2>Popular Places</h2>
+            <p>Top 5 Best Places to Visit in Naran-Kaghan</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 wow fadeInLeft delay-04s col-pad">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100"
+                                         src="~/Content/assets/img/popular-places/Siri Paye.jpg"
+                                         alt="places to visit in naran" />
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="@Url.Action("Index","PlacesandActivities")" ToolTip="Places & Activities">Siri Paye</a>
+                                        <a href="https://goo.gl/maps/VNtRA8MPdJVVMoxK8" ToolTip="Places & Activities"><span class="float-end">56 Km Away</span></a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100"
+                                         src="~/Content/assets/img/popular-places/Babusar-top.jpg"
+                                         alt="naran popular places" />
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="@Url.Action("Index","PlacesandActivities")" ToolTip="Places & Activities">Babusar Top</a>
+                                        <a href="https://goo.gl/maps/zz8aVnQJonhXqqYa9" ToolTip="Places & Activities"><span class="float-end">68 Km Away</span></a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp delay-04s col-pad">
+                <div class="popular-places-box">
+                    <div class="popular-places-overflow">
+                        <div class="popular-places-photo">
+                            <img class="img-fluid w-100 big"
+                                 src="~/Content/assets/img/popular-places/Saif-ul-Mulk.jpg"
+                                 alt="saif ul Malook naran" />
+                        </div>
+                    </div>
+                    <div class="ling">
+                        <div class="ling-section">
+                            <h3>
+                                <a href="@Url.Action("Index","PlacesandActivities")" ToolTip="Places & Activities">Saif-Ul-Muluk</a>
+                                <a href="https://goo.gl/maps/JiCRVTMXuxFQvKZeA" ToolTip="Places & Activities"><span class="float-end">12 Km Away</span></a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInRight delay-04s col-pad">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100"
+                                         src="~/Content/assets/img/popular-places/Lulusar-Lake.jpg"
+                                         alt="Lulusar lake naran" />
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="@Url.Action("Index","PlacesandActivities")" ToolTip="Places & Activities">Lulusar Lake</a>
+                                        <a href="https://goo.gl/maps/VRs3ShFMXnmAV6th8" ToolTip="Places & Activities"><span class="float-end">52 Km Away</span></a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100"
+                                         src="~/Content/assets/img/popular-places/Shogran.jpg"
+                                         alt="shogran naran" />
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="@Url.Action("Index","PlacesandActivities")" ToolTip="Places & Activities">Shogran</a>
+                                        <a href="https://goo.gl/maps/FATQknqsT99SVdfN8" ToolTip="Places & Activities"><span class="float-end">63 Km Away</span></a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popular places end -->
+<!-- Modal -->
+<div id="myModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closemodal" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="title">Check Availability</h4>
+            </div>
+            @using (Html.BeginForm("PropertySearchMod", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+
+                    <div class="search-area-inner">
+                        <div class="search-contents">
+                            <div>
+                                <div class="form-group">
+                                    <input ID="CheckInM"
+                                           name="CheckInM"
+                                           required
+                                           type="text"
+                                           autocomplete="off"
+                                           PlaceHolder="Check In Date"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <div class="form-group">
+                                    <input ID="CheckOutM"
+                                           name="CheckOutM"
+                                           required
+                                           type="text"
+                                           autocomplete="off"
+                                           PlaceHolder="Check Out Date"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <div class="form-group">
+                                    <select ID="Adults"
+                                            name="Adults"
+                                            class="form-control"
+                                            data-live-search="true"
+                                            data-live-search-placeholder="Search value">
+                                        <option selected Value="0">Adults</option>
+                                        <option Value="1">1</option>
+                                        <option Value="2">2</option>
+                                        <option Value="3">3</option>
+                                        <option Value="4">4</option>
+                                        <option Value="5">5</option>
+                                        <option Value="6">6</option>
+                                        <option Value="7">7</option>
+                                        <option Value="8">8</option>
+                                        <option Value="9">9</option>
+                                        <option Value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <select ID="Children"
+                                        name="Children"
+                                        class="form-control"
+                                        data-live-search="true"
+                                        data-live-search-placeholder="Search value">
+                                    <option selected Value="0">Children</option>
+                                    <option Value="1">1</option>
+                                    <option Value="2">2</option>
+                                    <option Value="3">3</option>
+                                    <option Value="4">4</option>
+                                    <option Value="5">5</option>
+                                    <option Value="6">6</option>
+                                    <option Value="7">7</option>
+                                    <option Value="8">8</option>
+                                    <option Value="9">9</option>
+                                    <option Value="10">10</option>
+                                    <option Value="10">11</option>
+                                </select>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <select ID="NoOfRooms"
+                                        name="NoOfRooms"
+                                        class="form-control"
+                                        data-live-search="true"
+                                        data-live-search-placeholder="Search value">
+                                    <option selected Value="0">No. Of Rooms</option>
+                                    <option Value="1">1</option>
+                                    <option Value="2">2</option>
+                                    <option Value="3">3</option>
+                                    <option Value="4">4</option>
+                                    <option Value="5">5</option>
+                                    <option Value="6">6</option>
+                                    <option Value="7">7</option>
+                                    <option Value="8">8</option>
+                                    <option Value="9">9</option>
+                                </select>
+                            </div>
+                            <br />
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-dark" style="width:100%" value="Search" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="display:none" class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-secondary" style="width:90%" value="Search" />
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<!-- Featured properties end -->
+<div class="clearfix"></div>
+
+
+
+<script type="text/javascript">
+    function check() {
+        $('#myModal').modal('show');
+    }
+
+    function close() {
+        $('#myModal').modal('hide');
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($(window).width() > 700) {
+            $("#MobileSearch").remove();
+            $("#WindowSearch").show();
+        }
+        else {
+            $("#MobileSearch").show();
+            $("#WindowSearch").remove();
+        }
+
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    });
+    function check() {
+        $('#myModal').modal('show');
+    }
+
+    function close() {
+        $('#myModal').modal('hide');
+    }
+    function ShowInputContainer() {
+        $('#InputOverlay').show();
+        $('#InputContainer').show();
+    }
+    function HideInputContainer() {
+        $('#InputOverlay').hide();
+        $('#InputContainer').hide();
+    }
+    function ShowDatepickerContainer() {
+        $('#DatepickerOverlay').show();
+        $('#DatepickerContainer').show();
+        $('html, body').css({
+            overflow: 'hidden',
+            height: '100%'
+        });
+        $('#MobileDaterangePicker').click()
+
+    }
+    function HideDatepickerContainer() {
+        $('#DatepickerOverlay').hide();
+        $('#DatepickerContainer').hide();
+        $('html, body').css({
+            overflow: 'auto',
+            height: 'auto'
+        });
+    }
+</script>
+
+
+@*<script>
+        var $j = jQuery.noConflict();
+        $j(document).ready(function () {
+            var dateToday = new Date();
+            $j("#CheckIn").datepicker({
+                numberOfMonths: 1,
+                minDate: dateToday,
+                constrainInput: true,
+                showButtonPanel: true,
+                hideIfNoPrevNext: true,
+                dateFormat: 'dd-mm-yy',
+                onSelect: function (date) {
+                    var dt = $j("#CheckIn").val();
+                    var res = dt.split("-");
+                    dt = res[1] + "/" + res[0] + "/" + res[2];
+                    //alert(dt);
+                    var d1 = new Date(dt);
+                    //alert(d1);
+                    var d = new Date();
+                    d1.setDate(d1.getDate() + 1);
+                    // alert(d1);
+                    var m = d1.getMonth() + 1;
+                    // alert(m);
+                    var d2 = d1.getDate();
+                    var y = d1.getFullYear();
+                    if (d2 < 10) {
+                        d2 = "0" + d2;
+                    }
+
+                    if (m < 10) {
+                        m = "0" + m;
+                    }
+                    var z = [d2, m, y].join('-');
+                    $j("#CheckOut").datepicker('setDate', null);
+                    $j('#CheckOut').datepicker('option', { minDate: z });
+                },
+                onClose: function (dateText, inst) {
+                    //$("#start").removeClass('hasDatepicker').datepicker(),
+                    $j('#CheckOut').datepicker("show");
+                }
+            });
+            $j("#CheckOut").datepicker({
+
+                numberOfMonths: 1,
+                constrainInput: true,
+                //minDate: dateToday,
+                showButtonPanel: false,
+                dateFormat: 'dd-mm-yy',
+                showOn: "focus",
+                hideIfNoPrevNext: true,
+                //defaultDate: +1
+            });
+
+            $j("#CheckInM").datepicker({
+                numberOfMonths: 1,
+                minDate: dateToday,
+                constrainInput: true,
+                showButtonPanel: true,
+                hideIfNoPrevNext: true,
+                dateFormat: 'dd-mm-yy',
+                onSelect: function (date) {
+                    var dt = $j("#CheckInM").val();
+                    var res = dt.split("-");
+                    dt = res[1] + "/" + res[0] + "/" + res[2];
+                    //alert(dt);
+                    var d1 = new Date(dt);
+                    //alert(d1);
+                    var d = new Date();
+                    d1.setDate(d1.getDate() + 1);
+                    // alert(d1);
+                    var m = d1.getMonth() + 1;
+                    // alert(m);
+                    var d2 = d1.getDate();
+                    var y = d1.getFullYear();
+                    if (d2 < 10) {
+                        d2 = "0" + d2;
+                    }
+
+                    if (m < 10) {
+                        m = "0" + m;
+                    }
+                    var z = [d2, m, y].join('-');
+                    $j("#CheckOutM").datepicker('setDate', null);
+                    $j('#CheckOutM').datepicker('option', { minDate: z });
+                },
+                onClose: function (dateText, inst) {
+                    //$("#start").removeClass('hasDatepicker').datepicker(),
+                    $j('#CheckOutM').datepicker("show");
+                }
+            });
+            $j("#CheckOutM").datepicker({
+
+                numberOfMonths: 1,
+                constrainInput: true,
+                //minDate: dateToday,
+                showButtonPanel: false,
+                dateFormat: 'dd-mm-yy',
+                showOn: "focus",
+                hideIfNoPrevNext: true,
+                //defaultDate: +1
+            });
+
+            $j("#CheckInMob").datepicker({
+                numberOfMonths: 1,
+                minDate: dateToday,
+                constrainInput: true,
+                showButtonPanel: true,
+                hideIfNoPrevNext: true,
+                dateFormat: 'dd-mm-yy',
+                onSelect: function (date) {
+                    var dt = $j("#CheckInMob").val();
+                    var res = dt.split("-");
+                    dt = res[1] + "/" + res[0] + "/" + res[2];
+                    //alert(dt);
+                    var d1 = new Date(dt);
+                    //alert(d1);
+                    var d = new Date();
+                    d1.setDate(d1.getDate() + 1);
+                    // alert(d1);
+                    var m = d1.getMonth() + 1;
+                    // alert(m);
+                    var d2 = d1.getDate();
+                    var y = d1.getFullYear();
+                    if (d2 < 10) {
+                        d2 = "0" + d2;
+                    }
+
+                    if (m < 10) {
+                        m = "0" + m;
+                    }
+                    var z = [d2, m, y].join('-');
+                    $j("#CheckOutMob").datepicker('setDate', null);
+                    $j('#CheckOutMob').datepicker('option', { minDate: z });
+                },
+                onClose: function (dateText, inst) {
+                    //$("#start").removeClass('hasDatepicker').datepicker(),
+                    $j('#CheckOutMob').datepicker("show");
+                }
+            });
+            $j("#CheckOutMob").datepicker({
+
+                numberOfMonths: 1,
+                constrainInput: true,
+                //minDate: dateToday,
+                showButtonPanel: false,
+                dateFormat: 'dd-mm-yy',
+                showOn: "focus",
+                hideIfNoPrevNext: true,
+                //defaultDate: +1
+            });
+
+            $('#closemodal').click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
+    </script>*@

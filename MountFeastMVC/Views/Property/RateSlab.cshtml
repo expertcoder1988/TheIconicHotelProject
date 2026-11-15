@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "RateSlab";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="box-body">
+    <h5 class="callout callout-info">Rate Slab</h5>
+    <input type="hidden" id="AvoidReload" value="false" />
+    <input type="hidden" id="RateSlabId" value="-1" />
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label id="lblProduct">
+                        Please Select Property
+                    </label>
+                    <select ID="Properties" class="form-control">
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label id="lblProduct">
+                        Please Select Room
+                    </label>
+                    <select ID="rooms" class="form-control">
+                        <option selected>Please Select Room</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label id="lblProduct">
+                        Per Night Rate
+                    </label>
+                    <input type="text" class="form-control" id="nightRate" />
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label id="lblProduct" for="dvDays">
+                            Weekdays
+                        </label>
+                        <div id="dvDays">
+                            <input type="checkbox" id="Monday" value="Mon" />Mon
+                            <input type="checkbox" id="Tuesday" value="Tue" />Tue
+                            <input type="checkbox" id="Wednesday" value="Wed" />Wed
+                            <input type="checkbox" id="Thursday" value="Thu" />Thu
+                            <input type="checkbox" id="Friday" value="Fri" />Fri
+                            <input type="checkbox" id="Saturday" value="Sat" />Sat
+                            <input type="checkbox" id="Sunday" value="Sun" />Sun
+                        </div>
+                        <input type="hidden" id="hdDays" />
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label id="lblProduct">
+                            Slab Start Date
+                        </label>
+                        <input type='date' ID='StartDate' class='form-control' />
+                    </div>
+                    <div class="col-md-6">
+                        <label id="lblProduct">
+                            Slab End Date
+                        </label>
+                        <input type='date' ID='EndDate' class='form-control' />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label id="lblProduct">
+                            Per Extra Adult Charges
+                        </label>
+                        <input type='number' value="0" ID='NormalPrice' class='form-control' />
+                    </div>
+                    <div class="col-md-6">
+                        <label id="lblProduct">
+                            Per Extra Child Charges
+                        </label>
+                        <input type='number' value="0" ID='ChildPrice' class='form-control' />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label id="lblProduct">
+                            Discounted Rate
+                        </label>
+                        <input type='number' value="0" ID='Discount' class='form-control' />
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label id="lblProduct"> </label>
+                    <div class="col-md-6" style="padding-top: 15px; padding-bottom: 10px">
+                        <input type="button" value="Save" id="btnSave" class="btn btn-primary" />
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <table class="table" id="RatePlan">
+                        <tr>
+                            <th style=display:none>Room Caterogy ID</th>
+                            <th>Room Category</th>
+                            <th>Room Rate</th>
+                            <th>Discount</th>
+                            <th>Adult Price</th>
+                            <th>Child Price</th>
+                            <th>Days</th>   
+                            <th>Slab Start Date</th>
+                            <th>Slab End Date</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/RateSlab.js"></script>

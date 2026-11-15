@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "AddNewUser";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="box-body">
+    <h3 class="callout callout-info" align="center">User Registration</h3>
+</div>
+
+<div class="box-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-3">
+                <div class="form-group">
+                    <label for="Properties">Properties</label>
+                    <select class="form-control" style="height:34px;"
+                            id="Properties" name="Properties">
+                        <option selected="selected" value="0">Please select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+                <div class="form-group">
+                    <label>
+                        First Name :
+                    </label>
+                    <input type="text" ID="firstName"
+                           class="form-control" />
+                    <input type="hidden" ID="Id" value="0"
+                           class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+                <div class="form-group">
+                    <label>Last Name :</label>
+                    <input type="text" ID="lastName"
+                           class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+                <div class="form-group">
+                    <label>User Name :</label>
+                    <input type="text" ID="userName"
+                           class="form-control" />
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-xs-3">
+                <div class="form-group">
+                    <label>Password :</label>
+                    <input type="text" ID="password" TextMode="Password"
+                           class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+                <div class="form-group">
+                    <label>Conf Pass:</label>
+                    <input type="text" ID="cPassword" TextMode="Password"
+                           class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+                <div class="form-group">
+                    <label>Email :</label>
+                    <input type="text" ID="txtOwnerEmail"
+                           class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+                <div class="form-group">
+                    <label>Phone # :</label>
+                    <input type="text" ID="phone"
+                           class="form-control" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div id="dvAccess">
+                    <input type="hidden" ID="hdAccess" value=""
+                           class="form-control" />
+                    <table class="table" id="accessList">
+                        <tr>
+                            <th>Access Type	</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Dashboard</td>
+                                <td>User Will able to view dashboard</td>
+                                <td><input type="checkbox" id="1" value="1" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Property</td>
+                                <td>User Will able to add/edit/view property, roooms, rate slabs etc</td>
+                                <td><input type="checkbox" id="2" value="2" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Booking</td>
+                                <td>User Will able to add/edit/view booking</td>
+                                <td><input type="checkbox" id="3" value="3" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Calendar</td>
+                                <td>User Will able to view calendar</td>
+                                <td><input type="checkbox" id="4" value="4" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Channel Manager</td>
+                                <td>User Will able to add/edit/view channel manager</td>
+                                <td><input type="checkbox" id="5" value="5" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Reports</td>
+                                <td>User Will able to view reports</td>
+                                <td><input type="checkbox" id="6" value="6" /> </td>
+                            </tr>
+                            <tr>
+                                <td>User</td>
+                                <td>User Will able to add/edit/view users</td>
+                                <td><input type="checkbox" id="7" value="7" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Blog</td>
+                                <td>User Will able to add/edit/view dashboard</td>
+                                <td><input type="checkbox" id="8" value="8" /> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="button" ID="doaddnew" name="doaddnew" class="btn btn-primary" value="Save User" />
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/CreateUser.js"></script>

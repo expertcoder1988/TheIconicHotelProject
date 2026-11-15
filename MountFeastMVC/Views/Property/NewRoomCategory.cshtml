@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "NewRoomCategory";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<asp:HiddenField ID="hdnFilePath" />
+<div class="box-header with-border" align="center">
+    <h3 class="callout callout-info">Add New Room Category</h3>
+
+</div>
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group">
+                <div class="col-md-5">
+
+                    <input type="text" ID="txtRoomType" placeholder="Enter Room Category" ToolTip="Enter Room Category"
+                           class="form-control" ValidationGroup="validationgroup" />
+                </div>
+                <div class="col-md-5">
+                    <input type="button" ID="btnSaveCategory" name="btnSaveCategory" class="btn btn-primary" value="Add New Category" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+                <table  class="table" id="cate">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Room Category</th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/Category.js"></script>

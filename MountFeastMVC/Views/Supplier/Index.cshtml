@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-header with-border" align="center">
+    <h3 class="callout callout-info">Add New Manager</h3>
+   
+    <input type="hidden" ID="hdnSupplierID"  />
+</div>
+
+
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-3 col-xs-3">
+            <div class="form-group">
+                <label>Manager Name</label>
+                <input type="text" ID="txtSupplierName"   class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" ID="txtSupplierEmail"   class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3">
+            <div class="form-group">
+                <label>Mobile</label>
+                <input type="text" ID="txtMobile"  class="form-control"  />
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3">
+            <div class="form-group">
+                <label>Fax</label>
+                <input type="text" ID="txtFax"   class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-3 col-xs-3">
+            <div class="form-group">
+                <label>Manager ID</label>
+                <input type="text" ID="txtSupplierID"   class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3">
+            <div class="form-group">
+                <label>Password</label>
+                <input type="text" ID="txtPass"   class="form-control" TextMode="Password" />
+
+            </div>
+        </div>
+        <div class="col-md-1 col-xs-3">
+            <div class="form-group">
+                <label>Is Prefer</label>
+                <input type="checkbox" ID="chkPreferred" class="form-control"  Text="" />
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-3">
+            <div class="form-group">
+                <label>Add Manager</label>
+                <br />
+                <Button ID="btnAddSupplier"  class="btn btn-primary" Text="Add Manager" />
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                
+            </div>
+        </div>
+    </div>
+</div>
+

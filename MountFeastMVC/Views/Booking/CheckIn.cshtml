@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "AssignRoomsList";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-body" align="center">
+    <h4 class="callout callout-info">All Booking Room List</h4>
+</div>
+<div class="box-body">
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>
+                    Date From:
+                </label>
+
+               <input type="text" ID="txtPaymentDateFrom" ToolTip="Enter From Date"
+                             class="form-control"  />
+              
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>
+                    Date To:
+                </label>
+               <input type="text" ID="txtPaymentDateTo" ToolTip="Enter To Date" class="form-control"   />
+              
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>
+                    Payment Mode
+                </label>
+
+                <select class="fstdropdown-select" >
+                    <option Value="All">All</option>
+                    <option Value="Booked">Booked</option>
+                    <option Value="Cancelled">Cancel</option>
+                    <option Value="Blocked">Blocked</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>
+                    Category Name
+                </label>
+
+                <select class="fstdropdown-select">
+                    <option Value="All">All</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>
+                    Direct Search
+                </label>
+               <input type="text" ID="txtDirectSearch" class="form-control"  ToolTip="Direct Search Booking ID" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>
+                </label>
+                <div align="center">
+                    <input type="submit"  class="btn btn-primary"  value="Search" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/Styles/fstdropdown.js"></script>

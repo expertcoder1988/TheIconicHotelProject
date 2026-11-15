@@ -1,0 +1,223 @@
+﻿
+@{
+  
+    ViewBag.Title = "Iconic Hotel  at Naran | Room Details";
+    ViewBag.keywords = "Hotel at Naran";
+
+    ViewBag.Description = "Iconic Hotel  at Naran is the best place to stay. Our hotel in Naran Pakistan offers luxurious rooms, equipped with all the amenities. Book Online.";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //MountFeastMVC.Models.RoomDetails results = new MountFeastMVC.Models.RoomDetails();
+    //if (TempData.ContainsKey("room"))
+    //{
+    //    results = (MountFeastMVC.Models.RoomDetails)TempData["room"];
+    //}
+
+    List<MountFeastMVC.Models.PropertySearch> results = new List<MountFeastMVC.Models.PropertySearch>();
+    MountFeastMVC.Models.RoomDetails result = (MountFeastMVC.Models.RoomDetails)ViewBag.room;
+
+    int? TotalAmount = 0;
+    List<MountFeastMVC.Models.Pictures> roomPictures = (List<MountFeastMVC.Models.Pictures>)TempData["roomPictures"];
+    //var pics = roomPictures.Select(x => x.title).ToList()
+    DateTime _CheckIn = DateTime.Now;
+    DateTime _CheckOut = DateTime.Now;
+    int? _RoomCatCode=0;
+    int? _adults = 0;
+    int? _children = 0;
+    int? _NoOfRooms = 0;
+    int? _adultsRate = 0;
+    int? _childrenRate = 0;
+    int? roomPrice = 0;
+    int? _TotalAmount = 0;
+    int? _Discount = 0;
+
+    if (Session["results"] != null)
+    {
+        string Params = (string)Session["params"];
+        string[] p = Params.Split('&');
+        _adults = Convert.ToInt32(p[2]);
+        _children = Convert.ToInt32(p[3]);
+        _NoOfRooms = Convert.ToInt32(p[4]);
+        results = (List<MountFeastMVC.Models.PropertySearch>)Session["results"];
+
+        _adultsRate = results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.ExtraAdultPrice).FirstOrDefault();
+        _childrenRate = results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.ExtraChildPrice).FirstOrDefault();
+        _TotalAmount = results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.TotalAmount).FirstOrDefault();
+        _Discount = results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.Discount).FirstOrDefault();
+
+        if (_Discount == null)
+        {
+            _Discount = 0;
+        }
+        // if (_children > 0)
+        {
+            roomPrice = _TotalAmount - (_TotalAmount * _Discount / 100) + _adultsRate + _childrenRate;
+        }
+        //else
+        //{
+        //    roomPrice = _adultsRate;
+        //}
+
+        TotalAmount = roomPrice; //results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.TotalAmount).FirstOrDefault();
+        string[] sDate = p[0].Split('-');
+        string startDate = sDate[1] + "/" + sDate[0] + "/" + sDate[2];
+
+        sDate = p[1].Split('-');
+        string endDate = sDate[1] + "/" + sDate[0] + "/" + sDate[2];
+
+        _CheckIn = Convert.ToDateTime(startDate);
+        _CheckOut = Convert.ToDateTime(endDate);
+        _RoomCatCode = result.RoomCategoryId;
+    }
+
+    }
+
+    <div class="properties-details-page content-area">
+        <div class="container">
+            <div class="row mb-20">
+                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                    <!-- Header properties start -->
+                    <div class="heading-properties clearfix sidebar-widget">
+                        <div class="pull-left">
+                            <h3>@result.RoomCategory</h3>
+                            <p>
+                                <i style="display:none" class="fa fa-map-marker"></i>
+                            </p>
+                        </div>
+                        <div class="pull-right">
+                            <h3><span>RS @TotalAmount</span></h3>
+                            <h5>
+                              
+                            </h5>
+                        </div>
+                    </div>
+                    <!-- Header properties end -->
+                    <!-- Properties slider section start -->
+                    <div class="properties-slider-section mb-25">
+                        <div class="slider slider-for">
+                            @foreach (var itm in roomPictures)
+                            {
+                                <div><img src="http://103.152.255.44:8080/uploads/@itm.Picture" class="w-100 img-fluid" alt="photo"></div>
+                            }
+                        </div>
+                        <div class="slider slider-nav">
+                            @foreach (var itm in roomPictures)
+                            {
+                                <div><img src="http://103.152.255.44:8080/uploads/@itm.Picture" class="img-fluid" alt="photo"></div>
+                            }
+                        </div>
+                        </div>
+                    <!-- Properties slider section end -->
+                    <!-- Properties details section start -->
+                    <div class="sidebar-widget">
+
+                        <!-- Properties description start -->
+                        <div class="properties-description mb-30">
+                            <div class="main-title-2">
+                                <h1><span>Description</span></h1>
+                            </div>
+                            <p>@result.RoomDescription</p>
+                        </div>
+                        <!-- Properties description end -->
+                        <!-- Properties amenities start -->
+                        <div class="properties-amenities">
+                            <div class="main-title-2">
+                                <h1><span>Amenities</span></h1>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-12 property-content">
+                                    <ul class="facilities-list fl-2 clearfix">
+                                        @{
+                                            string[] features = null;
+
+                                            if (result.Features != null)
+                                            {
+                                                features = result
+                                                    .Features.Split(',');
+
+                                                foreach (var itm in features)
+                                                {
+                                                    if (itm != "")
+                                                    {
+                                                        <li style="font-size:10px">
+                                                            <i class="fa fa-check"></i>
+                                                            <span>@itm.Replace('_', ' ')</span>
+                                                        </li>
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    </ul>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                        <!-- Properties amenities end -->
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                    <!-- Advanced search start -->
+                    <div class="advanced-search">
+                        <div class="main-title-2">
+                            <h1>Booking Form</h1>
+                        </div>
+                        @using (Html.BeginForm("Thankyou", "SearchResult", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div>
+                                <div class="form-group">
+                                    <select class="form-control" name="PaxTitle" id="PaxTitle">
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
+                                        <option value="Miss">Miss</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <input type="text" id="PaxFName" name="PaxFName" class="form-control" placeholder="First Name">
+                                </div>
+                                <br />
+
+                                <div class="form-group">
+                                    <input type="text" id="PaxLName" name="PaxLName" class="form-control" placeholder="Last Name" />
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <input type="text" id="PaxPhoneNumber" name="PaxPhoneNumber" class="form-control" placeholder="Phone Number" />
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <input type="text" id="PaxEmail" name="PaxEmail" class="form-control" placeholder="Email" />
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <input type="text" id="PaxDescription" name="PaxDescription" class="form-control" placeholder="Special Message" />
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <input type="hidden" name="CheckIn" value="@_CheckIn" />
+                                    <input type="hidden" name="CheckOut" value="@_CheckOut" />
+                                    <input type="hidden" name="RoomCatCode" value="@_RoomCatCode" />
+                                    <input type="hidden" name="Adults" value="@_adults" />
+                                    <input type="hidden" name="Children" value="@_children" />
+                                    <input type="hidden" name="NoOfRooms" value="@_NoOfRooms" />
+                                    <input type="hidden" name="RoomRate" value="@roomPrice" />
+                                    <input type="hidden" name="TotalAmount" value="@TotalAmount" />
+                                    <input type="submit" class="btn btn-warning" style="width:100%" value="Book Now" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                            <!-- Advanced search end -->
+                        </div>
+            </div>
+        </div>
+
+
+    </div>
+

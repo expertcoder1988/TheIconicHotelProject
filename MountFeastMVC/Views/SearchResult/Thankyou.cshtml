@@ -1,0 +1,223 @@
+﻿@using MountFeastMVC.Models
+@{
+    ViewBag.Title = "Booking Receipt";
+
+    List<MountFeastMVC.Controllers.FinalBooking> booking = (List<MountFeastMVC.Controllers.FinalBooking>)Session["booking"];
+    string confirmationId = Convert.ToString(Session["confirmationId"]);
+
+    //var GrandTotal = booking.Sum(x => x.TotalRoomRate ?? 0);
+
+    string PaxName = "";
+    string _checkin = Convert.ToDateTime(booking[0].CheckIn).ToShortDateString();
+    string _checkout = Convert.ToDateTime(booking[0].CheckOut).ToShortDateString();
+    if (Session["confirmationId"] != null)
+    {
+        PaxName = booking[0].PaxTitle + " " + booking[0].PaxFName + " " + booking[0].PaxLName;
+    }
+    else
+    {
+        confirmationId = "";
+    }
+
+}
+
+
+<div class="sub-banner overview-bgi">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>
+                    Hassle-free Naran Hotel Booking – Iconic Hotel Naran
+                </h1>
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">About Us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <h1 class="text-center pb-4 fs-1 fw-bold" style="color: #A85307">
+        Thankyou for your booking!
+    </h1>
+
+    <div class=" booking-container">
+        <div class="row g-3">
+            <!-- Booking Details -->
+            <div class="col-md-7 booking-details bg-white p-3">
+                <div class="row g-2">
+                    <div class="col-12 col-md-6"><strong>Guest name: </strong> <em>@PaxName</em></div>
+                    <div class="col-12 col-md-6"><strong>Phone: </strong> @booking[0].PaxPhoneNumber</div>
+                    <div class="col-12 col-md-6"><strong>Check-in: </strong>  @_checkin</div>
+                    <div class="col-12 col-md-6"><strong>Check-out: </strong>@_checkout</div>
+                    <div class="col-12 col-md-6"><strong>Booking Ref: </strong> @confirmationId</div>
+                    <div class="col-12 col-md-6"><strong>No. of Nights: </strong> @booking[0].NoofDay</div>
+                    <div class="col-12 col-md-6"><strong>Booking Date: </strong> @DateTime.Now.ToShortDateString()</div>
+                    <div class="col-12 col-md-6"><strong>Voucher Discount: </strong>@ViewBag.VoucherAmount </div>
+                      <div class="col-12 col-md-6"><strong>Taxes: </strong>@ViewBag.TaxAmount </div>
+                    <div class="col-12 col-md-6"><strong>Total price: </strong> <strong>@booking[0].TotalRoomRate</strong></div>
+
+                    <!-- Important Notes -->
+                    <div class="col-12 important-notes mt-4">
+                        <h3>Important Notes</h3>
+                        <ul>
+                            <li>Party and loud gatherings are not allowed.</li>
+                            <li>Check-in time is 2PM.Guest before 2PM will be entertained in case of room availability.</li>
+                            <li>Check-out time is 12(Noon),Guest will be charged fee after this time.</li>
+                            <li>Any damage to the property will be charged to the guest.</li>
+                        </ul>
+                        <p class="mb-1">Please contact our customer care team 24/7 at <strong>+92 311 7245555</strong></p>
+                        <p class="mb-1">Thanks for choosing ICONIC Hotel & Restaurant, we wish you a pleasant stay!</p>
+                    </div>
+
+                </div>
+                <div class="col-12 print-icon d-flex justify-content-end mt-3">
+                    <a href="#booking_section" class="btn_1 btn_scrollto obj-book fw-bold"
+                       onclick="printReceipt()"
+                       style="padding: 3px 12px; background: transparent; color: #141414; border: 1px solid #141414; font-size: 17px; border-radius: 6px;">
+                        🖨️ Print
+                    </a>
+                </div>
+            </div>
+
+            <!-- Booking Image -->
+            <div class="col-md-5 booking-image position-relative">
+                <img src="@ViewBag.RoomImage" alt="Room Image" class="img-fluid rounded">
+                <div class="image-text">
+                    <h2>@booking[0].RoomCategory</h2>
+                    <p>@booking[0].Adults Adults , @booking[0].Children Children</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+@*These will be get display when print button get clicked*@
+<div class=" printable-section d-none">
+    <div class="title-bar mb-3">
+        <div>
+            <h6 class="mb-0 fw-bolder fs-5">Mount Feast hotel</h6>
+        </div>
+        <div class="text-end">
+            <img src="~/Content/Assets/img/logos/ICONIC_logo.png" class="mb-3 mt-2" alt="Booking Logo"
+                 style="height: 100px;width:145px"><br>
+
+        </div>
+
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="section-title">Check-in</div>
+            <div class="fw-bold fs-5">@_checkin</div>
+
+            <div class="section-title">Check-out</div>
+            <div class="fw-bold fs-5">@_checkout</div>
+
+            <div class="section-title">No. of Nights:</div>
+            <div class="fw-bold">@booking[0].NoofDay</div>
+
+            <div class="section-title">Booking Date</div>
+            <div class="fw-bold">@DateTime.Now.ToShortDateString()</div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="section-title">Guest name:</div>
+            <div class="fw-bold fs-5">@PaxName</div>
+
+
+            <div class="section-title">Phone number:</div>
+            <div class="fw-bold">@booking[0].PaxPhoneNumber</div>
+
+
+            <div class="section-title">Guests:</div>
+            <div class="fw-bold">@booking[0].Adults Adults, @booking[0].Children Children</div>
+
+            <div class="section-title">Booking Ref:</div>
+            <div class="fw-bold">@confirmationId</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="fw-bolder fs-5">
+            @booking[0].RoomCategory
+        </div>
+
+    </div>
+
+    <div class="d-flex mb-3">
+        <div class="me-3">@_checkin</div>
+        <div class="me-3">@_checkout</div>
+        <div>☕ Breakfast</div>
+    </div>
+
+    <table class="table table-bordered table-sm">
+        <tbody>
+            <tr>
+                <td><strong>Guest name</strong><br>@PaxName</td>
+                <td><strong>Booking Date</strong><br>@DateTime.Now.ToShortDateString()</td>
+
+            </tr>
+            <tr>
+
+                <td>
+                    <strong>Occupancy</strong><br />
+                    @ViewBag.AdultsAllowed adults, @ViewBag.ChildrenAllowed child
+                </td>
+
+                <td class="fw-bold">Subtotal</td>
+                <td colspan="2" class="fw-bold"><strong>PKR @ViewBag.DiscountAmount</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Meal options</strong><br>Breakfast (included in rate)</td>
+                <td class="fw-bold">Taxes<br></td>
+                <td colspan="2">PKR @ViewBag.TaxAmount</td>
+            </tr>
+            <tr>
+                <td><strong></strong><br></td>
+                <td class="fw-bold">Voucher Discount<br></td>
+                <td colspan="2">PKR @ViewBag.VoucherAmount</td>
+            </tr>
+
+            <tr>
+                <td colspan="4" class="text-end fw-bolder fs-5">Total room price: PKR @booking[0].PayableAmount</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="important-notes mt-2">
+        <h3>Important Notes</h3>
+        <ul>
+            <li>Party and loud gatherings are not allowed.</li>
+            <li>Check-in time is 2PM.Guest before 2PM will be entertained in case of room availability.</li>
+            <li>Check-out time is 12(Noon),Guest will be charged fee after this time.</li>
+            <li>Any damage to the property will be charged to the guest.</li>
+        </ul>
+        <p class="mb-1">Please contact our customer care team 24/7 at <strong>+92 311 7245555</strong></p>
+        <p class="mb-1">Thanks for choosing ICONIC Hotel & Restaurant, we wish you a pleasant stay!</p>
+    </div>
+</div>
+<script>
+    function printReceipt() {
+        // Store the original page content
+        const originalContents = document.body.innerHTML;
+
+        // Get only the printable content
+        const printContents = document.querySelector('.printable-section').innerHTML;
+
+        // Replace body content with only the printable section
+        document.body.innerHTML = printContents;
+
+        // Trigger the print dialog
+        window.print();
+
+        // Restore the original content after printing
+        document.body.innerHTML = originalContents;
+    }
+</script>

@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "BookingPayment";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-body">
+    <h5 class="callout callout-info" align="center">Booking Payment</h5>
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label>
+                    Property
+                </label>
+                <asp:Label ID="Label4" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                <select ID="ddlProperty" runat="server" class="fstdropdown-select"/>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label>Booking No</label>
+                <asp:Label ID="Label1" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                <select ID="ddlBookingNo" runat="server" class="fstdropdown-select" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label>Total Payment Amount</label>
+                <input type="text" ID="txtTotalAmount" runat="server" ToolTip=""
+                             class="form-control"  Enabled="False" EnableTheming="True" />
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label>Total Amount Recived</label>
+                <input type="text" ID="txtTotalAmountRecived" runat="server" ToolTip=""
+                             class="form-control"  Enabled="False" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label>Payment Date</label>                
+                <input type="text" ID="txtPaymentDate" autocomplete="off" runat="server" ToolTip=""
+                             class="form-control"  />
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label>
+                    Payment Amount
+                </label>
+                <input type="text" ID="txtPaymentAmount" runat="server" ToolTip=""
+                             class="form-control"  />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label>Mode Of Payment</label>
+                <select ID="ddlModePayment" runat="server" class="fstdropdown-select">
+                    <options Value="1">Cash</options>
+                    <options Value="2">Check</options>
+                    <options Value="3">Bank Transfer</options>
+                    <options Value="4">Credit Card POS</options>
+                    <options Value="5">Credit Card - Online</options>
+                    <options Value="6">Paypal</options>
+                    <options Value="7">Other</options>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label>Notes</label>
+                <input type="text" ID="txtNote" runat="server" ToolTip=""
+                             class="form-control"  Height="50px" TextMode="MultiLine" />
+                
+            </div>
+        </div>
+    </div>
+    <div align="center">
+        <Button ID="btnSaveAminities" runat="server" class="btn btn-primary" Text="Save"  />
+    </div>
+</div>
+

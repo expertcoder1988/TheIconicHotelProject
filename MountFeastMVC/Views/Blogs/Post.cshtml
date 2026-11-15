@@ -1,0 +1,125 @@
+﻿@using MountFeastMVC.Models;
+
+@{
+
+    var blog = (List<Post>)TempData["blog"];
+    ViewBag.Title = blog[0].Title;
+    ViewBag.Description = blog[0].MetaDescription;
+ViewBag.Keywords = blog[0].Keywords;
+    List<MountFeastMVC.Models.PropertySearch> results = new List<MountFeastMVC.Models.PropertySearch>();
+
+
+
+    if (TempData.ContainsKey("roomList"))
+    {
+        results = (List<MountFeastMVC.Models.PropertySearch>)TempData["roomList"];
+    }
+}
+
+<div class="sub-banner overview-bgi">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+
+                <h2 style="color:#fff">
+                    Blogs Iconic
+                </h2>
+
+                <ul class="breadcrumbs">
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Posts</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blog-body content-area">
+    <div class="container">
+        
+
+        <div class="row">
+            <div class="col-md-8 content-part">
+
+                <div class="post post-full">
+                    <div class="post-header">
+                        <div class="post-image">
+                            <img src='~/uploads/blog/@blog[0].DefaultImage' alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="post-story mt-4">
+                        
+                        <div class="post-additional">
+                            @blog[0].PublishedDate, By <a href="#">@blog[0].Author</a>.
+                        </div>
+                        <div class="post-story-body">
+                            @Html.Raw(blog[0].Description)
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+
+            <div class="col-lg-4 col-md-12 col-xs-12">
+                <div class="sidebar">
+                    <!-- Popular posts start-->
+                    <div class="sidebar-widget popular-posts">
+                        <div class="main-title-2">
+                            <h2><span>Rooms</span> Category</h2>
+                        </div>
+                        @foreach (var item in results)
+
+                        {
+                            <div class="d-flex popular-posts-box">
+                                <a class="pr-3" href="https://theiconichotels.com/">
+                                    <img src="~/uploads/@item.imgURL"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="https://theiconichotels.com/">@item.RoomCategory</a>
+                                    </h4>
+                                    <div class="listing-post-meta">
+                                        Starting From | <a href="#">@item.MinimumPrice</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                    <!-- Popular posts end-->
+                    <!-- Social media start -->
+                    <div class="social-media sidebar-widget clearfix">
+                        <!-- Main Title 2 -->
+                        <div class="main-title-2">
+                            <h2><span>Social</span> Media</h2>
+                        </div>
+                        <!-- Social list -->
+                        <ul class="social-list">
+                            <li>
+                                <a href="https://www.facebook.com/theiconichotels" class="facebook-bg">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="https://www.instagram.com/theiconichotelshotel" class="google-bg">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Html.Raw("https://www.youtube.com/@IconicHotelNaran")" class="youtube-bg">
+                                    <i class="fa-brands fa-youtube-play"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Social media end -->
+                </div>
+            </div>
+            </div>
+
+        </div>
+</div>

@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<input type="hidden" ID="HotelCode" name="HotelCode"  />
+<input type="hidden" ID="BookingID" name="BookingID"  />
+<input type="hidden" ID="SupplierID" name="SupplierID" />
+
+<div class="box-body">
+    <h5 class="callout callout-info">Add Booking</h5>
+
+
+    <div class="row">
+        <div class="col-md-3 col-xs-6">
+            <div class="form-group">
+                <label for="Properties">Properties</label>
+                <select class="form-control" style="height:34px;width:100%"
+                        id="Properties" name="Properties">
+                    <option selected="selected" value="0">Please select</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-1 col-xs-6">
+            <div class="form-group">
+                <label>Title :</label>
+                <select ID="PaxTitle" name="PaxTitle" class="form-control select2" Width="80px">
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                    <option>Miss</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>First Name :</label>
+                <input type="text" ID="PaxFName" maxlength="20" name="PaxFName" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Last Name :</label>
+                <input type="text" ID="PaxLName" maxlength="20" name="PaxLName"  class="form-control" />
+
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Email :</label>
+
+                <input type="text" ID="PaxEmail" maxlength="50" name="PaxEmail" class="form-control" />
+
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Contact No :</label>
+
+                <input type="text" ID="PaxPhoneNumber"  maxlength="15" name="PaxPhoneNumber" class="form-control" />
+            </div>
+        </div>
+
+    </div>
+    <h5 class="callout callout-info">Booking Info</h5>
+
+    <div class="row">
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+
+                <label>Arrival Date</label>
+                <Label ID="Label20" ForeColor="Red" Text="*"></Label>
+                <input type="date" ID="CheckIn" name="CheckIn" ToolTip="Enter CheckIn Date"
+                       class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Departure Date</label>
+                <asp:Label ID="Label3" ForeColor="Red" Text="*"></asp:Label>
+                <input type="date" ID="CheckOut" name="CheckOut" ToolTip="Enter CheckOut Date"
+                       class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Room Category</label>
+                <select name="RoomCategory" class="form-control" id="RoomCategory">
+                    <option Value="All">Choose</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Available Rooms</label>
+                <select name="RoomNum" class="form-control" id="RoomNum">
+                    <option Value="All">Choose</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Adults</label>
+                <input type="number" ID="Adults" name="Adults" class="form-control" value="0"  />
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Children</label>
+                <input type="number" ID="Children" name="Children" class="form-control" value="0"  />
+            </div>
+        </div>
+    </div>
+
+    <h5 class="callout callout-info">Booking Details</h5>
+    <div class="row">
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Rate / Adult</label>
+                <input type="number" ID="AdultRate" readonly name="AdultRate" class="form-control" value="0"  />
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Rate / Child</label>
+
+                <input type="number" ID="ChildRate" readonly name="ChildRate" class="form-control" value="0" />
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+
+                <label>Tax :</label>
+
+                <input type="number" ID="RoomTax" name="RoomTax" class="form-control" value="0" />
+
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Extra Cleaning</label>
+                <input type="number" ID="ExtraCleaning" name="ExtraCleaning" class="form-control" value="0" />
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Total:</label>
+                <input type="number" ID="TotalRoomRate" name="TotalRoomRate" class="form-control" Font-Bold="True" />
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+
+                <label>Source</label>
+                <select ID="SupplierID" name="SupplierID" class="form-control" style="height:34px;width:100%">
+                    <option Value="0">--Select--</option>
+                    <option Value="1">Direct Booking</option>
+                    <option Value="2">Booking.com</option>
+                    <option Value="3">AirBnb.com</option>
+                    <option Value="4">Expedia</option>
+                    <option Value="5">Walk In Booking</option>
+                    <option Value="6">Corporate Booking</option>
+                    <option Value="7">HomeAway</option>
+                    <option Value="8">EHH Web</option>
+                    <option Value="9">Other</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label></label>
+                <input type="button" ID="btnSave" name="btnSave" class="btn btn-primary" value="Save" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/Booking.js"></script>
+
+

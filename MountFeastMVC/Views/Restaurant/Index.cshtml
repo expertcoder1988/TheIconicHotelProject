@@ -1,0 +1,671 @@
+﻿
+@{
+    ViewBag.Title = "ICONIC Hotel & Restaurant in Naran | Enjoy Local Food";
+    ViewBag.keywords = "Naran restaurant, Best restaurant in Naran, best food in Naran, Naran restaurants, local food";
+    ViewBag.canonical = "https://theiconichotels.com/restaurant-in-naran";
+    ViewBag.Description = "Experience culinary excellence at the Iconic Hotel's restaurant in Naran. Enjoy diverse menus, local flavours, scenic dining amidst the beauty of Naran Valley.";
+
+
+    List<MountFeastMVC.Models.PropertySearch> results = new List<MountFeastMVC.Models.PropertySearch>();
+
+
+
+    if (TempData.ContainsKey("roomList"))
+    {
+        results = (List<MountFeastMVC.Models.PropertySearch>)TempData["roomList"];
+    }
+}
+
+<div class="sub-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>The ICONIC Restaurant in Naran - A Culinary Oasis</h1>
+            <ul class="breadcrumbs">
+                <li><a href="https://theiconichotels.com/">Home</a></li>
+                <li class="active">Restaurant</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="blog-body content-area">
+    <div class="container">
+        <div class="row">
+           <div class="col-lg-8 col-md-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="accordion-example-box mb-50">
+                            <div class="main-title-2 u-text-left">
+                                <h2>
+                                    Enjoy Dining at the
+                                    <span>Best Restaurant in Naran</span>
+                                </h2>
+                                <p>
+                                    Indulge your senses in a gastronomic journey at the <a href="https://theiconichotels.com/">Iconic Hotel's Restaurant</a> in Naran, where culinary excellence meets the breathtaking landscapes of this picturesque destination. Our Naran restaurant is more than just a dining venue; it's an experience crafted to delight your taste buds and elevate your dining escapades in the valley. Nestled amidst the majestic mountains and pristine valley, our restaurant in Naran offers a feast for the senses, with panoramic views of the surrounding natural beauty serving as the perfect backdrop for an unforgettable dining experience.
+                                    <br />
+                                    Whether you're savouring a leisurely breakfast, enjoying a romantic dinner under the stars, or gathering with friends and family for a hearty meal, our restaurant provides the perfect setting for every occasion. Immerse yourself in the flavours of the region with our curated menu of local specialties and international cuisine, prepared with the freshest ingredients and expertly crafted by our talented culinary team. From traditional Pakistani dishes to global favourites, each dish is thoughtfully plated to perfection, ensuring a culinary journey that is as visually stunning as it is delicious. So come, join us at the ICONIC Restaurant in Naran, and let us take you on a culinary adventure you'll never forget.
+                                </p>
+
+                            </div>
+                           
+
+                            <div class="main-title-2 u-text-left">
+                                <h2>
+                                    Scrumptious Breakfast Buffet in
+                                    <a href="https://theiconichotels.com/blog-hotel-naran"><span>Naran Valley</span></a>
+                                </h2>
+                                <p>
+                                    In the mornings, awaken your senses with our sumptuous Breakfast Buffet, featuring an array of freshly baked pastries, seasonal fruits, artisanal cheeses, and savoury delights. From fluffy pancakes and crispy bacon to made-to-order omelettes and traditional Pakistani specialties, our breakfast spread caters to every palate and preference, ensuring a delightful start to your day in Naran. So come, join us at the ICONIC Restaurant in Naran, and let us take you on a culinary adventure you'll never forget.
+                                </p>
+                            </div>
+                           
+
+                            <div class="faq-accordion accordion accordion-flush faq-accordion"
+                                 id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseOne"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapseOne">
+                                            BREAKFAST
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-headingOne"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>Paratha(1)</li>
+                                                            <li>Aalo Paratha</li>
+                                                            <li>Toast+Butter+Jam(2p)</li>
+                                                            <li>French Toast(1p)</li>
+                                                            <li>Omelette</li>
+                                                            <li>Fry Egg</li>
+                                                            <li>Lahori Channa(2p)</li>
+                                                            <li>Ch. Channa(2p)</li>
+                                                            <li>Aaloo Bujia(2p)</li>
+                                                            <li>Sweet Lassi per glass</li>
+                                                            <li>Milk Shake(1glass)</li>
+                                                           
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price <span>(Rs)</span></h4>
+                                                        <ul class="ull">
+                                                            <li>140</li>
+                                                            <li>220</li>
+                                                            <li>300</li>
+                                                            <li>120</li>
+                                                            <li>250</li>
+                                                            <li>150</li>
+                                                            <li>490</li>
+                                                            <li>600</li>
+                                                            <li>460</li>
+                                                            <li>300</li>
+                                                            <li>400</li>
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading2">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapse2"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapse2">
+                                            STARTERS
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse2"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-heading2"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>Russian Salad</li>
+                                                            <li>Chicken Strips(4peice)</li>
+                                                            <li>Aloo Pakora(1plate)</li>
+                                                            <li>Chicken Pakora(1kg)</li>
+                                                            <li>French Fries(1plate)</li>
+                                                            <li>Loaded French Fries(1plate)</li>
+                                                            <li>Masala Fries(1plate)</li>
+
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price <span>(Rs)</span></h4>
+                                                        <ul class="ull">
+
+                                                            <li>750</li>
+                                                            <li>1400</li>
+                                                            <li>700</li>
+                                                            <li>2300</li>
+                                                            <li>490</li>
+                                                            <li>1200</li>
+                                                            <li>450</li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading5">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapse5"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapse5">
+                                            BEVERAGES
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse5"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-heading5"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>COFFEE (NESCAFE)</li>
+                                                            <li>TEA</li>
+                                                            <li>BLACK TEA</li>
+                                                            <li>GREEN TEA</li>
+                                                            <li>MINERAL WATER 0.5L</li>
+                                                            <li>MINERAL WATER 1.5L</li>
+                                                            <li>COLD DRINK 1.0L</li>
+                                                            <li>COLD DRINK 1.5L</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price <span>(Rs)</span></h4>
+                                                        <ul class="ull">
+                                                            <li>350</li>
+                                                            <li>150</li>
+                                                            <li>100</li>
+                                                            <li>100</li>
+                                                            
+                                                            <li>75</li>
+                                                            <li>150</li>
+                                                            <li>170</li>
+                                                            <li>250</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingT">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseT"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapseT">
+                                            APPETIZERS
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseT"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-headingT"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>FRENCH FRIES(1plate)</li>
+                                                            <li>EGG SANDWICH(1piece)</li>
+                                                            <li>CLUB SANDWICH (FRIES)</li>
+                                                            <li>CHICKEN CHIPS(1plate)</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price <span>(Rs)</span></h4>
+                                                        <ul class="ull">
+                                                            <li>490</li>
+                                                            <li>400</li>
+                                                            <li>800</li>
+                                                            <li>1000</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading7">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapse7"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapse7">
+                                            SOUPS
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse7"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-heading7"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>Iconic special Soup(2p)</li>
+                                                            <li>Chicken Corn Soup(2p)</li>
+                                                            <li>Hot & Sour Soup(2p)</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price <span>(Rs)</span></h4>
+                                                        <ul class="ull">
+                                                            <li>1600</li>
+                                                            <li>1000</li>
+                                                            <li>1200</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading8">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapse8"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapse8">
+                                            PAKISTANI
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse8"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-heading8"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>Special Chicken Karahi(1kg/half kg)</li>
+                                                            <li>Chicken Karahi(1kg/half kg)</li>
+                                                            <li>Chicken Archari Karahi(1kg/half kg)</li>
+                                                            <li>Chicken Shimla Fry(1kg/half kg)</li>
+                                                            <li>Chicken Shimla Dry(1kg/half kg)</li>
+                                                            
+                                                            <li>Chicken 2 Paiza(800/400G)</li>
+
+                                                            <li>Special Mutton Karahi(1kg/half kg)</li>
+                                                            <li>Mutton Karahi(1kg/half kg)</li>
+                                                            <li>Mutton 2 piaza(1kg/half kg)</li>
+                                                            <li>Mutton Shimla fry(1kg/half kg)</li>
+                                                            <li>Mutton Shinwari Karahi(1kg/half kg)</li>
+
+                                                            <li>Special Chicken Handi(1kg/half kg)</li>
+                                                            <li>Chicken Handi(1kg/half kg)</li>
+                                                            <li>Chicken Achari Handi(1kg/half kg)</li>
+                                                            <li>Chicken Jalfrazi Handi(1kg/half kg)</li>
+                                                            <li>Chicken Jinger Handi(1kg/half kg)</li>
+
+                                                            <li>Special Jangly Pulao(800 gms)</li>
+                                                            <li>Matka Pulao(800 gms)</li>
+                                                            <li>Chicken Biryani(1p) (800 gms)</li>
+
+                                                            <li>Roti</li>
+                                                            <li>Rogni Naan</li>
+                                                            <li>Garlic Naan</li>
+                                                            <li>Kalwangi Naan</li>
+                                                            <li>Tandori Paratha</li>
+
+                                                            <li>Mint Raita</li>
+                                                            <li>Zera Raita</li>
+                                                            <li>Fresh Salad</li>
+                                                            <li>Kashmiri Salad</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price <span>(Rs)</span></h4>
+                                                        <ul class="ull">
+                                                            <li>2700/1395</li>
+                                                            <li>2400/1200</li>
+                                                            <li>2200/1100</li>
+                                                            <li>2200/1100</li>
+                                                            <li>2200/1100</li>
+                                                            <li>2200/1100</li>
+                                                            <li>4400/2200</li>
+                                                            <li>4200/2100</li>
+                                                            <li>4000/2000</li>
+                                                            <li>4000/2001</li>
+                                                            <li>4000/2002</li>
+                                                            <li>2900/1450</li>
+                                                            <li>2500/1250</li>
+                                                            <li>2790/1395</li>
+                                                            <li>2790/1395</li>
+                                                            <li>2790/1395</li>
+                                                            <li>1200</li>
+                                                            <li>1000</li>
+                                                            <li>600</li>
+                                                            <li>60</li>
+                                                            <li>160</li>
+                                                            <li>180</li>
+                                                            <li>170</li>
+                                                            <li>170</li>
+                                                            <li>300</li>
+                                                            <li>250</li>
+                                                            <li>200</li>
+                                                            <li>450</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading9">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapse9"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapse9">
+                                            CHINESE
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse9"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-heading9"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>Chicken Chili Dry (Without Rice)</li>
+                                                            <li>Chicken Munchurian (Without Rice)</li>
+                                                            <li>Chicken Shaslik (Without Rice)</li>
+                                                            <li>Chicken Almond With Rice</li>
+                                                            <li>Chicken Fried Rice</li>
+                                                            <li>Vegetable Fried Rice</li>
+                                                            <li>Masala Fried Rice</li>
+                                                            <li>Chicken Chili Dry With Rice</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price<span>(Rs)</span></h4>
+                                                        <ul class="ull">
+                                                            <li>900</li>
+                                                            <li>800</li>
+                                                            <li>800</li>
+                                                            <li>1200</li>
+                                                            <li>800</li>
+                                                            <li>700</li>
+                                                            <li>800</li>
+                                                            <li>1300</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading12">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapse12"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapse12">
+                                            DESSERTS
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse12"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-heading12"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>Shahi Tukra (1 Bowl)</li>
+                                                            <li>Fruit Trifel (2 Bowl)</li>
+                                                            <li>Lazeeza Kheer (2p)</li>
+
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price<span>(Rs)</span></h4>
+                                                        <ul class="ull">
+                                                            <li>1100</li>
+                                                            <li>1200</li>
+                                                            <li>1200</li>
+
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading11">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapse11"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapse11">
+                                            BBQ
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse11"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-heading11"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>Chicken Tikka Boti (10pc)</li>
+                                                            <li>Chicken Achari Boti (10pc)</li>
+                                                            <li>Chicken Malai Boti (10pc)</li>
+                                                            <li>Chicken Labni Boti (10pc)</li>
+                                                            <li>Chicken Tikka Leg (1p)</li>
+                                                            <li>Chicken Seekh Kabab (6p)</li>
+                                                            <li>Chicken Rashmi Kabab (6p)</li>
+                                                            <li>Beef Seekh Kabab (6p)</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price<span>(Rs)</span></h4>
+                                                        <ul class="ull">
+
+                                                            <li>1290</li>
+                                                            <li>1400</li>
+                                                            <li>1600</li>
+                                                            <li>1800</li>
+                                                            <li>490</li>
+                                                            <li>1200</li>
+                                                            <li>1400</li>
+                                                            <li>1600</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item mb-10">
+                                    <h2 class="accordion-header" id="flush-heading10">
+                                        <button class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapse10"
+                                                aria-expanded="false"
+                                                aria-controls="flush-collapse10">
+                                            DESI FOOD
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse10"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="flush-heading10"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="p-text">
+                                                <div class="row66">
+                                                    <div class="column66">
+                                                        <h4 style="color:#fff">Item</h4>
+                                                        <ul class="ull">
+                                                            <li>Shahi Dall</li>
+                                                            <li>Dall Mash</li>
+                                                            <li>Vegetable</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column666">
+                                                        <h4 style="color:#fff">Price<span>(Rs)</span></h4>
+                                                        <ul class="ull">
+                                                            <li>800</li>
+                                                            <li>550</li>
+                                                            <li>490</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="color: #990011; text-align: center">
+                                <br />
+                                *PRICES ARE SUBJECT TO A 10% SERVICE CHARGE AND APPLICABLE TAXES
+                            </p>
+                        </div>
+                        </div>
+                </div>
+                <!-- Blog box end -->
+            </div>
+            <div class="col-lg-4 col-md-12 col-xs-12">
+                <div class="sidebar">
+                    <!-- Popular posts start-->
+                    <div class="sidebar-widget popular-posts">
+                        <div class="main-title-2">
+                            <h2><span>Rooms</span> Category</h2>
+                        </div>
+                        @foreach (var item in results)
+
+                        {
+                            <div class="d-flex popular-posts-box">
+                                <a class="pr-3" href="https://theiconichotels.com/">
+                                    <img src="../uploads/@item.imgURL"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="https://theiconichotels.com/">@item.RoomCategory</a>
+                                    </h4>
+                                    <div class="listing-post-meta">
+                                        Starting From | <a href="#">@item.MinimumPrice</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                    <!-- Popular posts end-->
+                    <!-- Social media start -->
+                    <div class="social-media sidebar-widget clearfix">
+                        <!-- Main Title 2 -->
+                        <div class="main-title-2">
+                            <h2><span>Social</span> Media</h2>
+                        </div>
+                        <!-- Social list -->
+                        <ul class="social-list">
+                            <li>
+                                <a href="https://www.facebook.com/theiconichotels" class="facebook-bg">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="https://www.instagram.com/theiconichotelshotel" class="google-bg">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Html.Raw("https://www.youtube.com/@IconicHotelNaran")" class="youtube-bg">
+                                    <i class="fa fa-youtube-play"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Social media end -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h2>Culinary Delights Amidst Nature's Majesty</h2>
+            <p>Savour a symphony of flavours as our skilled chefs artfully prepare a diverse menu inspired by local and international cuisines. From hearty breakfasts that energize your day to sumptuous dinners that celebrate local specialties, each dish is a masterpiece of taste and presentation.</p>
+            <h2>Aesthetic Ambiance with Panoramic Views</h2>
+            <p>Immerse yourself in the warm and inviting ambiance of our restaurant, where every meal is a sensory delight. The strategically designed space offers panoramic views of the surrounding mountains, creating an atmosphere that enhances your dining experience. Whether you're seated indoors or choose our al fresco dining option, the scenic beauty of Naran is your constant companion.</p>
+            <h2>Signature Dishes and Local Flavours</h2>
+            <p>Our menu is a carefully curated selection of signature dishes and local flavours, ensuring that every bite tells a story of culinary craftsmanship. From traditional Pakistani dishes to international cuisines, we pride ourselves on offering a diverse range that caters to every palate.</p>
+
+            <h2>Unparalleled Service & Hospitality</h2>
+            <p>At Iconic Hotel's Restaurant in Naran, we don't just serve meals; we create memories. Our dedicated staff is committed to providing unparalleled service and hospitality, ensuring that every aspect of your dining experience is seamless and memorable.</p>
+
+            <h2>Why Choose Iconic Hotel's Restaurant in Naran?</h2>
+            <p><b>Scenic Dining:</b> Revel in the breathtaking views of Naran's natural beauty while enjoying your favourite meals.</p>
+            <p><b>Culinary Expertise:</b> Our chefs blend innovation with tradition, creating a menu that appeals to both adventurous and classic palates.</p>
+            <p><b>Warm Ambiance:</b> Experience the perfect blend of comfort and aesthetics in our thoughtfully designed restaurant space.</p>
+            <br />
+
+            <p>Embark on a culinary adventure at the Iconic Hotel's Restaurant in Naran, where every meal is a celebration of flavours, hospitality, and the unmatched beauty of this enchanting destination. Book your table today and treat yourself to an extraordinary dining experience amidst the mountains.</p>
+
+        </div>
+    </div>
+</div>
+

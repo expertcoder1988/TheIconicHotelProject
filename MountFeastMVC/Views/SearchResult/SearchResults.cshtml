@@ -1,0 +1,537 @@
+﻿@using MountFeastMVC.Models;
+
+@{
+    ViewBag.Title = "Iconic Hotel  at Naran | Available Rooms";
+    ViewBag.keywords = "Hotel at Naran";
+
+    ViewBag.Description = "Iconic Hotel  at Naran is the best place to stay. Our hotel in Naran Pakistan offers luxurious rooms, equipped with all the amenities. Book Online.";
+
+
+    List<MountFeastMVC.Models.PropertySearch> results = new List<MountFeastMVC.Models.PropertySearch>();
+
+    string _CheckIn = "";// DateTime.Now;
+    string _CheckOut = ""; // DateTime.Now;
+
+    int checkRooms = 0;
+
+    int? _adults = 0;
+    int? _children = 0;
+    int? _NoOfRooms = 0;
+    int? roomPrice = 0;
+    int? _TotalPax = 0;
+    string Params = (string)Session["params"];
+    string[] p = Params.Split('&');
+
+    _CheckIn = Convert.ToString(p[0]);
+    _CheckOut = Convert.ToString(p[1]);
+    _adults = Convert.ToInt32(p[2]);
+    _children = Convert.ToInt32(p[3]);
+    _NoOfRooms = Convert.ToInt32(p[4]);
+    _TotalPax = _adults + _children;
+
+    List<MountFeastMVC.Controllers.RoomImages> Img = new List<MountFeastMVC.Controllers.RoomImages>();
+    int NoOfDays = ViewBag.NoOfDays;
+
+    if (TempData["Images"] != null)
+    {
+        Img = (List<MountFeastMVC.Controllers.RoomImages>)TempData["Images"];
+    }
+
+    if (_TotalPax == 0)
+    {
+        _TotalPax = 1;
+    }
+
+    if (Session["results"] != null)
+    {
+        results = (List<MountFeastMVC.Models.PropertySearch>
+            )Session["results"];
+    }
+}
+
+<style>
+    .value-button {
+        display: inline-block;
+        border: 0px solid #ddd;
+        width: 40px;
+        text-align: center;
+        vertical-align: middle;
+        background: white;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+    }
+
+        .value-button:hover {
+            cursor: pointer
+        }
+
+    .stickydiv {
+        border-style: outset;
+    }
+
+    .fixme {
+        text-align: center;
+        width: 100%;
+    }
+
+    .stickydiv .bookingBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+    .property-footer .booking {
+        display: inline-block;
+        /* width: 100%; */
+        text-align: center;
+    }
+    div.sticky {
+        position: fixed;
+        background-color: mintcream;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        font-size: 10px;
+        z-index: 2147483647;
+        display: block;
+        width: 85%;
+        height: 70px;
+        border-style: inset;
+        text-align: center;
+    }
+    .property-footer .right {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .modal {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2147483648;
+    }
+</style>
+
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+@*<script src="~/Scripts/RoomCarousel.js"></script>*@
+
+<script type="text/javascript">
+    var $j = jQuery.noConflict();
+
+    $j(function () {
+
+        $j("input[name='RemoveRooms']").hide();
+
+        $j("input[name='CalculateMinus']").on('click', function () {
+            var id = $j(this).data("value");
+            var quantityInput = $j('#txtQuatntity_' + id);
+            var quantity = parseInt(quantityInput.val());
+
+            if (quantity > 1) {
+                quantity -= 1;
+                quantityInput.val(quantity);
+
+                updatePrices(id, quantity);
+            }
+
+            Calculate(id);
+        });
+
+        $j("input[name='CalculatePlus']").on('click', function () {
+            var id = $j(this).data("value");
+            var quantityInput = $j('#txtQuatntity_' + id);
+            var quantity = parseInt(quantityInput.val());
+            var roomsLeft = parseInt($j('#NoOfRoomsLeft_' + id).val());
+
+            if (quantity < roomsLeft) {
+                quantity += 1;
+                quantityInput.val(quantity);
+
+                updatePrices(id, quantity);
+            }
+
+            Calculate(id);
+        });
+
+        $j("input[name='ShowDetails']").on('click', function () {
+            var id = $j(this).data("value");
+            $j("#SelectRoom_" + id).prop("checked", true);
+            Calculate(id);
+        });
+
+        $j("input[name='RemoveRooms']").on('click', function () {
+            var id = $j(this).data("value");
+            $j("#SelectRoom_" + id).prop("checked", false);
+            $j(this).hide();
+            Calculate(id);
+        });
+
+        function updatePrices(id, quantity) {
+            var normalPrice = parseInt($j('#hdNormalPrice_' + id).val());
+            var discountedPrice = parseInt($j('#hdDiscountedPrice_' + id).val());
+
+            $j("#spNormalPrice_" + id).html(normalPrice * quantity);
+            $j("#spDiscountedPRice_" + id).html(discountedPrice * quantity);
+        }
+
+        function Calculate(_Id) {
+            var TotalRooms = 0;
+            var GrandTotal = 0;
+            var RoomCate = "";
+            var _RoomCateRoomNums = '';
+            var _RatePlanID = '';
+            var _RoomRates = '';
+            var _RoomRatesN = '';
+
+            var _roomCate = $j('#hdRoomCate_' + _Id).val();
+            var roomCateRoomNums = $j('#txtQuatntity_' + _Id).val();
+
+            _RoomRates += ',' + $j('#hdDiscountedPrice_' + _Id).val();
+            _RoomRatesN += ',' + $j('#hdNormalPrice_' + _Id).val();
+
+            var _ratePlanID = $j('#RatePlanID_' + _Id).val();
+            _RatePlanID += ',' + _ratePlanID;
+
+            TotalRooms += parseInt(roomCateRoomNums);
+            var discountedHtml = $j("#spDiscountedPRice_" + _Id).html();
+            GrandTotal += parseInt(discountedHtml) || parseInt($j('#hdNormalPrice_' + _Id).val()) * TotalRooms;
+
+            RoomCate += "," + _roomCate;
+            _RoomCateRoomNums += "," + roomCateRoomNums;
+
+            $j('#RatePlanIDs').val(_RatePlanID);
+            $j('#hdTotalRooms').val(TotalRooms);
+            $j('#hdTotalAmount').val(GrandTotal);
+            $j('#_TotalRooms, #_TotalRooms1').html(TotalRooms);
+            $j('#_TotalAmount, #_TotalAmount1').html(GrandTotal);
+            $j('#RoomCatCode').val(RoomCate);
+            $j('#RoomCateRoomNums').val(_RoomCateRoomNums);
+            $j('#RoomRates').val(_RoomRates);
+        }
+
+        // Modal close/open
+        $j('#OpenModal').click(() => {
+            $('#myModal').modal('show');
+            $("#sticky").hide();
+        });
+
+        $j('#closemodal').click(() => {
+            $('#myModal').modal('hide');
+            $("#sticky").show();
+        });
+
+        $j('#closepicmodal').click(() => {
+            $('#carouselModal').modal('hide');
+        });
+
+        $j('#closepolicymodal').click(() => {
+            $('#policyModal').hide();
+        });
+
+        // Fetch policy details
+        $j("#dvPolicy a").click(function () {
+            var _id = $j(this).attr('id').split('_')[1];
+
+            $.ajax({
+                url: '/SearchResult/RoomPolicy',
+                type: 'GET',
+                dataType: 'json',
+                data: { CancellationPolicy: _id },
+                success: function (data) {
+                    if (data.length > 0) {
+                        const item = data[0];
+
+                        $("#policyName").text(item.RatePlanName);
+                        $("#Breakfst").text(item.Breakfst ? "Included" : "Not Included");
+                        $("#CancellationPolicy").text(item.CancellationPolicy);
+
+                        $("#ChargedForNoShow").text(
+                            item.ChargedForNoShow === 1 ? "Same as the cancellation fee" : "100% of the total price"
+                        );
+
+                        let cancelText = "No Free Cancellation";
+                        switch (item.FreeCancelBefore) {
+                            case 1: cancelText = "The cost of the first night"; break;
+                            case 2: cancelText = "50% of the total price"; break;
+                            case 3: cancelText = "100% of the total price"; break;
+                        }
+                        $("#FreeCancelBefore").text(cancelText);
+
+                        let howLong = {
+                            1: "until 6:00PM on the day of arrival",
+                            2: "until 2:00PM on the day of arrival",
+                            3: "until 1 day before arrival",
+                            4: "until 2 days before arrival",
+                            5: "until 3 days before arrival",
+                            6: "until 5 days before arrival",
+                            7: "until 7 days before arrival",
+                            8: "until 14 days before arrival",
+                            9: "until 21 days before arrival",
+                            10: "until 28 days before arrival",
+                            11: "until 30 days before arrival",
+                            12: "until 42 days before arrival",
+                            13: "until 60 days before arrival"
+                        };
+
+                        $("#GuestChargedForCancellation").text(howLong[item.HowlongFreeOfCharge] || "N/A");
+
+                        $j("#policyModal").show();
+                    }
+                },
+                error: function (err) {
+                    alert(err.status + " : " + err.statusText);
+                }
+            });
+        });
+    });
+</script>
+
+
+<div class="sub-banner overview-bgi">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>
+                    Hassle-free Naran Hotel Booking – Iconic Hotel Naran
+                </h1>
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Search Result</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="properties-section property-big py-5 mt-3">
+    <!-- Room Search Results -->
+    <div class="container mt-5">
+        <!-- property start -->
+        @if (results.Count == 0)
+        {
+            <p>No room available. Please try another dates.</p>
+        }
+        else
+        {
+
+            <!-- property start -->
+            foreach (var item in results)
+            {
+                //HotelDBEntities HDE = new HotelDBEntities();
+
+                //var rp = (from a in HDE.RoomPictures
+                //          where (a.RoomCode == item.RoomCateCode)
+                //          select new
+                //          {
+                //              ImageName = a.Picture
+                //          }).ToList();
+
+                if (item.NoOfRooms > 0)
+                {
+                    string[] features = null;
+                    using (Html.BeginForm("ReservationPost2", "SearchResult", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="property property-hp row g-0 fp2 clearfix wow fadeInUp delay-03s ">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <!-- Property img -->
+                                <div class="property-img">
+                                    <div class="property-tag button alt featured">Hurry! @item.NoOfRooms <span>Rooms Left</span></div>
+                                    <input type="hidden" name="NoOfRoomsLeft" id="NoOfRoomsLeft_@item.Id" value="@item.NoOfRooms" />
+                                    <div class="property-tag button sale">Featured</div>
+
+                                    <img src="../uploads/@item.imgURL"
+                                         alt="fp-list"
+                                         class="img-fluid w-100" />
+                                    <div class="property-overlay">
+
+                                        <a href="@item.VideoLink" class="overlay-link property-video" target="_blank" title="@item.RoomCategory">
+                                            <i class="fa fa-video-camera"></i>
+                                        </a>
+                                        <div class="property-magnify-gallery">
+                                            <a href="../uploads/@item.imgURL" class="overlay-link">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+
+                                            @foreach (var itm in Img)
+                                            {
+                                                if (itm.Category == item.RoomCateCode)
+                                                {
+                                                    <a href="../uploads/@itm.ImageName" class="hidden"></a>
+                                                }
+                                            }
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12 property-content">
+                                <div class="info">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div id="dvPolicy" class="col-sm">
+                                                <!-- title -->
+                                                <h1 class="title">
+                                                    <a href="#" id="RoomCate_@item.RoomCateCode">@item.RoomCategory</a>
+                                                    <input type="hidden" data-value="@item.Id" id="hdRoomCate_@item.Id" value="@item.RoomCateCode" />
+                                                </h1>
+                                                <!-- Property address -->
+                                                <h6 class="property-address" style="color:black">
+                                                    Policy: <u><a role="button" name="policy" id="policy_@item.CancellationPolicy">@item.Name</a></u>
+                                                </h6>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="facilities-list clearfix">
+                                                    <div>
+                                                        Add Rooms:
+                                                        <input type="button" class="btn-sm btn-light rounded-button" style="background-color: ButtonFace; box-shadow: none; border: none;" ID="CalculateMinus_@item.Id" name="CalculateMinus" data-value="@item.Id" value="-" />
+                                                        <input type="text" value="1" class="text-center" style="width:30px" name="txtQuatntity" ID="txtQuatntity_@item.Id" />
+                                                        <input type="button" class="btn-sm btn-light rounded-button" style="background-color: ButtonFace; box-shadow: none; border: none;" data-value="@item.Id" ID="CalculatePlus_@item.Id" name="CalculatePlus" value="+" />
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" style="display:none" name="SelectRoom" id="SelectRoom_@item.Id" value="@item.Id" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm"
+                                                 style="font-weight: bold; font-size: 18px; margin: 2px, 2px">
+                                                @if (item.TotalAmount == item.discountedprice || item.discountedprice == null)
+                                                {
+                                                    <span>Rs. <span id="spNormalPrice_@item.Id">@item.TotalAmount</span> / @NoOfDays Nights</span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="text-decoration:line-through">Rs. <span id="spNormalPrice_@item.Id">@item.TotalAmount</span>  / @NoOfDays @(@NoOfDays == 1 ? "Night" : "Nights")</span><br />
+                                                    <span style="color: #a85307">Rs. <span id="spDiscountedPRice_@item.Id">@item.discountedprice</span>  / @NoOfDays @(@NoOfDays == 1 ? "Night" : "Nights")</span>
+                                                }
+
+                                                <input type="hidden" id="hdNormalPrice_@item.Id" value="@item.TotalAmount" />
+                                                <input type="hidden" id="hdDiscountedPrice_@item.Id" value="@item.discountedprice" />
+                                                <input type="hidden" name="RatePlanID" id="RatePlanID_@item.Id" value="@item.rateplanId" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Facilities List -->
+                                    <ul class="facilities-list clearfix">
+                                        @{
+                                            if (item.Features != null)
+                                            {
+                                                features = item.Features.Split(',');
+
+                                                foreach (var itm in features)
+                                                {
+                                                    if (itm != "")
+                                                    {
+                                                        <li style="font-size:10px">
+                                                            <i class="fa fa-check"></i>
+                                                            <span>@itm.Replace('_', ' ')</span>
+                                                        </li>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="property-footer row">
+                                    <span class="left col-6">
+                                        <a href="#"><i class="fa fa-user"><span style=" font-family: Arial, sans-serif !important;"> @item.AdultAllowed Adult</span> <span style=" font-family: Arial, sans-serif !important;">, @item.NoOfChildAllowed Child</span></i></a>
+                                    </span>
+                               
+
+                                    <span class="right col-6">
+                                        <!-- Align buttons to the right -->
+                                        <input type="submit"
+                                               class="btn booking"
+                                               data-value="@item.Id"
+                                               name="ShowDetails"
+                                               id="ShowDetails_@item.Id"
+                                               value="Reserve This" style="color: white; background-color: #a85307; text-align: center; padding: .375rem .75rem; font-size: 1rem; border-radius: .25rem; " />
+
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <input type="hidden" id="hdTotalRooms" name="hdTotalRooms" value="1" />
+                        <input type="hidden" id="hdTotalAmount" name="hdTotalAmount" value="@item.TotalAmount" />
+                        <input type="hidden" name="CheckIn" value="@_CheckIn" />
+                        <input type="hidden" name="CheckOut" value="@_CheckOut" />
+                        <input type="hidden" name="RoomCatCode" id="RoomCatCode" />
+                        <input type="hidden" name="Adults" value="@_adults" />
+                        <input type="hidden" name="Children" value="@_children" />
+                        <input type="hidden" name="NoOfRooms" value="@_NoOfRooms" />
+                        <input type="hidden" name="RoomRate" value="@roomPrice" />
+                        <input type="hidden" name="RoomCate" value="@item.RoomCateCode" />
+                        <input type="hidden" name="RoomCateRoomNums" id="RoomCateRoomNums" />
+                        <input type="hidden" name="RatePlanIDs" value="@item.rateplanId" />
+                        <input type="hidden" name="RoomRates" value="@item.discountedprice" />
+                    }
+                }
+
+            }
+        }
+
+
+    </div>
+</div>
+
+
+
+
+<div id="carouselModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="title">Room Pictures</h4>
+                <button type="button" id="closepicmodal" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="banner text-center" id="banner2">
+
+                </div>
+            </div>
+            <div style="display:none" class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="policyModal" class="modal fade" role="dialog" style="opacity:1 !important">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="padding:0px !important">
+            <div class="modal-header justify-content-end">
+                <button type="button" id="closepolicymodal" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="banner" id="banner2">
+                    <p><b>Policy: </b> <span id="policyName"></span></p>
+                    <p><b>Breakfast: </b> <span id="Breakfst"></span></p>
+                    <p><b>Cancellation Policy: </b> <span id="CancellationPolicy"></span></p>
+                    <p><b>Free Cancel Before: </b> <span id="GuestChargedForCancellation"></span></p>
+                    <p><b>Guest Charged For Cancellation: </b><span id="FreeCancelBefore"></span> </p>
+                    <p><b>Charged For No-Show: </b> <span id="ChargedForNoShow"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

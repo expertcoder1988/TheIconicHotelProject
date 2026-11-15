@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="../Content/Styles/bootstrapForCalender.min.css" rel="stylesheet" />
+<link href='../Content/Styles/fullcalendar.min.css' rel='stylesheet' />
+<link href='../Content/Styles/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<link href='../Content/Styles/scheduler.min.css' rel='stylesheet' />
+
+
+<style type="text/css">
+    table {
+        margin: 0px !important;
+    }
+
+    .fc table {
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .ui-widget-content .fc-event-container {
+        max-height: 14px !important;
+        min-height: 14px !important;
+    }
+</style>
+
+
+
+<div class="box-body">
+    <h5 class="callout callout-info">Calendar</h5>
+    <input type="hidden" id="AvoidReload" value="false" />
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <div>
+                    <label id="lblProduct">
+                        Please Select Property
+                    </label>
+                    <select ID="Properties" class="form-control" style="width:250px">
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            Legends: <span style="color:white">White=Open</span>,<span style="color:red">Red=Booked</span>,<span style="color:blue">Blue=Checkin</span>,<span style="color:green">Green=Paid</span>
+        </div>
+
+        <div class="row">
+            <div id='calendar'>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h6 class="modal-title">
+                        <span id="eventTitle"></span>
+                    </h6>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p id="pDetails">
+                    </p>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    @*<a id="ed" class="btn btn-secondary">Edit</a>*@
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div id='top'>
+        <div class='left'>
+            <div id='theme-system-selector' class='selector' style='display: none'>
+                Theme System:
+                <select>
+                    <option value='jquery-ui' selected="selected">jQuery UI</option>
+                    <option value='standard'>unthemed</option>
+                </select>
+            </div>
+            <div data-theme-system="jquery-ui" class='selector'>
+                <select style='display: none'>
+                    <option value='cupertino' selected="selected">Cupertino</option>
+                </select>
+            </div>
+            <span id='loading' style='display: none'>loading theme...</span>
+        </div>
+        <div class='clear'>
+        </div>
+    </div>
+
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span id="eventTitle"></span></h4>
+            </div>
+            <div class="modal-body">
+                <p id="pDetails"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+<script src="../Scripts/EntityScript/Calendar.js"></script>

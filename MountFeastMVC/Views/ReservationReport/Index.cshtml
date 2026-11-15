@@ -1,0 +1,334 @@
+﻿@{
+    ViewBag.Title = "Departure and Arrival Report";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    .report-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .report-item {
+        display: flex;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .left-section, .center-section, .right-section {
+        flex: 1;
+        padding: 5px;
+    }
+
+    .left-section {
+        text-align: left;
+    }
+
+    .center-section {
+        text-align: center;
+    }
+
+    .right-section {
+        text-align: right;
+    }
+
+    .text-size {
+        font-size: 14px;
+    }
+
+    .count-circle {
+        background-color: dodgerblue;
+        color: white;
+        border-radius: 50%;
+        padding: 5px 10px;
+        font-size: 14px;
+        display: inline-block;
+        min-width: 30px;
+        text-align: center;
+        line-height: 20px;
+    }
+</style>
+<div class="box-body">
+    <div align="center" class="box-header with-border callout callout-info">
+        <h4>Departure and Arrival Reports</h4>
+        <div>
+            <span><strong>Departures: </strong>@ViewBag.DepartureCount</span> |
+            <span><strong>Arrivals: </strong>@ViewBag.ArrivalCount</span>
+
+        </div>
+    </div>
+    <input type="hidden" id="BookingID" name="BookingID" />
+    <div class="row">
+        <div class="col-md-1">
+            <div class="form-group">
+                <label></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="dateRange">Reservation Date Range:</label>
+                <select class="form-control" style="height:34px;width:100%" id="dateRange" onchange="filterReports()" name="dateRange">
+                    <option value="All">All</option>
+                    <option value="Today">Today</option>
+                    <option value="Yesterday">Yesterday</option>
+                    <option value="Tomorrow">Tomorrow</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <ul class="nav nav-tabs" id="reportTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="departure-tab" data-toggle="tab" href="#departure" role="tab" aria-controls="departure" aria-selected="true">
+                    Departure Report
+                    <strong class="count-circle">@ViewBag.DepartureCount</strong>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="arrival-tab" data-toggle="tab" href="#arrival" role="tab" aria-controls="arrival" aria-selected="false">
+                    Arrival Report
+                    <strong class="count-circle">@ViewBag.ArrivalCount</strong>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content show active" id="reportTabContent">
+            <!-- Departure Report Tab (Set as active by default) -->
+            <div class="tab-pane fade show active" id="departure" role="tabpanel" aria-labelledby="departure-tab">
+                <div id="departureReportResult" class="active mt-4"></div>
+            </div>
+
+            <!-- Arrival Report Tab -->
+            <div class="tab-pane fade" id="arrival" role="tabpanel" aria-labelledby="arrival-tab">
+                <div id="arrivalReportResult" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        // Set default tab and report generation
+        $('#departure-tab').tab('show');
+        generateDepartureReport("All");
+
+        // Handle tab switching and filter based on selected tab and date range
+        $('#reportTabs a').on('shown.bs.tab', function (e) {
+            var targetTab = $(e.target).attr('href');
+            var selectedRange = $('#dateRange').val();
+
+            if (targetTab === '#departure') {
+                $('#arrivalReportResult').html('');
+                generateDepartureReport(selectedRange);
+            } else if (targetTab === '#arrival') {
+                $('#departureReportResult').html('');
+                generateArrivalReport(selectedRange);
+            }
+        });
+
+        // Date range dropdown change handler
+        $('#dateRange').change(function () {
+            var selectedRange = $(this).val();
+            var activeTab = $('#reportTabs .active').attr('href');
+
+            if (activeTab === '#departure') {
+                generateDepartureReport(selectedRange);
+            } else if (activeTab === '#arrival') {
+                generateArrivalReport(selectedRange);
+            }
+        });
+    });
+
+
+function generateDepartureReport(dateRange) {
+    $.ajax({
+        url: '@Url.Action("GetDepartureReport", "ReservationReport")',
+        type: 'POST',
+        data: { dateRange: dateRange },
+        success: function (response) {
+            if (Array.isArray(response)) {
+                let html = "<div class='report-container'>";
+                response.forEach(item => {
+                    let paxName = `${item.PaxTitle} ${item.PaxFName} ${item.PaxLName}`;
+                    let flagUrl = getFlagUrl(item.CountryCode);
+                    html += `
+                        <div class='report-item'>
+                            <div class='left-section'>
+                                <p>${flagUrl ? `<img src="${flagUrl}" alt="${item.CountryCode} flag" style="width: 20px; height: 14px; margin-right: 5px;">` : ''}<b>${paxName}</b></p>
+                                <p style='color:Blue'>${item.ConfirmationNo}</p>
+                                <p>${item.Category}</p>
+                            </div>
+                            <div class='center-section'>
+                                <p>${formatDate(item.CheckIn)} - ${formatDate(item.CheckOut)}</p>
+                                <p><strong>${item.NoofDay} nights</strong> - <strong>${item.Adults} adults</strong></p>
+                            </div>
+                            <div class='right-section'>
+                                <p class='text-size'><strong>PKR: ${item.TotalRoomRate}</strong></p>
+                                <p>${formatDate(item.ReservationDate)}</p>
+                            </div>
+                        </div>`;
+                });
+                html += "</div>";
+                $('#departureReportResult').html(html);
+            } else {
+                alert("Error: " + response);
+            }
+        },
+        error: function () {
+            alert('Error generating departure report.');
+        }
+    });
+}
+
+function generateArrivalReport(dateRange) {
+    $.ajax({
+        url: '@Url.Action("GetArrivalReport", "ReservationReport")',
+        type: 'POST',
+        data: { dateRange: dateRange },
+        success: function (response) {
+            if (Array.isArray(response)) {
+                let html = "<div class='report-container'>";
+                response.forEach(item => {
+                    let paxName = `${item.PaxTitle} ${item.PaxFName} ${item.PaxLName}`;
+                    let flagUrl = getFlagUrl(item.CountryCode);
+                    html += `
+                        <div class='report-item'>
+                            <div class='left-section'>
+                                ${flagUrl ? `<img src="${flagUrl}" alt="${item.CountryCode} flag" style="width: 20px; height: 14px; margin-right: 5px;">` : ''}<b>${paxName}</b></p>
+                                <p>${item.ConfirmationNo}</p>
+                                <p>${item.Category}</p>
+                            </div>
+                            <div class='center-section'>
+                                <p>${formatDate(item.CheckIn)} - ${formatDate(item.CheckOut)}</p>
+                                <p><strong>${item.NoofDay} nights</strong> - <strong>${item.Adults} adults</strong></p>
+                            </div>
+                            <div class='right-section'>
+                                <p class='text-size'><strong>PKR: ${item.TotalRoomRate}</strong></p>
+                                <p>${formatDate(item.ReservationDate)}</p>
+                            </div>
+                        </div>`;
+                });
+                html += "</div>";
+                $('#arrivalReportResult').html(html);
+            } else {
+                alert("Error: " + response);
+            }
+        },
+        error: function () {
+            alert('Error generating arrival report.');
+        }
+    });
+}
+    function formatDate(dateStr) {
+        if (!dateStr) return ''; // In case of invalid date string
+        let date = new Date(parseInt(dateStr.replace('/Date(', '').replace(')/', ''), 10));
+        let day = ("0" + date.getDate()).slice(-2);
+        let month = ("0" + (date.getMonth() + 1)).slice(-2);
+        let year = date.getFullYear();
+        return `${month}-${day}-${year}`;
+    }
+   
+ function filterReports() {
+        // Get the selected date range
+        var dateRange = document.getElementById("dateRange").value;
+
+        // Make an AJAX call to the server to get updated counts
+        $.ajax({
+            url: '@Url.Action("ReservationCounts")', // Call the ReservationCounts method
+            type: 'POST',
+            data: { dateRange: dateRange },
+            success: function () {
+                // Fetch updated counts for each report (departure and arrival)
+                fetchDepartureReport(dateRange);
+                fetchArrivalReport(dateRange);
+            },
+            error: function () {
+                console.log("Error in fetching counts.");
+            }
+        });
+    }
+
+    // Function to fetch updated departure report
+    function fetchDepartureReport(dateRange) {
+        $.ajax({
+            url: '@Url.Action("GetDepartureReport")',
+            type: 'POST',
+            data: { dateRange: dateRange },
+            success: function (data) {
+                // Update the departure count badge
+                $("#departure-tab .count-circle").text(data.length);
+
+                // Populate the departure report data
+                $("#departureReportResult").html(renderReport(data));
+            },
+            error: function () {
+                console.log("Error in fetching departure report.");
+            }
+        });
+    }
+
+    // Function to fetch updated arrival report
+    function fetchArrivalReport(dateRange) {
+        $.ajax({
+            url: '@Url.Action("GetArrivalReport")',
+            type: 'POST',
+            data: { dateRange: dateRange },
+            success: function (data) {
+                // Update the arrival count badge
+                $("#arrival-tab .count-circle").text(data.length);
+
+                // Populate the arrival report data
+                $("#arrivalReportResult").html(renderReport(data));
+            },
+            error: function () {
+                console.log("Error in fetching arrival report.");
+            }
+        });
+    }
+
+    // Helper function to render report data (you can adjust this to fit your data structure)
+    function renderReport(data) {
+        var reportHtml = "<table class='table'><thead><tr>";
+        reportHtml += "<th>Confirmation No</th><th>Booking Status</th><th>CheckIn/CheckOut</th></tr></thead><tbody>";
+
+        data.forEach(function(item) {
+            reportHtml += "<tr><td>" + item.ConfirmationNo + "</td>";
+            reportHtml += "<td>" + item.BookingStatus + "</td>";
+            reportHtml += "<td>" + (item.CheckIn || item.CheckOut) + "</td></tr>";
+        });
+
+        reportHtml += "</tbody></table>";
+        return reportHtml;
+    }
+
+    // Helper function to get flag URL
+    function getFlagUrl(countryCode) {
+        const flagMap = {
+            'PK': 'https://flagcdn.com/w20/pk.png', // Pakistan
+            'US': 'https://flagcdn.com/w20/us.png', // United State
+            'AE': 'https://flagcdn.com/w20/ae.png', // United Arab Emirates
+            'SA': 'https://flagcdn.com/w20/sa.png', // Saudi Arabia
+            'GB': 'https://flagcdn.com/w20/gb.png', // United Kingdom
+            'FR': 'https://flagcdn.com/w20/fr.png', // France
+            'AF': 'https://flagcdn.com/w20/af.png', // Afghanistan
+            'IR': 'https://flagcdn.com/w20/ir.png', // Iran
+            'TR': 'https://flagcdn.com/w20/tr.png', // Turkey
+            'CN': 'https://flagcdn.com/w20/cn.png', // China
+            'IN': 'https://flagcdn.com/w20/in.png', // India
+            'DE': 'https://flagcdn.com/w20/de.png', // Germany
+            'CA': 'https://flagcdn.com/w20/ca.png', // Canada
+            'AU': 'https://flagcdn.com/w20/au.png', // Australia
+            'RU': 'https://flagcdn.com/w20/ru.png', // Russia
+            'IT': 'https://flagcdn.com/w20/it.png', // Italy
+            'JP': 'https://flagcdn.com/w20/jp.png', // Japan
+            'ES': 'https://flagcdn.com/w20/es.png', // Spain
+            'ZA': 'https://flagcdn.com/w20/za.png', // South Africa
+            'BR': 'https://flagcdn.com/w20/br.png', // Brazil
+        };
+        return flagMap[countryCode] || '';
+    }
+</script>

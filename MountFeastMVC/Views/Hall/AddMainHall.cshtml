@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "AddMainHall";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<input type="hidden" ID="hdnFilePath"  />
+<div class="box-header with-border" align="center">
+    <h3 class="callout callout-info">Add Main Hall Info</h3>
+
+</div>
+
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-3 col-xs-12">
+            <div class="form-group">
+                <label>
+                    Hall Catagory
+                </label>
+                <input type="text" ID="txtHallCategory"  />
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="form-group">
+                <label>Hall Short Code</label>
+
+                <input type="text" ID="txtShortCode"  ToolTip=""
+                             class="form-control" ValidationGroup="validationgroup" />
+
+            </div>
+        </div>
+
+        <div class="col-md-3 col-xs-12">
+            <div class="form-group">
+                <label>Capacity</label>
+
+                <input type="text" ID="txtCapacity"  ToolTip=""
+                             class="form-control" ValidationGroup="validationgroup" />
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 ">
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" ID="txtDescription" class="form-control"  Height="104px" TextMode="MultiLine" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box-body">
+    <div align="center">
+
+        <Button ID="btnSaveHall"  Width="100px" class="btn btn-primary"
+                    Text="Save" />
+        <Button ID="btnCancel"  Width="100px" class="btn btn-primary"
+                    Text="Cancel" />
+    </div>
+</div>
+

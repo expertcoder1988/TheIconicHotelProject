@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Add Post";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+
+    List<HotelWebsite.Controllers.Article> post = new List<HotelWebsite.Controllers.Article>();
+
+    if (TempData["Post"] != null)
+    {
+        post = (List<HotelWebsite.Controllers.Article>)TempData["Post"];
+    }
+}
+
+
+
+<div class="box-body">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="callout callout-info">Edit Post</h5>
+        </div>
+    </div>
+    <hr />
+    <input type="hidden" id="PostId" value="@post[0].PostId" />
+    <input type="hidden" id="defImage" value="@post[0].DefaultImage" />
+    <input type="hidden" id="IsPublished" value="0" />
+    <input type="hidden" id="PublishedDate" value="" />
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="Title" value="@post[0].Title" required class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" id="Slug" required value="@post[0].Slug" class="form-control form-control-sm" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="Description" required class="form-control summernote">@post[0].Description</textarea>
+                        @*@Html.TextArea("Name", "Enter Name", new { @style = "color:red" })*@
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Short Descriptions</label>
+                        <input type="text" id="ShortDescriptions" required value="@post[0].ShortDescriptions" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <input type="text" id="MetaDescription" required value="@post[0].MetaDescription" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Keywords</label>
+                        <input type="text" id="Keywords" value="@post[0].Keywords" required class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input type="text" id="Author" value="@post[0].Author" required class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" id="hdDefaultImage" value="" />
+                    <input type="file" id="BlogImage" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-3">
+
+                    <div class="mt-3">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <input type="text" id="Tags" value="@post[0].Tags" required class="form-control" />
+                        <small class="form-text text-muted">Tags comma separated values. Press ',' key after each word.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                @* <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>*@
+                <input type="button" ID="doaddnew" name="doaddnew" class="btn btn-primary" value="Publish" />
+                @*<button type="button" onclick="OnPublish()" class="btn btn-outline-warning btn-sm"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>Publish</button>*@
+
+                <a href="@Url.Action("Index", "Post", new { Area = "Admin" })" class="btn btn-info">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/EntityScript/EditPost.js"></script>

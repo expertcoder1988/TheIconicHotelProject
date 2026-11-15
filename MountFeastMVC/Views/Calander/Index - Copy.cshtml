@@ -1,0 +1,299 @@
+﻿@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<style>
+
+    th {
+        font: 15px 'Segoe UI';
+        background-color: silver;
+        font-weight: bold;
+        padding: 5px 10px;
+    }
+
+    td, p, input, h3 {
+        font: 12px 'Segoe UI';
+    }
+
+    td {
+        border: solid 1px #ddd;
+        text-align: center;
+        padding: 5px 10px;
+    }
+
+    table, th {
+        border: solid 1px #ddd;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    div.ex3 {
+        background-color: whitesmoke;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+
+    #right {
+        position: absolute;
+        right: 0px;
+        width: 300px;
+        border: 3px solid #73AD21;
+        padding: 10px;
+    }
+</style>
+
+<div class="box-body">
+    <h5 class="callout callout-info">Calendar</h5>
+    <input type="hidden" id="AvoidReload" value="false" />
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <div >
+                    <label id="lblProduct">
+                        Please Select Property
+                    </label>
+                    <select ID="Properties" class="form-control" style="width:250px">
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            Legends: <span style="color:silver">Silver=Open</span>,<span style="color:red">Red=Booked</span>,<span style="color:blue">Blue=Checkin</span>,<span style="color:green">Green=Paid</span>
+        </div>
+  
+        <div class="row">
+            <div id="showData" class="ex3">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="pDetails"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/EntityScript/Calendar.js"></script>
+
+    <script>
+                    //var events = [];
+                    //$(document).ready(function () {
+                    //    $.ajax({
+                    //        type: "GET",
+                    //        url: "/Calander/GetEvents",
+                    //        success: function (data) {
+                    //            //console.log(data);
+                    //            $.each(JSON.parse(data), function (i, v) {
+                    //                events.push({
+                    //                    title: v.RoomCode,
+                    //                    description: v.Description,
+                    //                    start: moment(v.StartDate),
+                    //                    end: v.EndDate != null ? moment(v.EndDate) : null,
+                    //                    color: v.ThemeColor,
+                    //                    booked: v.Booked
+                    //                });
+                    //            })
+                    //            console.log(events);
+                    //           // GenerateCalender(events);
+                    //            //renderHead();
+                    //        },
+                    //        error: function (error) {
+                    //            alert('failed');
+                    //        }
+                    //    })
+
+                    //    function GenerateCalender(events) {
+                    //        $('#calendar').fullCalendar('destroy');
+                    //        $('#calendar').fullCalendar({
+                    //            contentHeight: 400,
+                    //            defaultDate: new Date(),
+                    //            timeFormat: 'h(:mm)a',
+                    //            defaultView: 'basicWeek',
+                    //            header: {
+                    //                left: 'prev,next today',
+                    //                center: 'title',
+                    //                right: 'month,basicWeek,basicDay'
+                    //            },
+                    //            eventLimit: true,
+                    //            eventColor: '#378006',
+                    //            events: events,
+                    //            eventClick: function (calEvent, jsEvent, view) {
+                    //                $('#myModal #eventTitle').text(calEvent.title);
+                    //                var $description = $('<div/>');
+                    //                $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+                    //                if (calEvent.end != null) {
+                    //                    $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                    //                }
+                    //                $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                    //                $('#myModal #pDetails').empty().html($description);
+
+                    //                $('#myModal').modal();
+                    //            }
+                    //        })
+                    //    }
+
+                    //    Date.prototype.getDayOfYear = function () {
+                    //        var fd = new Date(this.getFullYear(), 0, 0);
+                    //        var sd = new Date(this.getFullYear(), this.getMonth(), this.getDate());
+                    //        return Math.ceil((sd - fd) / 86400000);
+                    //    };
+
+                    //    Date.prototype.getLastDayOfMonth = function () {
+                    //        var y = this.getFullYear();
+                    //        var m = this.getMonth();
+                    //        return new Date(y, m + 1, 0);
+                    //    };
+
+                    //    function dateDifference(d1, d2) {
+                    //        var fd = new Date(d1.getFullYear(), d1.getMonth(), d1.getDate());
+                    //        var sd = new Date(d2.getFullYear(), d2.getMonth(), d2.getDate());
+                    //        return Math.ceil((sd - fd) / 86400000);
+                    //    }
+
+                    //    function convert(str) {
+                    //        var date = new Date(str),
+                    //            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+                    //            day = ("0" + date.getDate()).slice(-2);
+                    //        return [date.getFullYear(), mnth, day].join("/");
+                    //    }
+
+                    //    function renderHead() {
+
+                    //        var startDate = new Date();
+                    //        var startDate1 = new Date();
+                    //        startDate1 = convert(startDate1);
+
+                    //        //alert(startDate.getDayOfYear());
+                    //        var endDate = new Date();
+                    //        var endDate1 = new Date();
+
+                    //        var year = new Date(startDate1).getFullYear();
+                    //        var month = new Date(startDate1).getMonth();
+                    //        var day = new Date(startDate1).getDate();
+                    //        endDate = new Date(year + 1, month, day)
+                    //        endDate1 = new Date(year + 1, month, day);
+                    //        endDate1 = convert(endDate1);
+
+                    //       // console.log(convert(endDate));
+
+                    //        const MONTHS = () => {
+                    //            const months = [];
+                    //            const dateStart = moment();
+                    //            const dateEnd = moment().add(12, 'month');
+
+                    //                while (dateEnd.diff(dateStart, 'months') >= 0) {
+                    //                        months.push(dateStart.format('M'))
+                    //                    dateStart.add(1, 'month');
+                    //                }
+                    //        return months
+                    //        }
+
+                    //     //  console.log(MONTHS());
+
+                    //        const DAYS = () => {
+                    //            const days = [];
+                    //            const dateStart = moment();
+                    //            const dateEnd = moment().add(365, 'days');
+
+                    //            while (dateEnd.diff(dateStart, 'days') >= 0) {
+                    //                    days.push(dateStart.format('D'));
+                    //                    dateStart.add(1, 'days');
+                    //            }
+                    //            return days;
+                    //        }
+
+
+
+                    //        var dayDiff = dateDifference(startDate, endDate);
+
+
+                    //        var getDateArray = function (start, end) {
+                    //          //  console.log(start);
+                    //            //console.log(end);
+                    //            var
+                    //                arr = new Array(),
+                    //                dt = new Date(start);
+
+                    //            while (dt <= end) {
+                    //                arr.push(convert(dt));
+                    //                dt.setDate(dt.getDate() + 1);
+                    //            }
+
+
+                    //            return arr;
+
+                    //        }
+
+                    //      //console.log(getDateArray(startDate, endDate));
+
+                    //        var numbers2 = '';
+                    //        for (var ii = 0; ii < dayDiff; ii++) {
+                    //            numbers2 += '<td>' + (ii + 1) + '</td>';
+                    //        }
+                    //        $('tr#months2').html(numbers2);
+
+                            //var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                            //var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                            //var dayNames = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Sn"];
+                            //var months = '';
+                            //for (var i = 0; i < monthNames.length; i++) {
+                            //    months += '<td colspan="' + monthDays[i] + '">' + monthNames[i] + '</td>';
+                            //}
+                            ////$('tr#months').html(months);
+
+
+                    //        var numbers = '<th style="background-color:silver">Rooms</th>';
+                    //        var counter = 1;
+                    //        var month = 0;
+
+                    //        for (i = 0; i < monthDays.length; i++) {
+                    //            var dt = moment(monthDays[i], "YYYY/MM/DD");
+                    //            var dte = dt.format('dddd');
+
+
+                    //            numbers += '<th' + (dte.charAt(0) == 'S' ? ' class="weekend"' : '') + '>' + monthDays[i] + '</th>';
+                    //            counter++;
+                    //            if (counter > monthDays[month]) {
+                    //                month++;
+                    //                counter = 1;
+                    //            }
+                    //        }
+                    //        $('tr#numbers').html(numbers);
+
+                    //        //var days = '';
+                    //        //var day = 1;
+                    //        //for (i = 0; i < 365; i++) {
+                    //       //     days += '<td' + (dayNames[day] == 'Nd' || dayNames[day] == 'So' ? ' class="weekend"' : '') + '>' + dayNames[day] + '</td>';
+                    //        //    day++;
+                    //        //    if (day > 6) day = 0;
+                    //        //}
+                    //        //$('tr#days').html(days);
+
+                    //        for (i = 0; i < eve.length; i++) {
+
+                    //        }
+
+
+
+                    //    }
+                    //})
+    </script>

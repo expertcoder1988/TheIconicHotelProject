@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Create Voucher";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Bootstrap Datepicker -->
+
+<div class="box-body">
+    <h2 class="callout callout-info" style="text-align:center; font-weight:bold">Create Voucher</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-6">
+                <div class="form-group">
+                    <label for="Code">Voucher Code</label>
+                    <input type="text" id="Code" name="Code" class="form-control" value="@ViewBag.VoucherCode" readonly />
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <div class="form-group">
+                    <label for="DiscountAmount">Discount Amount</label>
+                    <input type="number" id="DiscountAmount" name="DiscountAmount" autocomplete="off" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <div class="form-group">
+                    <label for="ExpiryDate">Expiry Date</label>
+                    <input type="text" id="ExpiryDate" autocomplete="off" name="ExpiryDate" class="form-control" />
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3 col-xs-6">
+                <div class="form-group">
+                    <label for="CategoryId">Category</label>
+                    <select id="CategoryId" name="CategoryId" class="form-control">
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            <option value="@category.Id">@category.Category</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <div class="form-group">
+                    <label for="Remarks">Remarks</label>
+                    <input type="text" id="Remarks" name="Remarks" autocomplete="off" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <div class="form-group">
+                    <label for="IsActive">Is Active</label>
+                    <select id="IsActive" name="IsActive" class="form-control">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                    <input type="submit" ID="AddVoucher" name="AddVoucher" value="Create Voucher" class="btn btn-primary" />
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Script for Voucher functionality -->
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/Voucher.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#ExpiryDate').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+</script>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MountFeastMVC.Models.Voucher>
+
+@{
+    ViewBag.Title = "Vouchers";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-body">
+    <h2 class="callout callout-info" style="text-align:center; font-weight:bold"> Vouchers List</h2>
+
+    <div class="container">
+        <p>
+            @Html.ActionLink("Create New Voucher", "Create")
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Code)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DiscountAmount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ExpiryDate)
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Remarks)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiscountAmount)
+                        </td>
+                        <td>
+                            @(item.ExpiryDate.HasValue ? item.ExpiryDate.Value.ToString("yyyy-MM-dd") : string.Empty)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoomCategory.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Remarks)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.VoucherId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.VoucherId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.VoucherId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

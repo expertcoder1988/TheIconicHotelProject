@@ -1,0 +1,111 @@
+﻿@model MountFeastMVC.Models.Post
+@{
+    ViewBag.Title = "Add Post";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="box-body">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="callout callout-info">New Post</h5>
+        </div>
+    </div>
+    <hr />
+    <input type="hidden" id="PostId" value="0" />
+    <input type="hidden" id="IsPublished" value="0" />
+    <input type="hidden" id="PublishedDate" value="" />
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="Title" required class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" id="Slug" required class="form-control form-control-sm" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="Description" required class="form-control summernote"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Short Descriptions</label>
+                        <input type="text" id="ShortDescriptions" required class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <input type="text" id="MetaDescription" required class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Keywords</label>
+                        <input type="text" id="Keywords" maxlength="150" required class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input type="text" id="Author" required class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" id="hdDefaultImage" value="" />
+                    <input type="file" id="BlogImage" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-3">
+
+                    <div class="mt-3">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <input type="text" id="Tags" required class="form-control" />
+                        <small class="form-text text-muted">Tags comma separated values. Press ',' key after each word.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                @* <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>*@
+                <input type="button" ID="doaddnew" name="doaddnew" class="btn btn-primary" value="Publish" />
+                @*<button type="button" onclick="OnPublish()" class="btn btn-outline-warning btn-sm"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>Publish</button>*@
+
+                <a href="@Url.Action("Index", "Post", new { Area = "Admin" })" class="btn btn-info">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/EntityScript/Post.js"></script>

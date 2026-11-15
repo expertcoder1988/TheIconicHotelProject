@@ -1,0 +1,1127 @@
+﻿@{
+    var blogs = new HotelWebsite.Controllers.BlogsController().GetAllBlogs();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="Keyword" content="@ViewBag.keywords" />
+    <meta name="description" content="@ViewBag.Description" />
+
+
+    <meta property=og:title content="ICONIC Hotel " />
+    <meta property=og:url content="https://theiconichotels.com/" />
+    <meta property="og:image" content="https://theiconichotels.com/Content/Assets/img/logos/ICONIC_logo.png" />
+    <meta property=og:type content=website />
+    <meta property=og:description content="Experience luxury stay at ICONIC Hotel Naran – one of the best hotels in Naran Kaghan Valley.Book room online at best hotel in Naran Main Bazar." />
+    <meta property=og:locale content=en_US />
+    <link rel="canonical" href="@ViewBag.canonical" />
+    @*<base href="https://theiconichotels.com/">*@
+    <!-- External CSS libraries -->
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/bootstrap.min.css">
+    <!-- External CSS libraries -->
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/bootstrap-submenu.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/Content/Assets/css/leaflet.css" type="text/css">
+    <link rel="stylesheet" href="/Content/Assets/css/map.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/fonts/font-awesome/css/font-awesome.min.css">
+
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/fonts/flaticon/font/flaticon.css">
+    <link type="text/css" rel="stylesheet" href="/Content/Assets/fonts/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/fonts/linearicons/style.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/dropzone.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/slick.css">
+
+    <link href="~/Content/SearchBar/Css/DesktopSearch/SearchBar.css" rel="stylesheet" />
+    <link href="~/Content/SearchBar/Css/DesktopSearch/SearchBarNine.css" rel="stylesheet" />
+    <link href="~/Content/SearchBar/Css/DesktopSearch/SearchBarSix.css" rel="stylesheet" />
+    <link href="~/Content/SearchBar/Css/DesktopSearch/SearchBarTen.css" rel="stylesheet" />
+
+    <!-- Custom stylesheet -->
+
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/initial.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/style.css">
+    @*<link rel="stylesheet" type="text/css" id="style_sheet" href="~/Content/Assets/css/skins/brown.css">*@
+    <link href="~/Content/Assets/css/skins/brown.css" rel="stylesheet" />
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="~/Content/Assets/img/fav.png" type="image/x-icon">
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPlayfair+Display:400,700%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link rel="stylesheet" type="text/css" href="/Content/Assets/css/ie10-viewport-bug-workaround.css">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script type="text/javascript" src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script type="text/javascript" src="/Content/Assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/Content/Assets/js/ie-emulation-modes-warning.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LPMES1MC5C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LPMES1MC5C');
+    </script>
+
+    <style>
+        .our-service-there {
+            position: relative;
+            z-index: 0;
+            padding-top: 100px;
+            text-align: center;
+            background: #001a42;
+        }
+
+            .our-service-there:before {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                content: "";
+                z-index: -1;
+                opacity: 0.4;
+            }
+    </style>
+
+
+    <script type="application/ld+json">
+        {
+            "@@context": "https://schema.org",
+            "@@type": "Hotel",
+            "name": "ICONIC Naran",
+            "description": "Experience luxury stay at ICONIC Hotel Naran – one of the best hotels in Naran Kaghan Valley.Book room online at best hotel in Naran Main Bazar.",
+            "address": {
+                "@@type": "PostalAddress",
+                "addressCountry": "Pakistan",
+                "addressLocality": "Naran",
+                "addressRegion": "Mansehra",
+                "postalCode": "21200",
+                "streetAddress": "ICONIC Hotel Main Mansehra-Naran Road"
+            },
+            "telephone": "+92 341 9030 303",
+            "photo": "https://theiconichotels.com/Content/Assets/img/logos/ICONIC_logo.png",
+            "starRating": {
+                "type": "Rating",
+                "ratingValue": "3"
+            },
+            "priceRange": "$50 - $150"
+        }
+    </script>
+
+    <!-- Google tag (gtag.js) event
+    <script>
+        gtag('event', 'ThankYou Page - Room Booked', {
+            // <event_parameters>
+        });
+    </script>
+    
+    <script>
+        gtag('event', 'WhatsApp Button Clicks', {
+            // <event_parameters>
+        });
+    </script>
+    
+    <script>
+       // gtag('event', 'Call Btn Clicks', {
+            <event_parameters>
+        });
+    </script>
+
+ Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-N772RSLN');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16586550394"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-16586550394');
+    </script>
+
+
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N772RSLN"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <header class="main-header sticky-header header-with-top" id="main-header-2">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand logo" href="https://theiconichotels.com/">
+                    <img src="/Content/Assets/img/logos/ICONIC_logo.png" style="" alt="logo" />
+                </a>
+                <button class="navbar-toggler" id="drawer" type="button">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="navbar-collapse collapse w-100 justify-content-end" id="navbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a role="button" class="dropdown-item" href="@Url.Action("Index","Home")" ToolTip="Home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a role="button" class="dropdown-item" href="@Url.Action("Index","AboutUs")" ToolTip="About Us">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a role="button" class="dropdown-item" href="@Url.Action("Index","Gallery")" ToolTip="Gallery">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a role="button" class="dropdown-item" href="/activities-tourist-places-in-naran-valley" ToolTip="Places & Activities">Places & Activities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a role="button" class="dropdown-item" href="/restaurant-in-naran" ToolTip="Restaurant">Restaurant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a role="button" class="dropdown-item" href="/blog-hotel-naran" ToolTip="Blog">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a role="button" href="/hotel-in-naran-contact-number" class="dropdown-item"> Contact Us </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+
+
+
+    <!-- Main header end -->
+    <!-- Sidenav start -->
+    <nav id="sidebar" class="nav-sidebar">
+        <!-- Close btn-->
+        <div id="dismiss">
+            <i class="fa fa-close"></i>
+        </div>
+        <div class="sidebar-inner">
+            <div class="sidebar-logo">
+                <a href="https://theiconichotels.com/">
+                    <img src="/Content/Assets/img/logos/ICONIC_logo.png" style="" alt="sidebarlogo" />
+                </a>
+            </div>
+            <div class="sidebar-navigation">
+
+                <ul class="menu-list">
+                    <li class="nav-item">
+                        <a role="button" class="dropdown-item" href="@Url.Action("Index","Home")" ToolTip="Home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="button" class="dropdown-item" href="@Url.Action("Index","AboutUs")" ToolTip="About Us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="button" class="dropdown-item" href="@Url.Action("Index","Gallery")" ToolTip="Gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="button" class="dropdown-item" href="/activities-tourist-places-in-naran-valley" ToolTip="Places & Activities">Places & Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="button" class="dropdown-item" href="/restaurant-in-naran" ToolTip="Restaurant">Restaurant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="button" class="dropdown-item" href="/naran-hotel-updates" ToolTip="Blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="button" href="/hotel-in-naran-contact-number" class="dropdown-item"> Contact Us </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="get-in-touch">
+                <h3 class="heading">Get in Touch</h3>
+                <div class="sidebar-contact-info">
+                    <div class="icon">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="body-info">
+                        <a href="tel:+923087245555">+92 308724 5555</a>
+                    </div>
+                </div>
+                <div class="sidebar-contact-info">
+                    <div class="icon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="body-info">
+                        <a href="mailto:info@theiconichotels.com">info@theiconichotels.com</a>
+                    </div>
+                </div>
+                <div class="sidebar-contact-info mb-0">
+                    <div class="icon">
+                        <i class="fa fa-fax"></i>
+                    </div>
+                    <div class="body-info">
+                        <a href="tel:+923465557221">+92 346 555 7221</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Sidenav end -->
+
+    @RenderBody()
+
+
+
+    <!-- Our service start -->
+    <div class="our-service pt-5" style="margin-bottom:20px">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title-2">
+                <h2>
+                    Unparalleled Views,
+                    Unforgettable Moments - <span>Book Rooms with a View </span>
+                </h2>
+                <p>
+                    Your room is not just a place to rest; it's a window to the soul of Naran. Each of our rooms with a view is thoughtfully designed to maximize your connection with nature. The moment you draw your curtains, you're greeted by the majestic Naran Valley, a view that's etched in your memory forever. The sunrise, the sunset, and the starry nights - all witnessed from the cosy comfort of your room in Naran.
+                </p>
+                <div class="title-border">
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wow fadeInLeft delay-04s">
+                    <div class="service-info-1">
+                        <i class="flaticon-apartment"></i>
+                        <h3>Naran Hotel Rates That Delight</h3>
+                        <p>
+                            We believe luxury should be accessible to all. Our hotel rates in Naran are designed to provide you with the best value for your money. We've carefully crafted packages that let you enjoy the lavishness of <a href="/naran-hotel-photo-gallery">The ICONIC Hotel Naran</a> without breaking the bank. It's not just a stay; it's an investment in unforgettable memories.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wow fadeInLeft delay-04s">
+                    <div class="service-info-1">
+                        <i class="flaticon-internet"></i>
+                        <h3>
+                            <a href="/about-hotel-booking-naran">
+                            Best Hotel in Naran Kaghan
+                            </a>
+                        </h3>
+                        <p>
+                            Our passion for delivering unparalleled hospitality sets us apart as the best hotel in Naran Kaghan Valley. We don't just serve; we anticipate and exceed your needs. Our dedicated staff is here to ensure your stay is not just comfortable but truly memorable. From concierge services to dining, your experience is our priority.
+                        </p>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+    <!-- Our service end -->
+    <!-- Popular Places strat -->
+    <div class="popular-places content-area-12">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title-2">
+                <h2>
+                    <a href="/activities-tourist-places-in-naran-valley">
+                    Explore Popular Places to
+                    <span>Visit in Naran</span>
+                    </a>
+                </h2>
+                <p>Naran is a realm of natural beauty, and your stay at The ICONIC Hotel Naran places you in the heart of this wonderland. From our prime location, you have convenient access to some of Naran's most iconic and popular destinations:</p>
+                <div class="title-border">
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-8 col-md-12 col-sm-12 wow fadeInLeft delay-04s">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-pad">
+                            <div class="popular-places-box">
+                                <div class="popular-places-overflow">
+                                    <div class="popular-places-photo">
+                                        <img class="img-fluid w-100" src="~/Content/Assets/img/Places & Activites/demanchi/saifulmalook.png" alt="popular-places">
+                                    </div>
+                                </div>
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">Saif-ul-Malook Lake</a>
+                                    </h3>
+                                    <p>A gem of the region, this stunning lake is surrounded by snow-capped peaks. Take a serene boat ride, and embrace the breathtaking views.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-pad">
+                            <div class="popular-places-box">
+                                <div class="popular-places-overflow">
+                                    <div class="popular-places-photo">
+                                        <img class="img-fluid w-100" src="~/Content/Assets/img/Places & Activites/lalazar 3.jpg" alt="popular-places">
+                                    </div>
+                                </div>
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">Lalazar</a>
+                                    </h3>
+                                    <p>A paradise for hikers, Lalazar is known for its lush meadows and alpine flowers. A hike through this enchanting landscape is a must.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-pad">
+                            <div class="popular-places-box">
+                                <div class="popular-places-overflow">
+                                    <div class="popular-places-photo">
+                                        <img class="img-fluid w-100" src="~/Content/Assets/img/Places & Activites/demanchi/babusartop.jpg" alt="popular-places">
+                                    </div>
+                                </div>
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">Babusar Top</a>
+                                    </h3>
+                                    <p>A gateway to even higher altitudes, Babusar Top offers panoramic views of the surrounding valleys. The journey here is as mesmerizing as the destination.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-pad">
+                            <div class="popular-places-box">
+                                <div class="popular-places-overflow">
+                                    <div class="popular-places-photo">
+                                        <img class="img-fluid w-100" src="~/Content/Assets/img/Places & Activites/naran bazar 1.jpg" alt="popular-places">
+                                    </div>
+                                </div>
+                                <div class="ling-section">
+
+
+                                    <h3>
+                                        <a href="#">Naran Bazaar</a>
+                                    </h3>
+                                    <p>Immerse yourself in the local culture by exploring the vibrant Naran Bazaar. Find unique handicrafts, souvenirs, and local delicacies.  </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 wow fadeInRight delay-04s col-pad2">
+                    <div class="popular-places-box">
+                        <div class="popular-places-overflow">
+                            <div class="popular-places-photo">
+                                <img class="img-fluid w-100 big" src="~/Content/Assets/img/Places & Activites/demanchi/Shogran.jpg" alt="popular-places">
+                            </div>
+                        </div>
+                        <div class="ling-section">
+                            <h3>
+                                <a href="#">Shogran</a>
+                            </h3>
+                            <p>Nestled in the Kaghan Valley, Shogran is renowned for its dense forests, charming landscapes, and refreshing ambiance. Enjoy a horse ride through its scenic beauty.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popular places end -->
+    <!-- Blog start -->
+    <div class="blog comon-slick ">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title-2">
+                <h2>Explore Our Blog for Latest Updates <span>About Naran Kaghan</span></h2>
+                <p>
+                    Iconic Hotel welcomes you to a seamless and responsive experience through our dedicated contact channels. For direct assistance, reach out to us via our hotel in Naran contact number, where our team is ready to assist with reservations, inquiries, and special requests. Alternatively, connect with us through email for detailed inquiries or use our online inquiry form for a prompt response. Visit our physical location for a personalized touch, and stay updated on our latest offerings and local insights by following us on our Social Media Platforms. At Iconic Hotel, your comfort and satisfaction are our top priorities, and our commitment to exceptional service begins with connecting with you.
+                </p>
+                <div class="title-border">
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                </div>
+            </div>
+            <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                @{
+                    foreach (var ro in blogs)
+                    {
+                        string detailUrl = "/blog/" + ro.PostId + "/" + ro.Slug;
+
+                    <div class="item slide-box wow fadeInUp delay-04s">
+
+                        <div class="blog-1">
+
+
+                            <div class="blog-inner">
+                                <div class="blog-overflow">
+                                    <div class="blog-photo">
+                                        <img src="~/Uploads/blog/@ro.DefaultImage" alt="@ro.Title" class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <h3>
+                                        <a href='@detailUrl'>@ro.Title</a>
+                                    </h3>
+
+                                    <p>
+                                        @ro.ShortDescriptions
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                }
+                @*<div class="item slide-box wow fadeInRight delay-04s">
+                        <div class="blog-1">
+                            <div class="blog-inner">
+                                <div class="blog-overflow">
+                                    <div class="blog-photo">
+                                        <img src="~/Uploads/blog/2.png" alt="blog-1" class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <h3>
+                                        Indulge in Culinary Delights - The Iconic Restaurant at Naran
+                                    </h3>
+
+                                    <p>
+                                        At The Iconic Hotel & Restaurant Naran, we take pride in offering a culinary experience like no other.
+                                        Join us as we delve into the delectable world of flavours and aromas that define our signature dishes.
+                                        From traditional Pakistani cuisine to international favourites, our diverse menu is sure to tantalize
+                                        your taste buds and leave you craving for more.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item slide-box wow fadeInLeft delay-04s">
+                        <div class="blog-1">
+                            <div class="blog-inner">
+                                <div class="blog-overflow">
+                                    <div class="blog-photo">
+                                        <img src="~/Uploads/blog/3.png" alt="blog-1" class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <h3>
+                                        The Ultimate Retreat at The Iconic Hotel & Restaurant Naran
+                                    </h3>
+
+                                    <p>
+                                        Escape the hustle and bustle of city life and immerse yourself in the tranquillity of
+                                        The Iconic Hotel & Restaurant Naran. With luxurious accommodations, impeccable service,
+                                        and breathtaking views of the surrounding mountains, our hotel offers the perfect retreat for
+                                        relaxation and rejuvenation. Whether you're seeking adventure or simply wish to unwind in serenity,
+                                        our hotel promises an unforgettable experience amidst the natural beauty of Naran
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <!-- Blog end -->
+    <!-- Testimonials 2 -->
+    <div class="testimonials-2 comon-slick">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title-2">
+                <h2>
+                    Guest
+                    <span>Testimonials</span>
+                </h2>
+                <p>Experiences Shared by Our Beloved Guests</p>
+                <div class="title-border">
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 wow fadeInRight delay-04s">
+                    <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 2, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                        <div class="item slide-box">
+                            <div class="testimonials-box">
+                                <div class="detail clearfix">
+                                    <P>
+                                        <i class="fa fa-quote-left"></i>  "I stayed in ICONIC Hotel  in Naran it was an amazing
+                                        experience, the Best environment, Friendly and cooperative
+                                        staff, and the Best management overall. I highly recommend
+                                        ICONIC Hotel  for a stay in Naran." <i class="fa fa-quote-right"></i>
+                                    </P>
+                                    <div class="user-info d-flex">
+                                        <a href="https://maps.app.goo.gl/feEdDJwgzVqZvqe37">
+                                            <img src="/Content/assets/img/avatar/google review.svg"
+                                                 alt="hotel reviews" />
+                                        </a>
+                                        <div class="detail align-self-center">
+                                            <h5 style="padding-left:20px">
+                                                Mr. Muhammad Aswad
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item slide-box">
+                            <div class="testimonials-box">
+                                <div class="detail clearfix">
+                                    <P>
+                                        <i class="fa fa-quote-left"></i> The best hotel in Naran regarding cleanliness and courtesy.
+                                        Beautiful clean rooms and friendly staff. The food was awesome
+                                        as compared to other restaurants in Naran. Highly recommended
+                                        to stay in ICONIC <i class="fa fa-quote-right"></i>
+                                    </P>
+                                    <div class="user-info d-flex">
+                                        <a href="https://maps.app.goo.gl/feEdDJwgzVqZvqe37">
+                                            <img src="/Content/assets/img/avatar/google review.svg"
+                                                 alt="naran hotel reviews" />
+                                        </a>
+                                        <div class="detail align-self-center">
+                                            <h5 style="padding-left:20px">
+                                                Mr Atif Aslam
+                                            </h5>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item slide-box">
+                            <div class="testimonials-box">
+                                <div class="detail clearfix">
+                                    <P>
+                                        <i class="fa fa-quote-left"></i> We stayed at the presidential suite. It was an amazing
+                                        experience. The most important point was that the hotel
+                                        followed all the required SoPs. The rooms were clean, they
+                                        served fresh food, and had a friendly staff. Overall, I would
+                                        definitely recommend the hotel to anyone looking for a
+                                        comfortable and a relaxing stay in Naran <i class="fa fa-quote-right"></i>
+                                    </P>
+                                    <div class="user-info d-flex">
+                                        <a href="https://maps.app.goo.gl/feEdDJwgzVqZvqe37">
+                                            <img src="/Content/assets/img/avatar/google review.svg"
+                                                 alt="hotel naran reviews" />
+                                        </a>
+                                        <div class="detail align-self-center">
+                                            <h5 style="padding-left:20px">
+                                                Dr. Junaid Shahzad
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial 2 end -->
+    <div class="clearfix"></div>
+    <div class="faq-body content-area">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title-2">
+                <h2>FAQs – Iconic Hotel</h2>
+
+                <div class="title-border">
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                    <div class="title-border-inner"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="accordion accordion-flush" id="accordionFlushExample7">
+                                <div class="faq-accordion accordion accordion-flush faq-accordion" id="accordionFlushExample">
+
+                                    <div class="accordion-item mb-2">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                1.	What types of rooms are available at The Iconic Hotel & Restaurant Naran?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        The Iconic Hotel & Restaurant Naran offers a range of accommodation options including single rooms,
+                                                        double rooms, and suites, each designed for comfort and relaxation.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-2">
+                                        <h2 class="accordion-header" id="flush-headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                2.	Can I make reservations online for my stay at The Iconic Hotel & Restaurant Naran?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        Yes, you can easily make reservations online through our website, by <a href="/hotel-in-naran-contact-number">calling us</a> or booking platforms to secure your stay at The Iconic Hotel & Restaurant Naran.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-2">
+                                        <h2 class="accordion-header" id="flush-heading3">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse3" aria-expanded="false" aria-controls="flush-collapse3">
+                                                3.	Does The Iconic Hotel & Restaurant Naran offer complimentary breakfast for guests?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse3" class="accordion-collapse collapse" aria-labelledby="flush-heading3" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        Yes, we provide complimentary breakfast for all our guests, ensuring a delightful start to your day during your stay at The Iconic Hotel & Restaurant Naran.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-2">
+                                        <h2 class="accordion-header" id="flush-heading4">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false" aria-controls="flush-collapse4">
+                                                4.	Are pets allowed at The Iconic Hotel & Restaurant Naran?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse4" class="accordion-collapse collapse" aria-labelledby="flush-heading4" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        Unfortunately, we do not allow pets at The Iconic Hotel & Restaurant Naran, ensuring a comfortable and allergen-free environment for all our guests.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-2">
+                                        <h2 class="accordion-header" id="flush-heading5">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false" aria-controls="flush-collapse5">
+                                                5.	What amenities are available in the rooms at The Iconic Hotel & Restaurant Naran?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse5" class="accordion-collapse collapse" aria-labelledby="flush-heading5" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        Our rooms are equipped with modern amenities including comfortable beds, en-suite bathrooms, flat-screen TVs, Wi-Fi access, and more to ensure a pleasant stay at The Iconic Hotel & Restaurant Naran.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-30">
+                                        <h2 class="accordion-header" id="flush-heading6">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse6" aria-expanded="false" aria-controls="flush-collapse6">
+                                                6.	Does The Iconic Hotel & Restaurant Naran have a restaurant on-site?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse6" class="accordion-collapse collapse" aria-labelledby="flush-heading6" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        Yes, we have an on-site restaurant offering a diverse menu of delicious meals and refreshing beverages, providing convenient dining options for our guests at The Iconic Hotel & Restaurant Naran.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-30">
+                                        <h2 class="accordion-header" id="flush-heading7">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse7" aria-expanded="false" aria-controls="flush-collapse7">
+                                                7.	Is there parking available at The Iconic Hotel & Restaurant Naran?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse7" class="accordion-collapse collapse" aria-labelledby="flush-heading7" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        Yes, we offer parking facilities for our guests at The Iconic Hotel & Restaurant Naran, ensuring a hassle-free experience during your stay.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-30">
+                                        <h2 class="accordion-header" id="flush-heading8">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse8" aria-expanded="false" aria-controls="flush-collapse8">
+                                                8.	What are the nearby attractions to The Iconic Hotel & Restaurant Naran?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse8" class="accordion-collapse collapse" aria-labelledby="flush-heading8" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        The Iconic Hotel & Restaurant Naran is conveniently located near popular attractions such as Lake Saif-ul-Mulook, Ansoo Lake, Babusar Top, Shogran and many more attractions providing opportunities for exploration and sightseeing during your stay.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-30">
+                                        <h2 class="accordion-header" id="flush-heading9">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse9" aria-expanded="false" aria-controls="flush-collapse9">
+                                                9.	Does The Iconic Hotel & Restaurant Naran offer room service?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse9" class="accordion-collapse collapse" aria-labelledby="flush-heading9" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        Yes, we provide room service at The Iconic Hotel & Restaurant Naran, allowing guests to enjoy meals and snacks in the comfort of their rooms at their convenience.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-30">
+                                        <h2 class="accordion-header" id="flush-heading10">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse10" aria-expanded="false" aria-controls="flush-collapse10">
+                                                10.	Are there recreational activities guests can enjoy near The Iconic Hotel & Restaurant Naran?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse10" class="accordion-collapse collapse" aria-labelledby="flush-heading10" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="p-text">
+                                                    <p class="pp">
+                                                        Yes, there are a range of recreational activities near The Iconic Hotel & Restaurant Naran including river rafting at Kunhar River, hiking & trekking, exploring Naran Bazaar, enjoying local food and, many more providing guests with opportunities for leisure and enjoyment during their stay.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Blog start -->
+    <!--<div class="blog comon-slick content-area">
+        <div class="container">-->
+    <!-- Main title -->
+    <!--<div class="main-title">
+                <a href="/blog-snowcrest-naran" style="font-size: 28px;color:black;text-transform:uppercase;margin:0 0 10px">Our Blog</a>
+                <p>
+                    For those interested in staying up-to-date with all the latest hotel in Naran updates, the ICONIC Hotel By Sarai blog page is the place to be! Our website offers an informative list of topics related to tourism, hospitality, and other important matters that may affect your trip planning to Naran Kaghan.
+                </p>
+            </div>
+            <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                @foreach (var item in blogs)
+                {
+                    <div class="item slide-box wow fadeInUp delay-04s">
+                        <div class="blog-3">
+                            <div class="blog-image">
+                                <img src="~/Uploads/blog/@item.DefaultImage" alt="blog-3" class="img-fluid w-100" />
+                                <div class="date-box">@item.PublishedDate</div>
+                                <div class="post-meta clearfix">
+                                    <span><a href="#"><i class="fa fa-user"></i></a> @item.Author</span>
+
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <h4>
+                                    <a style="color: #635B49" href="blog-single-sidebar-right.html">
+                                        @item.Title
+                                    </a>
+                                </h4>
+                                <p style="font-size:14px">
+                                    @Html.Raw(item.ShortDescriptions)
+
+                                </p>
+                                <a href="blog-single-sidebar-right.html" class="read-more">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>-->
+    <!-- Intro section start -->
+    <div class="intro-section" style="border-bottom:1px solid #fff">
+        <div class="intro-section-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-7 col-sm-12">
+                        <h3>
+                            Book your stay at The ICONIC Hotel & <a style="color:#fff" href="/restaurant-in-naran">Restaurant Naran</a> and make the most of your Naran adventure, surrounded by nature's finest.
+                        </h3>
+                    </div>
+                    <div class="col-lg-3 col-md-5 col-sm-12">
+                        <a class="btn-2 btn-white" href="tel:+923087245555">
+                            <span>Get in Touch</span> <i class="arrow"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Intro section end -->
+
+
+    <a href="tel:+923087245555" class="floatp" target="_blank">
+        <i class="fa fa-phone my-floatp mt-2"></i>
+    </a>
+    <a href="https://wa.me/+923117245555? text=Hi! ICONIC." class="float" target="_blank">
+        <i class="fa-brands fa-whatsapp my-float mt-2"></i>
+    </a>
+
+    <!-- Footer start -->
+    <footer class="main-footer clearfix">
+        <div class="container">
+            <!-- Footer info-->
+            <div class="footer-info">
+                <div class="row">
+                    <!-- About us -->
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="footer-item fi2">
+                            <div class="main-title-2" style="text-align: left">
+                                <h2 style="color: white;">ICONIC Hotel & Restaurant Naran</h2>
+                                <p><b>A Premier Hotel in Naran Kaghan Valley</b></p>
+                                <p>
+                                    Discover the perfect blend of luxury and nature at ICONIC Hotel & Restaurant, located in the breathtaking Naran Kaghan Valley. Offering comfortable accommodations, exquisite cuisine, and warm hospitality, we provide an unforgettable experience in one of Pakistan's most scenic destinations. Whether you're here for adventure or relaxation, ICONIC Hotel is your ideal retreat in the heart of Naran Kaghan Valley.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Links -->
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                        <div class="footer-item">
+                            <div class="main-title-2">
+                                <h2 style="color:white;text-align:left">LINKS</h2>
+                            </div>
+                            <ul class="links">
+                                <li>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","AboutUs")">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="/restaurant-in-naran">Restaurant</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Gallery")">Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="/activities-tourist-places-in-naran-valley">Places</a>
+                                </li>
+                                <li>
+                                    <a href="/privacy-policy">Privacy</a>
+                                </li>
+                                <li>
+                                    <a href="/terms-and-conditions">Terms and Conditions</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Recent cars -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="main-title-2">
+                            <h2 style="color: white;text-align:left">Contact Us</h2>
+                        </div>
+                        <ul class="personal-info">
+                            <li>
+                                <i class="fa fa-map-marker"></i>
+                                Address:<a href="https://maps.app.goo.gl/uq3oZV6gJtDqdBoG7">Chappran Naran, Main Mansehra Road, Naran, Mansehra, Khyber Pakhtunkhwa</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"></i>
+                                Email:<a href="mailto:info@theiconichotels.com"> info@theiconichotels.com</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-phone"></i>
+                                Phone: <a href="tel:+923087245555">+92 3087245555  </a> <br />
+                                <a href="tel: +923465557221"> +92 346 5557221 </a>   <br />
+                                <a href="tel:  +923117245555">  +92 311 7245555 </a><br />
+                                <a href="tel:  0997430285">  0997430285 </a>
+
+
+
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Subscribe -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="footer-item">
+                            <div class="main-title-2">
+                                <h2 style="color: white; text-align: left">Subscribe</h2>
+                            </div>
+                            <div class="newsletter clearfix">
+                                <p>
+                                    Sign Up for Our Newsletter to get Latest Updates and Offers.
+                                    .
+                                </p>
+                                <form class="form-inline d-flex" action="#">
+                                    <input class="form-control"
+                                           type="email"
+                                           id="email"
+                                           placeholder="Email Address." />
+                                    <button class="btn button-theme" type="submit">
+                                        <i class="fa fa-paper-plane" style="color: #A85307"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right">
+            <div class="container">
+                <div class="row clearfix">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <p>
+                            &copy; 2024
+                            <a href="https://growbiztech.com/" target="_blank">Growbiz Technology & Marketing.</a> All Rights Reserved.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <ul class="social-list clearfix">
+
+                            <li>
+                                <a href="https://www.facebook.com/theiconichotels" class="facebook-bg">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="https://www.instagram.com/theiconichotelshotel" class="instagram-bg">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="youtube-link" href="@Html.Raw("https://www.youtube.com/@IconicHotelNaran")" class="youtube-bg">
+
+                                    <span><i class="fa-brands fa-youtube-play"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="youtube-link1" href="@Html.Raw("https://www.tiktok.com/@theiconichotelnaran")" class="tiktok-bg ">
+
+                                    <span><i class="fa-brands fa-tiktok"></i></span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer end -->
+
+    <script>
+        $(document).ready(function () {
+            $('.slider').slick({
+                rtl: true, // Set rtl option to true for right-to-left direction
+                // Additional settings...
+            });
+        });
+    </script>
+    <script src="/Content/Assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="/Content/Assets/js/jquery.min.js"></script>
+    <script src="/Content/Assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/Content/Assets/js/bootstrap-submenu.js"></script>
+    <script src="/Content/Assets/js/rangeslider.js"></script>
+    <script src="/Content/Assets/js/jquery.mb.YTPlayer.js"></script>
+    <script src="/Content/Assets/js/wow.min.js"></script>
+    <script src="/Content/Assets/js/bootstrap-select.min.js"></script>
+    <script src="/Content/Assets/js/jquery.easing.1.3.js"></script>
+    <script src="/Content/Assets/js/jquery.scrollUp.js"></script>
+    <script src="/Content/Assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/Content/Assets/js/leaflet.js"></script>
+    <script src="/Content/Assets/js/leaflet-providers.js"></script>
+    <script src="/Content/Assets/js/leaflet.markercluster.js"></script>
+    <script src="/Content/Assets/js/dropzone.js"></script>
+    <script src="/Content/Assets/js/jquery.filterizr.js"></script>
+    <script src="/Content/Assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/Content/Assets/js/slick.min.js"></script>
+    <script src="/Content/Assets/js/maps.js"></script>
+    <script src="/Content/Assets/js/sidebar.js"></script>
+    <script src="/Content/Assets/js/app.js"></script>
+    <script src="/Content/SearchBar/Rangepicker/moment.min.js"></script>
+    <script src="/Content/SearchBar/Rangepicker/daterangepicker.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/Content/Assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Custom javascript -->
+    <script src="/Content/Assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+
+</body>
+</html>

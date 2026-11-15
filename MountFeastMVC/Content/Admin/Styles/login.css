@@ -1,0 +1,59 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body {
+    background: url(../images/login_bg.jpg) repeat-x left top #2d2d2d;
+    padding: 0;
+    margin: 0;
+}
+/*.loginout_bg {background:url(../images/loginout_bg.jpg) repeat-x left top;}
+.loginin_bg {background:url(../images/loginin_bg.jpg) repeat-x left top;}*/
+.login_box {
+    background: url(../images/login_box.jpg) no-repeat;
+    width: 568px;
+    height: 448px;
+    float: left;
+    margin-top: 60px;
+}
+
+.text_feild {
+    width: 231px;
+    height: 24px;
+    border: solid 1px #c0c0c0;
+}
+
+.usertext {
+    font-family: Tahoma;
+    font-size: 11px;
+}
+
+.b_text {
+    color: #0086c5;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.o_text {
+    color: #de7f02;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.b_text:hover {
+    color: #0086c5;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.o_text:hover {
+    color: #de7f02;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.compny_text {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: Tahoma;
+    font-size: 12px;
+}

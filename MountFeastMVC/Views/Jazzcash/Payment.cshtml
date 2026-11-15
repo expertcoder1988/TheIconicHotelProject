@@ -1,0 +1,18 @@
+﻿@using System.Collections.Specialized;
+
+@{
+    ViewBag.Title = "MakeFlightBooking";
+    NameValueCollection data = (NameValueCollection)@TempData["FormData"];
+}
+
+<h2>Redirect to Payment Gateway</h2>
+
+<form id="FormPG" name="FormPG" action="https://payments.jazzcash.com.pk/CustomerPortal/transactionmanagement/merchantform" method="POST">
+    @foreach (string key in data)
+    {
+        <input type="hidden" id="@key" name="@key" value="@data[key]" /><br />
+    }
+    
+</form>
+<script language='javascript'>var vPostForm = document.FormPG; vPostForm.submit();</script>
+

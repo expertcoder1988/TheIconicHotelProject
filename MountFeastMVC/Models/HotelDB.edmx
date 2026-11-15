@@ -1,0 +1,2191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HotelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BlockedRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="int" />
+          <Property Name="CateId" Type="int" />
+          <Property Name="RoomNum" Type="varchar" MaxLength="20" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IconicDb.dbo.BlogDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BlogDetails">
+          <Key>
+            <PropertyRef Name="BlogDetID" />
+          </Key>
+          <Property Name="BlogDetID" Type="int" Nullable="false" />
+          <Property Name="BlogTitle" Type="nvarchar" MaxLength="300" />
+          <Property Name="BlogDescriptions" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ShortDescriptions" Type="nvarchar(max)" />
+          <Property Name="VideoUrl" Type="nvarchar(max)" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="CommentsDate" Type="datetime" />
+          <Property Name="CheckStatus" Type="bit" />
+          <Property Name="BlogID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IconicDb.dbo.BlogImages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BlogImages">
+          <Key>
+            <PropertyRef Name="BlogImageID" />
+          </Key>
+          <Property Name="BlogImageID" Type="int" Nullable="false" />
+          <Property Name="imgURL" Type="varchar" MaxLength="250" />
+          <Property Name="BlogTitle" Type="varchar" MaxLength="50" />
+          <Property Name="BlogID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IconicDb.dbo.Blogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Blogs">
+          <Key>
+            <PropertyRef Name="BlogID" />
+          </Key>
+          <Property Name="BlogID" Type="int" Nullable="false" />
+          <Property Name="BlogTitle" Type="nvarchar" MaxLength="200" />
+          <Property Name="Category" Type="varchar" MaxLength="22" />
+          <Property Name="PagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="BlogDescriptions" Type="nvarchar(max)" />
+          <Property Name="BlogDate" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="VideoUrl" Type="nvarchar(max)" />
+          <Property Name="ShortDescriptions" Type="nvarchar(max)" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfirmationNo" Type="varchar" MaxLength="10" />
+          <Property Name="HotelCode" Type="int" />
+          <Property Name="RatePlanId" Type="int" />
+          <Property Name="ThemeColor" Type="varchar" MaxLength="10" />
+          <Property Name="ReservationDate" Type="datetime" />
+          <Property Name="BookingStatus" Type="varchar" MaxLength="10" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="PaxTitle" Type="varchar" MaxLength="50" />
+          <Property Name="PaxFName" Type="varchar" MaxLength="50" />
+          <Property Name="PaxLName" Type="varchar" MaxLength="50" />
+          <Property Name="NoOfRooms" Type="int" />
+          <Property Name="RoomCode" Type="int" />
+          <Property Name="RoomCatCode" Type="int" />
+          <Property Name="RoomNum" Type="varchar" MaxLength="20" />
+          <Property Name="PaxEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaxPhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaxDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Adults" Type="int" />
+          <Property Name="Children" Type="int" />
+          <Property Name="CheckIn" Type="date" />
+          <Property Name="CheckOut" Type="date" />
+          <Property Name="NoofDay" Type="int" />
+          <Property Name="RoomRate" Type="int" />
+          <Property Name="RoomTax" Type="float" />
+          <Property Name="RequestTime" Type="datetime" />
+          <Property Name="ServiceType" Type="varchar" MaxLength="50" />
+          <Property Name="ProcessID" Type="varchar" MaxLength="50" />
+          <Property Name="DestinationID" Type="varchar" MaxLength="50" />
+          <Property Name="BackOfficeStatus" Type="bit" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="B_BookingAmmend" Type="bit" />
+          <Property Name="BookingByBO" Type="bit" />
+          <Property Name="SOConfirmation" Type="bit" />
+          <Property Name="DirectManaualBooking" Type="bit" />
+          <Property Name="NotifyBit" Type="bit" />
+          <Property Name="bitIsLocal" Type="bit" />
+          <Property Name="TotalRoomRate" Type="int" />
+          <Property Name="BookingSequenceNo" Type="int" />
+          <Property Name="AccomodationRent" Type="float" />
+          <Property Name="TourismTax" Type="float" />
+          <Property Name="AirportPickandDrop" Type="float" />
+          <Property Name="WelcomePack" Type="float" />
+          <Property Name="LinenTowelChange" Type="float" />
+          <Property Name="ExtraCleaning" Type="float" />
+          <Property Name="BreakageFee" Type="float" />
+          <Property Name="BreakageWaiverFee" Type="float" />
+          <Property Name="AgentCommission" Type="float" />
+          <Property Name="MiscExtrasCharges" Type="float" />
+          <Property Name="IsByPropertyOwner" Type="bit" />
+          <Property Name="PropertySource" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoofGuest" Type="int" />
+          <Property Name="VAT" Type="float" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="RoomCategory" Type="varchar" MaxLength="100" />
+          <Property Name="CheckStatusIN" Type="bit" />
+          <Property Name="CheckStatusOut" Type="bit" />
+          <Property Name="CountryCode" Type="char" MaxLength="2" />
+          <Property Name="VoucherAmount" Type="int" />
+        </EntityType>
+        <EntityType Name="Calendar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="propertyID" Type="int" />
+          <Property Name="RoomCode" Type="varchar" MaxLength="20" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="ThemeColor" Type="varchar" MaxLength="10" />
+          <Property Name="Booked" Type="bit" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <EntityType Name="CancellationPolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="PropertyID" Type="int" />
+          <Property Name="PeriodForFreeCharge" Type="bit" />
+          <Property Name="HowlongFreeOfCharge" Type="tinyint" />
+          <Property Name="GuestChargedForCancellation" Type="tinyint" />
+          <Property Name="ChargedForNoShow" Type="tinyint" />
+          <Property Name="ChargeGuestsBeforeTheyArrive" Type="bit" />
+          <Property Name="HowToCollectPayment" Type="bit" />
+          <Property Name="HowToReceiveThePrepayment" Type="tinyint" />
+          <Property Name="HowLongWillRefundTake" Type="tinyint" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Type" Type="bit" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Coutnry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Code" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="int" />
+          <Property Name="HallName" Type="varchar" MaxLength="50" />
+          <Property Name="ShortCode" Type="varchar" MaxLength="2" />
+          <Property Name="CoveredArea" Type="int" />
+          <Property Name="Capacity" Type="int" />
+          <Property Name="Image" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="Category" Type="varchar" MaxLength="22" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DefaultImage" Type="varchar" MaxLength="100" />
+          <Property Name="IsPublished" Type="bit" Nullable="false" />
+          <Property Name="PublishedDate" Type="datetime" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="VideoUrl" Type="nvarchar(max)" />
+          <Property Name="ShortDescriptions" Type="nvarchar(max)" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="500" />
+          <Property Name="MetaDescription" Type="nvarchar" MaxLength="160" />
+          <Property Name="Author" Type="nvarchar" MaxLength="50" />
+          <Property Name="Keywords" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IconicDb.dbo.PostTags' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PostTags">
+          <Key>
+            <PropertyRef Name="PostId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="int" />
+          <Property Name="PropertyTypeId" Type="int" />
+          <Property Name="PropertyName" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Fax" Type="varchar" MaxLength="15" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Website" Type="varchar" MaxLength="50" />
+          <Property Name="ContactPerson" Type="varchar" MaxLength="50" />
+          <Property Name="CurrencyCode" Type="varchar" MaxLength="3" />
+          <Property Name="CurrencySymbol" Type="varchar" MaxLength="3" />
+          <Property Name="BookingType" Type="bit" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="10" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="50" />
+          <Property Name="Latitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Longitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="Features" Type="varchar(max)" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="MainPic" Type="varchar" MaxLength="20" />
+          <Property Name="Logo" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="RatePlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="PropertyID" Type="int" />
+          <Property Name="WantStayMinimumLength" Type="bit" />
+          <Property Name="StayMinimumLength" Type="smallint" />
+          <Property Name="CancellationPolicy" Type="int" />
+          <Property Name="WantToIncludeMeals" Type="bit" />
+          <Property Name="Breakfast" Type="bit" />
+          <Property Name="Lunch" Type="bit" />
+          <Property Name="Dinner" Type="bit" />
+          <Property Name="DaysBeforeCheckIn" Type="bit" />
+          <Property Name="NumberOfDaysBeforeCheckIn" Type="smallint" />
+          <Property Name="Discount" Type="smallint" />
+          <Property Name="RoomTypes" Type="varchar" MaxLength="100" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="RateSlab">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="int" />
+          <Property Name="RoomCategoryCode" Type="int" />
+          <Property Name="RoomRate" Type="int" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="Days" Type="varchar" MaxLength="30" />
+          <Property Name="ExtraAdultPrice" Type="int" />
+          <Property Name="ExtraChildPrice" Type="int" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomCode" Type="int" />
+          <Property Name="RoomCategory" Type="int" />
+          <Property Name="RoomDescription" Type="varchar" MaxLength="100" />
+          <Property Name="VideoLink" Type="varchar" MaxLength="200" />
+          <Property Name="propertyID" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Features" Type="varchar(max)" />
+          <Property Name="BedType" Type="varchar" MaxLength="15" />
+          <Property Name="CheckIn" Type="varchar" MaxLength="5" />
+          <Property Name="CheckOut" Type="varchar" MaxLength="5" />
+          <Property Name="dateCreated" Type="date" />
+          <Property Name="dateModified" Type="date" />
+          <Property Name="NoOfRooms" Type="int" />
+          <Property Name="Capacity" Type="int" />
+          <Property Name="Adult" Type="int" />
+          <Property Name="NoOfChild" Type="int" />
+          <Property Name="ChildAge" Type="int" />
+          <Property Name="blocked" Type="bit" />
+          <Property Name="ShortCode" Type="varchar" MaxLength="3" />
+          <Property Name="MinimumPrice" Type="int" />
+          <Property Name="MinimumStay" Type="int" />
+          <Property Name="MaximumStay" Type="int" />
+          <Property Name="Size" Type="int" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="RoomCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="20" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="RoomNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomCode" Type="int" />
+          <Property Name="RoomNumber" Type="varchar" MaxLength="15" />
+          <Property Name="Floor" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Booked" Type="bit" />
+        </EntityType>
+        <EntityType Name="RoomPicture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomCode" Type="int" />
+          <Property Name="Picture" Type="varchar" MaxLength="25" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="PicNum" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="int" />
+          <Property Name="RoomCategory" Type="int" />
+          <Property Name="TaxName" Type="varchar" MaxLength="25" />
+          <Property Name="DetectedAs" Type="bit" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="intUserID" />
+          </Key>
+          <Property Name="intUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="vMiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="vLastName" Type="varchar" MaxLength="50" />
+          <Property Name="dtmDateOfBirth" Type="datetime" />
+          <Property Name="vAddressLine1" Type="varchar" MaxLength="100" />
+          <Property Name="vAddressLine2" Type="varchar" MaxLength="100" />
+          <Property Name="intCityID" Type="int" />
+          <Property Name="vEmail" Type="varchar" MaxLength="100" />
+          <Property Name="bitGender" Type="bit" />
+          <Property Name="vMobileNumber" Type="varchar" MaxLength="50" />
+          <Property Name="vTelephone" Type="varchar" MaxLength="50" />
+          <Property Name="tiStatus" Type="tinyint" />
+          <Property Name="vUserName" Type="varchar" MaxLength="20" />
+          <Property Name="vPassword" Type="varchar(max)" />
+          <Property Name="dtmDateCreated" Type="datetime" />
+          <Property Name="intCreatedBy" Type="int" />
+          <Property Name="vActivationCode" Type="varchar" MaxLength="20" />
+          <Property Name="intCompanyID" Type="int" />
+          <Property Name="tiUserTypeID" Type="tinyint" />
+          <Property Name="dPOSMarkUp" Type="money" />
+          <Property Name="tiAccessType" Type="tinyint" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="AccessCodes" Type="varchar" MaxLength="150" />
+          <Property Name="propertyID" Type="int" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="VoucherId" />
+          </Key>
+          <Property Name="VoucherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiscountAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_Voucher_RoomCategory">
+          <End Role="RoomCategory" Type="Self.RoomCategory" Multiplicity="0..1" />
+          <End Role="Voucher" Type="Self.Voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voucher">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_Split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sInputList" Type="varchar" Mode="In" />
+          <Parameter Name="sDelimiter" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="item" Type="varchar" MaxLength="8000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="sp_GetSearchResults" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CheckIn" Type="datetime" Mode="In" />
+          <Parameter Name="Checkout" Type="datetime" Mode="In" />
+          <Parameter Name="AdultPaxs" Type="int" Mode="In" />
+          <Parameter Name="ChildPaxs" Type="int" Mode="In" />
+          <Parameter Name="NoOfRooms" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Dashboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_EmailTemplateById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_EmailTemplateByKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailKey" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_EmailTemplateEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="int" Mode="In" />
+          <Parameter Name="EmailSubject" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmailBody" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FromAddress" Type="varchar" Mode="In" />
+          <Parameter Name="FromDisplayName" Type="varchar" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_EmailTemplateList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="Search" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PostAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Slug" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DefaultImage" Type="varchar" Mode="In" />
+          <Parameter Name="IsPublished" Type="bit" Mode="In" />
+          <Parameter Name="PublishedDate" Type="datetime" Mode="In" />
+          <Parameter Name="ModifyDate" Type="datetime" Mode="In" />
+          <Parameter Name="ShortDescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="MetaDescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="Author" Type="nvarchar" Mode="In" />
+          <Parameter Name="Keywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="Tags" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_PostById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PostId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PostByIdAndSlug" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PostId" Type="int" Mode="In" />
+          <Parameter Name="Slug" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PostDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PostId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PostEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PostId" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Slug" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DefaultImage" Type="varchar" Mode="In" />
+          <Parameter Name="IsPublished" Type="bit" Mode="In" />
+          <Parameter Name="PublishedDate" Type="datetime" Mode="In" />
+          <Parameter Name="ModifyDate" Type="datetime" Mode="In" />
+          <Parameter Name="MetaDescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="Author" Type="nvarchar" Mode="In" />
+          <Parameter Name="Keywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="Tags" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_PostImageDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PostId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PostList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="Search" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsPublished" Type="bit" Mode="In" />
+          <Parameter Name="Tag" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PostPopular" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_PostRecent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_PostRelated" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PostId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_SettingById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_SettingEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Logo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="Keywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="SiteURL" Type="nvarchar" Mode="In" />
+          <Parameter Name="Author" Type="nvarchar" Mode="In" />
+          <Parameter Name="RobotsTxt" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="GoogleAnalytics" Type="nvarchar" Mode="In" />
+          <Parameter Name="NoOfPostShow" Type="tinyint" Mode="In" />
+          <Parameter Name="SharePost" Type="bit" Mode="In" />
+          <Parameter Name="ShowFooter" Type="bit" Mode="In" />
+          <Parameter Name="ShowRelatedPosts" Type="bit" Mode="In" />
+          <Parameter Name="SMTPEmail" Type="varchar" Mode="In" />
+          <Parameter Name="SMTPPassword" Type="varchar" Mode="In" />
+          <Parameter Name="SMTPHost" Type="varchar" Mode="In" />
+          <Parameter Name="SMTPPort" Type="int" Mode="In" />
+          <Parameter Name="SMTPEnableSsl" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_SocialProfileAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="ButtonClass" Type="varchar" Mode="In" />
+          <Parameter Name="IconClass" Type="varchar" Mode="In" />
+          <Parameter Name="Url" Type="varchar(max)" Mode="In" />
+          <Parameter Name="OrderBy" Type="tinyint" Mode="In" />
+          <Parameter Name="IsVisible" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_SocialProfileEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SocialProfileId" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="ButtonClass" Type="varchar" Mode="In" />
+          <Parameter Name="IconClass" Type="varchar" Mode="In" />
+          <Parameter Name="Url" Type="varchar(max)" Mode="In" />
+          <Parameter Name="OrderBy" Type="tinyint" Mode="In" />
+          <Parameter Name="IsVisible" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_SocialProfileList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_SubscribeAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_SubscribeById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubscribeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_SubscribeDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubscribeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_SubscribeEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubscribeId" Type="int" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="IsSubscribe" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_SubscribeExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="SubscribeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_SubscribeList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="Search" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsSubscribe" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_SubscribeRemove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_TagsList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_TagsPopular" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_WidgetEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WidgetId" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsVisible" Type="bit" Mode="In" />
+          <Parameter Name="WidgetOrder" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="usp_WidgetList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="HotelDBModelStoreContainer">
+          <EntitySet Name="BlockedRoom" EntityType="Self.BlockedRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calendar" EntityType="Self.Calendar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CancellationPolicy" EntityType="Self.CancellationPolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coutnry" EntityType="Self.Coutnry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RatePlan" EntityType="Self.RatePlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RateSlab" EntityType="Self.RateSlab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomCategory" EntityType="Self.RoomCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomNumber" EntityType="Self.RoomNumber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomPicture" EntityType="Self.RoomPicture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tax" EntityType="Self.Tax" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogDetails" EntityType="Self.BlogDetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[BlogDetails].[BlogDetID] AS [BlogDetID], 
+[BlogDetails].[BlogTitle] AS [BlogTitle], 
+[BlogDetails].[BlogDescriptions] AS [BlogDescriptions], 
+[BlogDetails].[Status] AS [Status], 
+[BlogDetails].[CreationDate] AS [CreationDate], 
+[BlogDetails].[ImagePath] AS [ImagePath], 
+[BlogDetails].[ImageName] AS [ImageName], 
+[BlogDetails].[ShortDescriptions] AS [ShortDescriptions], 
+[BlogDetails].[VideoUrl] AS [VideoUrl], 
+[BlogDetails].[EntryDate] AS [EntryDate], 
+[BlogDetails].[Name] AS [Name], 
+[BlogDetails].[Email] AS [Email], 
+[BlogDetails].[Comments] AS [Comments], 
+[BlogDetails].[CommentsDate] AS [CommentsDate], 
+[BlogDetails].[CheckStatus] AS [CheckStatus], 
+[BlogDetails].[BlogID] AS [BlogID]
+FROM [dbo].[BlogDetails] AS [BlogDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BlogImages" EntityType="Self.BlogImages" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[BlogImages].[BlogImageID] AS [BlogImageID], 
+[BlogImages].[imgURL] AS [imgURL], 
+[BlogImages].[BlogTitle] AS [BlogTitle], 
+[BlogImages].[BlogID] AS [BlogID]
+FROM [dbo].[BlogImages] AS [BlogImages]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Blogs" EntityType="Self.Blogs" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Blogs].[BlogID] AS [BlogID], 
+[Blogs].[BlogTitle] AS [BlogTitle], 
+[Blogs].[Category] AS [Category], 
+[Blogs].[PagePath] AS [PagePath], 
+[Blogs].[BlogDescriptions] AS [BlogDescriptions], 
+[Blogs].[BlogDate] AS [BlogDate], 
+[Blogs].[Status] AS [Status], 
+[Blogs].[ImageName] AS [ImageName], 
+[Blogs].[ImagePath] AS [ImagePath], 
+[Blogs].[VideoUrl] AS [VideoUrl], 
+[Blogs].[ShortDescriptions] AS [ShortDescriptions], 
+[Blogs].[Tags] AS [Tags]
+FROM [dbo].[Blogs] AS [Blogs]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PostTags" EntityType="Self.PostTags" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[PostTags].[PostId] AS [PostId], 
+[PostTags].[TagId] AS [TagId]
+FROM [dbo].[PostTags] AS [PostTags]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Voucher_RoomCategory" Association="Self.FK_Voucher_RoomCategory">
+            <End Role="RoomCategory" EntitySet="RoomCategory" />
+            <End Role="Voucher" EntitySet="Voucher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HotelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="split_string_Result">
+          <Property Name="tuple" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <EntityType Name="Calendar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="propertyID" Type="Int32" />
+          <Property Name="RoomCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="ThemeColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Booked" Type="Boolean" />
+          <Property Name="Rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CancellationPolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyID" Type="Int32" />
+          <Property Name="PeriodForFreeCharge" Type="Boolean" />
+          <Property Name="HowlongFreeOfCharge" Type="Byte" />
+          <Property Name="GuestChargedForCancellation" Type="Byte" />
+          <Property Name="ChargedForNoShow" Type="Byte" />
+          <Property Name="ChargeGuestsBeforeTheyArrive" Type="Boolean" />
+          <Property Name="HowToCollectPayment" Type="Boolean" />
+          <Property Name="HowToReceiveThePrepayment" Type="Byte" />
+          <Property Name="HowLongWillRefundTake" Type="Byte" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Type" Type="Boolean" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Coutnry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int32" />
+          <Property Name="HallName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShortCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CoveredArea" Type="Int32" />
+          <Property Name="Capacity" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int32" />
+          <Property Name="PropertyTypeId" Type="Int32" />
+          <Property Name="PropertyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencySymbol" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="BookingType" Type="Boolean" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Longitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="Features" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="MainPic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RatePlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyID" Type="Int32" />
+          <Property Name="WantStayMinimumLength" Type="Boolean" />
+          <Property Name="StayMinimumLength" Type="Int16" />
+          <Property Name="CancellationPolicy" Type="Int32" />
+          <Property Name="WantToIncludeMeals" Type="Boolean" />
+          <Property Name="Breakfast" Type="Boolean" />
+          <Property Name="Lunch" Type="Boolean" />
+          <Property Name="Dinner" Type="Boolean" />
+          <Property Name="DaysBeforeCheckIn" Type="Boolean" />
+          <Property Name="NumberOfDaysBeforeCheckIn" Type="Int16" />
+          <Property Name="Discount" Type="Int16" />
+          <Property Name="RoomTypes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="RoomCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Vouchers" Relationship="HotelDBModel.FK_Voucher_RoomCategory" FromRole="RoomCategory" ToRole="Voucher" />
+        </EntityType>
+        <EntityType Name="RoomNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomCode" Type="Int32" />
+          <Property Name="RoomNumber1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Floor" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="Booked" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="RoomPicture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomCode" Type="Int32" />
+          <Property Name="Picture" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PicNum" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="HotelDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calendars" EntityType="Self.Calendar" />
+          <EntitySet Name="CancellationPolicies" EntityType="Self.CancellationPolicy" />
+          <EntitySet Name="Coutnries" EntityType="Self.Coutnry" />
+          <EntitySet Name="Halls" EntityType="Self.Hall" />
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="RatePlans" EntityType="Self.RatePlan" />
+          <EntitySet Name="RoomCategories" EntityType="Self.RoomCategory" />
+          <EntitySet Name="RoomNumbers" EntityType="Self.RoomNumber" />
+          <EntitySet Name="RoomPictures" EntityType="Self.RoomPicture" />
+          <FunctionImport Name="split_string" IsComposable="true" ReturnType="Collection(HotelDBModel.split_string_Result)">
+            <Parameter Name="in_string" Mode="In" Type="String" />
+            <Parameter Name="delimeter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetSearchResults" ReturnType="Collection(HotelDBModel.sp_GetSearchResults_Result)">
+            <Parameter Name="CheckIn" Mode="In" Type="DateTime" />
+            <Parameter Name="Checkout" Mode="In" Type="DateTime" />
+            <Parameter Name="AdultPaxs" Mode="In" Type="Int32" />
+            <Parameter Name="ChildPaxs" Mode="In" Type="Int32" />
+            <Parameter Name="NoOfRooms" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetSearchRoomDetails" ReturnType="Collection(HotelDBModel.sp_GetSearchRoomDetails_Result)">
+            <Parameter Name="CheckIn" Mode="In" Type="DateTime" />
+            <Parameter Name="Checkout" Mode="In" Type="DateTime" />
+            <Parameter Name="NoOfRooms" Mode="In" Type="Int32" />
+            <Parameter Name="RoomCatCode" Mode="In" Type="Int32" />
+            <Parameter Name="Adult" Mode="In" Type="Int32" />
+            <Parameter Name="NoOfChild" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="PostTags" EntityType="HotelDBModel.PostTag" />
+          <EntitySet Name="BlogDetails" EntityType="HotelDBModel.BlogDetail" />
+          <EntitySet Name="BlogImages" EntityType="HotelDBModel.BlogImage" />
+          <EntitySet Name="Blogs" EntityType="HotelDBModel.Blog" />
+          <FunctionImport Name="fn_Split" IsComposable="true" ReturnType="Collection(String)">
+            <Parameter Name="sInputList" Mode="In" Type="String" />
+            <Parameter Name="sDelimiter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Dashboard" ReturnType="Collection(HotelDBModel.usp_Dashboard_Result)" />
+          <FunctionImport Name="usp_EmailTemplateById" ReturnType="Collection(HotelDBModel.usp_EmailTemplateById_Result)">
+          <Parameter Name="EmailId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EmailTemplateByKey" ReturnType="Collection(HotelDBModel.usp_EmailTemplateByKey_Result)">
+          <Parameter Name="EmailKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EmailTemplateEdit">
+            <Parameter Name="EmailId" Mode="In" Type="Int32" />
+            <Parameter Name="EmailSubject" Mode="In" Type="String" />
+            <Parameter Name="EmailBody" Mode="In" Type="String" />
+            <Parameter Name="FromAddress" Mode="In" Type="String" />
+            <Parameter Name="FromDisplayName" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EmailTemplateList" ReturnType="Collection(HotelDBModel.usp_EmailTemplateList_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="Search" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostAdd" ReturnType="Collection(Int32)">
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Slug" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="DefaultImage" Mode="In" Type="String" />
+            <Parameter Name="IsPublished" Mode="In" Type="Boolean" />
+            <Parameter Name="PublishedDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ModifyDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ShortDescription" Mode="In" Type="String" />
+            <Parameter Name="MetaDescription" Mode="In" Type="String" />
+            <Parameter Name="Author" Mode="In" Type="String" />
+            <Parameter Name="Keywords" Mode="In" Type="String" />
+            <Parameter Name="Tags" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostById" ReturnType="Collection(HotelDBModel.usp_PostById_Result)">
+          <Parameter Name="PostId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostByIdAndSlug" ReturnType="Collection(HotelDBModel.usp_PostByIdAndSlug_Result)">
+            <Parameter Name="PostId" Mode="In" Type="Int32" />
+            <Parameter Name="Slug" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostDelete">
+          <Parameter Name="PostId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostEdit">
+            <Parameter Name="PostId" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Slug" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="DefaultImage" Mode="In" Type="String" />
+            <Parameter Name="IsPublished" Mode="In" Type="Boolean" />
+            <Parameter Name="PublishedDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ModifyDate" Mode="In" Type="DateTime" />
+            <Parameter Name="MetaDescription" Mode="In" Type="String" />
+            <Parameter Name="Author" Mode="In" Type="String" />
+            <Parameter Name="Keywords" Mode="In" Type="String" />
+            <Parameter Name="Tags" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostImageDelete">
+          <Parameter Name="PostId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostList" ReturnType="Collection(HotelDBModel.usp_PostList_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="Search" Mode="In" Type="String" />
+            <Parameter Name="IsPublished" Mode="In" Type="Boolean" />
+            <Parameter Name="Tag" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostPopular" ReturnType="Collection(HotelDBModel.usp_PostPopular_Result)" />
+          <FunctionImport Name="usp_PostRecent" ReturnType="Collection(HotelDBModel.usp_PostRecent_Result)" />
+          <FunctionImport Name="usp_PostRelated" ReturnType="Collection(HotelDBModel.usp_PostRelated_Result)">
+          <Parameter Name="PostId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SettingById" ReturnType="Collection(HotelDBModel.usp_SettingById_Result)" />
+          <FunctionImport Name="usp_SettingEdit">
+            <Parameter Name="Logo" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Keywords" Mode="In" Type="String" />
+            <Parameter Name="SiteURL" Mode="In" Type="String" />
+            <Parameter Name="Author" Mode="In" Type="String" />
+            <Parameter Name="RobotsTxt" Mode="In" Type="String" />
+            <Parameter Name="GoogleAnalytics" Mode="In" Type="String" />
+            <Parameter Name="NoOfPostShow" Mode="In" Type="Byte" />
+            <Parameter Name="SharePost" Mode="In" Type="Boolean" />
+            <Parameter Name="ShowFooter" Mode="In" Type="Boolean" />
+            <Parameter Name="ShowRelatedPosts" Mode="In" Type="Boolean" />
+            <Parameter Name="SMTPEmail" Mode="In" Type="String" />
+            <Parameter Name="SMTPPassword" Mode="In" Type="String" />
+            <Parameter Name="SMTPHost" Mode="In" Type="String" />
+            <Parameter Name="SMTPPort" Mode="In" Type="Int32" />
+            <Parameter Name="SMTPEnableSsl" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SocialProfileAdd" ReturnType="Collection(Decimal)">
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="ButtonClass" Mode="In" Type="String" />
+            <Parameter Name="IconClass" Mode="In" Type="String" />
+            <Parameter Name="Url" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="Byte" />
+            <Parameter Name="IsVisible" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SocialProfileEdit">
+            <Parameter Name="SocialProfileId" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="ButtonClass" Mode="In" Type="String" />
+            <Parameter Name="IconClass" Mode="In" Type="String" />
+            <Parameter Name="Url" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="Byte" />
+            <Parameter Name="IsVisible" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SocialProfileList" ReturnType="Collection(HotelDBModel.usp_SocialProfileList_Result)" />
+          <FunctionImport Name="usp_SubscribeAdd">
+          <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SubscribeById" ReturnType="Collection(HotelDBModel.usp_SubscribeById_Result)">
+          <Parameter Name="SubscribeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SubscribeDelete">
+          <Parameter Name="SubscribeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SubscribeEdit">
+            <Parameter Name="SubscribeId" Mode="In" Type="Int32" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="IsSubscribe" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SubscribeExists" ReturnType="Collection(Boolean)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="SubscribeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SubscribeList" ReturnType="Collection(HotelDBModel.usp_SubscribeList_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="Search" Mode="In" Type="String" />
+            <Parameter Name="IsSubscribe" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SubscribeRemove">
+          <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TagsList" ReturnType="Collection(HotelDBModel.usp_TagsList_Result)" />
+          <FunctionImport Name="usp_TagsPopular" ReturnType="Collection(String)" />
+          <FunctionImport Name="usp_WidgetEdit">
+            <Parameter Name="WidgetId" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="IsVisible" Mode="In" Type="Boolean" />
+            <Parameter Name="WidgetOrder" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="usp_WidgetList" ReturnType="Collection(HotelDBModel.usp_WidgetList_Result)" />
+          <EntitySet Name="RateSlabs" EntityType="HotelDBModel.RateSlab" />
+          <EntitySet Name="Taxes" EntityType="HotelDBModel.Tax" />
+          <EntitySet Name="Posts" EntityType="HotelDBModel.Post" />
+          <EntitySet Name="Bookings" EntityType="HotelDBModel.Booking" />
+          <EntitySet Name="Rooms" EntityType="HotelDBModel.Room" />
+          <EntitySet Name="Users" EntityType="HotelDBModel.User" />
+          <EntitySet Name="BlockedRooms" EntityType="HotelDBModel.BlockedRoom" />
+          <EntitySet Name="Vouchers" EntityType="HotelDBModel.Voucher" />
+          <AssociationSet Name="FK_Voucher_RoomCategory" Association="HotelDBModel.FK_Voucher_RoomCategory">
+            <End Role="RoomCategory" EntitySet="RoomCategories" />
+            <End Role="Voucher" EntitySet="Vouchers" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="sp_GetSearchResults_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="RoomCode" Nullable="true" />
+          <Property Type="Int32" Name="RoomCateCode" Nullable="true" />
+          <Property Type="String" Name="RoomCategory" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CheckIn" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="CheckOut" Nullable="true" MaxLength="5" />
+          <Property Type="Int32" Name="AdultAllowed" Nullable="true" />
+          <Property Type="Int32" Name="AdultPaxs" Nullable="true" />
+          <Property Type="Int32" Name="AdultPrice" Nullable="true" />
+          <Property Type="Int32" Name="NoOfChildAllowed" Nullable="true" />
+          <Property Type="Int32" Name="ChildPaxs" Nullable="true" />
+          <Property Type="Int32" Name="ChildPrice" Nullable="true" />
+          <Property Type="Int32" Name="ChildAge" Nullable="true" />
+          <Property Type="Int32" Name="discount" Nullable="true" />
+          <Property Type="Int32" Name="NoOfRooms" Nullable="true" />
+          <Property Type="Int32" Name="Capacity" Nullable="true" />
+          <Property Type="DateTime" Name="dateCreated" Nullable="true" />
+          <Property Type="Int32" Name="NoofDays" Nullable="true" />
+          <Property Type="String" Name="imgURL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BedType" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="TaxAmount" Nullable="true" />
+          <Property Type="Int32" Name="TaxPercent" Nullable="true" />
+          <Property Type="Int32" Name="TotalAmount" Nullable="true" />
+          <Property Type="Int32" Name="DiscountedAmount" Nullable="true" />
+          <Property Type="Int32" Name="NoOfRoomsRequired" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetSearchRoomDetails_Result">
+          <Property Type="Int64" Name="Id" Nullable="true" />
+          <Property Type="Int32" Name="RoomCode" Nullable="true" />
+          <Property Type="Int32" Name="RoomCatCode" Nullable="true" />
+          <Property Type="String" Name="RoomDescription" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CheckIn" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="CheckOut" Nullable="true" MaxLength="5" />
+          <Property Type="Int32" Name="Adult" Nullable="true" />
+          <Property Type="Int32" Name="NoOfChild" Nullable="true" />
+          <Property Type="Int32" Name="ChildAge" Nullable="true" />
+          <Property Type="Int32" Name="NoOfRooms" Nullable="true" />
+          <Property Type="Int32" Name="BasicRate" Nullable="false" />
+          <Property Type="Int32" Name="Capacity" Nullable="false" />
+          <Property Type="DateTime" Name="dateCreated" Nullable="true" />
+          <Property Type="Int32" Name="NoofDays" Nullable="false" />
+          <Property Type="String" Name="imgURL" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="BedType" Nullable="true" MaxLength="15" />
+        </ComplexType>
+        <EntityType Name="PostTag">
+          <Key>
+            <PropertyRef Name="PostId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlogDetail">
+          <Key>
+            <PropertyRef Name="BlogDetID" />
+          </Key>
+          <Property Name="BlogDetID" Type="Int32" Nullable="false" />
+          <Property Name="BlogTitle" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="BlogDescriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VideoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CommentsDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckStatus" Type="Boolean" />
+          <Property Name="BlogID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BlogImage">
+          <Key>
+            <PropertyRef Name="BlogImageID" />
+          </Key>
+          <Property Name="BlogImageID" Type="Int32" Nullable="false" />
+          <Property Name="imgURL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BlogTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BlogID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="BlogID" />
+          </Key>
+          <Property Name="BlogID" Type="Int32" Nullable="false" />
+          <Property Name="BlogTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Name="PagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BlogDescriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlogDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="ImageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VideoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tags" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="usp_Dashboard_Result">
+          <Property Type="DateTime" Name="ViewDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="NoOfTimeView" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_EmailTemplateById_Result">
+          <Property Type="Int32" Name="EmailId" Nullable="false" />
+          <Property Type="String" Name="EmailKey" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="EmailSubject" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EmailBody" Nullable="true" />
+          <Property Type="String" Name="FromAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FromDisplayName" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_EmailTemplateByKey_Result">
+          <Property Type="Int32" Name="EmailId" Nullable="false" />
+          <Property Type="String" Name="EmailKey" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="EmailSubject" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EmailBody" Nullable="true" />
+          <Property Type="String" Name="FromAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FromDisplayName" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_EmailTemplateList_Result">
+          <Property Type="Int64" Name="RowNo" Nullable="true" />
+          <Property Type="Int32" Name="EmailId" Nullable="false" />
+          <Property Type="String" Name="EmailKey" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="EmailSubject" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EmailBody" Nullable="true" />
+          <Property Type="String" Name="FromAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FromDisplayName" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_PostById_Result">
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Slug" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="DefaultImage" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsPublished" Nullable="false" />
+          <Property Type="DateTime" Name="PublishedDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ModifyDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="String" Name="Tags" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_PostByIdAndSlug_Result">
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Slug" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="DefaultImage" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsPublished" Nullable="false" />
+          <Property Type="DateTime" Name="PublishedDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ModifyDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="String" Name="Tags" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_PostList_Result">
+          <Property Type="Int64" Name="RowNo" Nullable="true" />
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Slug" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="DefaultImage" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsPublished" Nullable="false" />
+          <Property Type="DateTime" Name="PublishedDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ModifyDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="Int32" Name="NoOfTimeView" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_PostPopular_Result">
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Slug" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="DefaultImage" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsPublished" Nullable="false" />
+          <Property Type="DateTime" Name="PublishedDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ModifyDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="String" Name="Title1" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="usp_PostRecent_Result">
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Slug" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="DefaultImage" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsPublished" Nullable="false" />
+          <Property Type="DateTime" Name="PublishedDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ModifyDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="String" Name="Title1" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="usp_PostRelated_Result">
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Slug" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DefaultImage" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="usp_SettingById_Result">
+          <Property Type="Int32" Name="SettingId" Nullable="false" />
+          <Property Type="String" Name="Logo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Keywords" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SiteURL" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Author" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="RobotsTxt" Nullable="true" />
+          <Property Type="String" Name="GoogleAnalytics" Nullable="true" MaxLength="50" />
+          <Property Type="Byte" Name="NoOfPostShow" Nullable="false" />
+          <Property Type="Boolean" Name="SharePost" Nullable="false" />
+          <Property Type="Boolean" Name="ShowFooter" Nullable="false" />
+          <Property Type="Boolean" Name="ShowRelatedPosts" Nullable="false" />
+          <Property Type="String" Name="SMTPEmail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SMTPPassword" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SMTPHost" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SMTPPort" Nullable="true" />
+          <Property Type="Boolean" Name="SMTPEnableSsl" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_SocialProfileList_Result">
+          <Property Type="Int32" Name="SocialProfileId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ButtonClass" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="IconClass" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Url" Nullable="true" />
+          <Property Type="Byte" Name="OrderBy" Nullable="true" />
+          <Property Type="Boolean" Name="IsVisible" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_SubscribeById_Result">
+          <Property Type="Int32" Name="SubscribeId" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="IsSubscribe" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_SubscribeList_Result">
+          <Property Type="Int64" Name="RowNo" Nullable="true" />
+          <Property Type="Int32" Name="SubscribeId" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="IsSubscribe" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_TagsList_Result">
+          <Property Type="Int32" Name="TagId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="NoOfTimeView" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_WidgetList_Result">
+          <Property Type="Int32" Name="WidgetId" Nullable="false" />
+          <Property Type="String" Name="Label" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Slug" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Help" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="IsVisible" Nullable="false" />
+          <Property Type="String" Name="WidgetGroup" Nullable="true" MaxLength="50" />
+          <Property Type="Byte" Name="WidgetOrder" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="RateSlab">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int32" />
+          <Property Name="RoomCategoryCode" Type="Int32" />
+          <Property Name="RoomRate" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="Days" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ExtraAdultPrice" Type="Int32" />
+          <Property Name="ExtraChildPrice" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int32" />
+          <Property Name="RoomCategory" Type="Int32" />
+          <Property Name="TaxName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DetectedAs" Type="Boolean" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Name="Slug" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsPublished" Type="Boolean" Nullable="false" />
+          <Property Name="PublishedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="VideoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tags" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfirmationNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BookingStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="PaxTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaxFName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaxLName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NoOfRooms" Type="Int32" />
+          <Property Name="RoomCode" Type="Int32" />
+          <Property Name="RoomCatCode" Type="Int32" />
+          <Property Name="RoomNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PaxEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaxPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaxDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Adults" Type="Int32" />
+          <Property Name="Children" Type="Int32" />
+          <Property Name="CheckIn" Type="DateTime" Precision="0" />
+          <Property Name="CheckOut" Type="DateTime" Precision="0" />
+          <Property Name="NoofDay" Type="Int32" />
+          <Property Name="RoomRate" Type="Int32" />
+          <Property Name="RoomTax" Type="Double" />
+          <Property Name="RequestTime" Type="DateTime" Precision="3" />
+          <Property Name="ServiceType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HotelCode" Type="Int32" />
+          <Property Name="DestinationID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BackOfficeStatus" Type="Boolean" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="B_BookingAmmend" Type="Boolean" />
+          <Property Name="BookingByBO" Type="Boolean" />
+          <Property Name="SOConfirmation" Type="Boolean" />
+          <Property Name="DirectManaualBooking" Type="Boolean" />
+          <Property Name="NotifyBit" Type="Boolean" />
+          <Property Name="bitIsLocal" Type="Boolean" />
+          <Property Name="TotalRoomRate" Type="Int32" />
+          <Property Name="BookingSequenceNo" Type="Int32" />
+          <Property Name="AccomodationRent" Type="Double" />
+          <Property Name="TourismTax" Type="Double" />
+          <Property Name="AirportPickandDrop" Type="Double" />
+          <Property Name="WelcomePack" Type="Double" />
+          <Property Name="LinenTowelChange" Type="Double" />
+          <Property Name="ExtraCleaning" Type="Double" />
+          <Property Name="BreakageFee" Type="Double" />
+          <Property Name="BreakageWaiverFee" Type="Double" />
+          <Property Name="AgentCommission" Type="Double" />
+          <Property Name="MiscExtrasCharges" Type="Double" />
+          <Property Name="IsByPropertyOwner" Type="Boolean" />
+          <Property Name="PropertySource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoofGuest" Type="Int32" />
+          <Property Name="VAT" Type="Double" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="RoomCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CheckStatusIN" Type="Boolean" />
+          <Property Name="CheckStatusOut" Type="Boolean" />
+          <Property Name="ThemeColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RatePlanId" Type="Int32" />
+          <Property Name="ReservationDate" Type="DateTime" Precision="3" />
+          <Property Name="CountryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="VoucherAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomCode" Type="Int32" />
+          <Property Name="RoomCategory" Type="Int32" />
+          <Property Name="RoomDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="propertyID" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="BedType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CheckIn" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CheckOut" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Features" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateCreated" Type="DateTime" Precision="0" />
+          <Property Name="dateModified" Type="DateTime" Precision="0" />
+          <Property Name="NoOfRooms" Type="Int32" />
+          <Property Name="Capacity" Type="Int32" />
+          <Property Name="Adult" Type="Int32" />
+          <Property Name="NoOfChild" Type="Int32" />
+          <Property Name="ChildAge" Type="Int32" />
+          <Property Name="blocked" Type="Boolean" />
+          <Property Name="ShortCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="MinimumPrice" Type="Int32" />
+          <Property Name="MinimumStay" Type="Int32" />
+          <Property Name="MaximumStay" Type="Int32" />
+          <Property Name="Size" Type="Int32" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="VideoLink" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="intUserID" />
+          </Key>
+          <Property Name="intUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dtmDateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="vAddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vAddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="intCityID" Type="Int32" />
+          <Property Name="vEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bitGender" Type="Boolean" />
+          <Property Name="vMobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tiStatus" Type="Byte" />
+          <Property Name="vUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="vPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dtmDateCreated" Type="DateTime" Precision="3" />
+          <Property Name="intCreatedBy" Type="Int32" />
+          <Property Name="vActivationCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="intCompanyID" Type="Int32" />
+          <Property Name="tiUserTypeID" Type="Byte" />
+          <Property Name="dPOSMarkUp" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tiAccessType" Type="Byte" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AccessCodes" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="propertyID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BlockedRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int32" />
+          <Property Name="CateId" Type="Int32" />
+          <Property Name="RoomNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="VoucherId" />
+          </Key>
+          <Property Name="VoucherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RoomCategory" Relationship="HotelDBModel.FK_Voucher_RoomCategory" FromRole="Voucher" ToRole="RoomCategory" />
+        </EntityType>
+        <Association Name="FK_Voucher_RoomCategory">
+          <End Type="HotelDBModel.RoomCategory" Role="RoomCategory" Multiplicity="0..1" />
+          <End Type="HotelDBModel.Voucher" Role="Voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voucher">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HotelDBModelStoreContainer" CdmEntityContainer="HotelDBEntities">
+          <EntitySetMapping Name="Calendars">
+            <EntityTypeMapping TypeName="HotelDBModel.Calendar">
+              <MappingFragment StoreEntitySet="Calendar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ThemeColor" ColumnName="ThemeColor" />
+                <ScalarProperty Name="Booked" ColumnName="Booked" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CancellationPolicies">
+            <EntityTypeMapping TypeName="HotelDBModel.CancellationPolicy">
+              <MappingFragment StoreEntitySet="CancellationPolicy">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="PeriodForFreeCharge" ColumnName="PeriodForFreeCharge" />
+                <ScalarProperty Name="HowlongFreeOfCharge" ColumnName="HowlongFreeOfCharge" />
+                <ScalarProperty Name="GuestChargedForCancellation" ColumnName="GuestChargedForCancellation" />
+                <ScalarProperty Name="ChargedForNoShow" ColumnName="ChargedForNoShow" />
+                <ScalarProperty Name="ChargeGuestsBeforeTheyArrive" ColumnName="ChargeGuestsBeforeTheyArrive" />
+                <ScalarProperty Name="HowToCollectPayment" ColumnName="HowToCollectPayment" />
+                <ScalarProperty Name="HowToReceiveThePrepayment" ColumnName="HowToReceiveThePrepayment" />
+                <ScalarProperty Name="HowLongWillRefundTake" ColumnName="HowLongWillRefundTake" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coutnries">
+            <EntityTypeMapping TypeName="HotelDBModel.Coutnry">
+              <MappingFragment StoreEntitySet="Coutnry">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Halls">
+            <EntityTypeMapping TypeName="HotelDBModel.Hall">
+              <MappingFragment StoreEntitySet="Hall">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="HallName" ColumnName="HallName" />
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="CoveredArea" ColumnName="CoveredArea" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="HotelDBModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="PropertyTypeId" ColumnName="PropertyTypeId" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="CurrencySymbol" ColumnName="CurrencySymbol" />
+                <ScalarProperty Name="BookingType" ColumnName="BookingType" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="Features" ColumnName="Features" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MainPic" ColumnName="MainPic" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RatePlans">
+            <EntityTypeMapping TypeName="HotelDBModel.RatePlan">
+              <MappingFragment StoreEntitySet="RatePlan">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="WantStayMinimumLength" ColumnName="WantStayMinimumLength" />
+                <ScalarProperty Name="StayMinimumLength" ColumnName="StayMinimumLength" />
+                <ScalarProperty Name="CancellationPolicy" ColumnName="CancellationPolicy" />
+                <ScalarProperty Name="WantToIncludeMeals" ColumnName="WantToIncludeMeals" />
+                <ScalarProperty Name="Breakfast" ColumnName="Breakfast" />
+                <ScalarProperty Name="Lunch" ColumnName="Lunch" />
+                <ScalarProperty Name="Dinner" ColumnName="Dinner" />
+                <ScalarProperty Name="DaysBeforeCheckIn" ColumnName="DaysBeforeCheckIn" />
+                <ScalarProperty Name="NumberOfDaysBeforeCheckIn" ColumnName="NumberOfDaysBeforeCheckIn" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="RoomTypes" ColumnName="RoomTypes" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomCategories">
+            <EntityTypeMapping TypeName="HotelDBModel.RoomCategory">
+              <MappingFragment StoreEntitySet="RoomCategory">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomNumbers">
+            <EntityTypeMapping TypeName="HotelDBModel.RoomNumber">
+              <MappingFragment StoreEntitySet="RoomNumber">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="RoomNumber1" ColumnName="RoomNumber" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Booked" ColumnName="Booked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomPictures">
+            <EntityTypeMapping TypeName="HotelDBModel.RoomPicture">
+              <MappingFragment StoreEntitySet="RoomPicture">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PicNum" ColumnName="PicNum" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSearchResults" FunctionName="HotelDBModel.Store.sp_GetSearchResults">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.sp_GetSearchResults_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="RoomCateCode" ColumnName="RoomCateCode" />
+                <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="AdultAllowed" ColumnName="AdultAllowed" />
+                <ScalarProperty Name="AdultPaxs" ColumnName="AdultPaxs" />
+                <ScalarProperty Name="AdultPrice" ColumnName="AdultPrice" />
+                <ScalarProperty Name="NoOfChildAllowed" ColumnName="NoOfChildAllowed" />
+                <ScalarProperty Name="ChildPaxs" ColumnName="ChildPaxs" />
+                <ScalarProperty Name="ChildPrice" ColumnName="ChildPrice" />
+                <ScalarProperty Name="ChildAge" ColumnName="ChildAge" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="NoOfRooms" ColumnName="NoOfRooms" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="NoofDays" ColumnName="NoofDays" />
+                <ScalarProperty Name="imgURL" ColumnName="imgURL" />
+                <ScalarProperty Name="BedType" ColumnName="BedType" />
+                <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+                <ScalarProperty Name="TaxPercent" ColumnName="TaxPercent" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="DiscountedAmount" ColumnName="DiscountedAmount" />
+                <ScalarProperty Name="NoOfRoomsRequired" ColumnName="NoOfRoomsRequired" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="PostTags">
+            <EntityTypeMapping TypeName="HotelDBModel.PostTag">
+              <MappingFragment StoreEntitySet="PostTags">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogDetails">
+            <EntityTypeMapping TypeName="HotelDBModel.BlogDetail">
+              <MappingFragment StoreEntitySet="BlogDetails">
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="CheckStatus" ColumnName="CheckStatus" />
+                <ScalarProperty Name="CommentsDate" ColumnName="CommentsDate" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="ShortDescriptions" ColumnName="ShortDescriptions" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BlogDescriptions" ColumnName="BlogDescriptions" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="BlogDetID" ColumnName="BlogDetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogImages">
+            <EntityTypeMapping TypeName="HotelDBModel.BlogImage">
+              <MappingFragment StoreEntitySet="BlogImages">
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="imgURL" ColumnName="imgURL" />
+                <ScalarProperty Name="BlogImageID" ColumnName="BlogImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="HotelDBModel.Blog">
+              <MappingFragment StoreEntitySet="Blogs">
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="ShortDescriptions" ColumnName="ShortDescriptions" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BlogDate" ColumnName="BlogDate" />
+                <ScalarProperty Name="BlogDescriptions" ColumnName="BlogDescriptions" />
+                <ScalarProperty Name="PagePath" ColumnName="PagePath" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fn_Split" FunctionName="HotelDBModel.Store.fn_Split" />
+          <FunctionImportMapping FunctionImportName="usp_Dashboard" FunctionName="HotelDBModel.Store.usp_Dashboard">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_Dashboard_Result">
+                <ScalarProperty Name="ViewDate" ColumnName="ViewDate" />
+                <ScalarProperty Name="NoOfTimeView" ColumnName="NoOfTimeView" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_EmailTemplateById" FunctionName="HotelDBModel.Store.usp_EmailTemplateById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_EmailTemplateById_Result">
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="EmailKey" ColumnName="EmailKey" />
+                <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+                <ScalarProperty Name="EmailBody" ColumnName="EmailBody" />
+                <ScalarProperty Name="FromAddress" ColumnName="FromAddress" />
+                <ScalarProperty Name="FromDisplayName" ColumnName="FromDisplayName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_EmailTemplateByKey" FunctionName="HotelDBModel.Store.usp_EmailTemplateByKey">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_EmailTemplateByKey_Result">
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="EmailKey" ColumnName="EmailKey" />
+                <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+                <ScalarProperty Name="EmailBody" ColumnName="EmailBody" />
+                <ScalarProperty Name="FromAddress" ColumnName="FromAddress" />
+                <ScalarProperty Name="FromDisplayName" ColumnName="FromDisplayName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_EmailTemplateEdit" FunctionName="HotelDBModel.Store.usp_EmailTemplateEdit" />
+          <FunctionImportMapping FunctionImportName="usp_EmailTemplateList" FunctionName="HotelDBModel.Store.usp_EmailTemplateList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_EmailTemplateList_Result">
+                <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="EmailKey" ColumnName="EmailKey" />
+                <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+                <ScalarProperty Name="EmailBody" ColumnName="EmailBody" />
+                <ScalarProperty Name="FromAddress" ColumnName="FromAddress" />
+                <ScalarProperty Name="FromDisplayName" ColumnName="FromDisplayName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PostAdd" FunctionName="HotelDBModel.Store.usp_PostAdd" />
+          <FunctionImportMapping FunctionImportName="usp_PostById" FunctionName="HotelDBModel.Store.usp_PostById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_PostById_Result">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DefaultImage" ColumnName="DefaultImage" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PostByIdAndSlug" FunctionName="HotelDBModel.Store.usp_PostByIdAndSlug">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_PostByIdAndSlug_Result">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DefaultImage" ColumnName="DefaultImage" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PostDelete" FunctionName="HotelDBModel.Store.usp_PostDelete" />
+          <FunctionImportMapping FunctionImportName="usp_PostEdit" FunctionName="HotelDBModel.Store.usp_PostEdit" />
+          <FunctionImportMapping FunctionImportName="usp_PostImageDelete" FunctionName="HotelDBModel.Store.usp_PostImageDelete" />
+          <FunctionImportMapping FunctionImportName="usp_PostList" FunctionName="HotelDBModel.Store.usp_PostList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_PostList_Result">
+                <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DefaultImage" ColumnName="DefaultImage" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="NoOfTimeView" ColumnName="NoOfTimeView" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PostPopular" FunctionName="HotelDBModel.Store.usp_PostPopular">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_PostPopular_Result">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DefaultImage" ColumnName="DefaultImage" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Title1" ColumnName="Title1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PostRecent" FunctionName="HotelDBModel.Store.usp_PostRecent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_PostRecent_Result">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DefaultImage" ColumnName="DefaultImage" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Title1" ColumnName="Title1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PostRelated" FunctionName="HotelDBModel.Store.usp_PostRelated">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_PostRelated_Result">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="DefaultImage" ColumnName="DefaultImage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_SettingById" FunctionName="HotelDBModel.Store.usp_SettingById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_SettingById_Result">
+                <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="SiteURL" ColumnName="SiteURL" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="RobotsTxt" ColumnName="RobotsTxt" />
+                <ScalarProperty Name="GoogleAnalytics" ColumnName="GoogleAnalytics" />
+                <ScalarProperty Name="NoOfPostShow" ColumnName="NoOfPostShow" />
+                <ScalarProperty Name="SharePost" ColumnName="SharePost" />
+                <ScalarProperty Name="ShowFooter" ColumnName="ShowFooter" />
+                <ScalarProperty Name="ShowRelatedPosts" ColumnName="ShowRelatedPosts" />
+                <ScalarProperty Name="SMTPEmail" ColumnName="SMTPEmail" />
+                <ScalarProperty Name="SMTPPassword" ColumnName="SMTPPassword" />
+                <ScalarProperty Name="SMTPHost" ColumnName="SMTPHost" />
+                <ScalarProperty Name="SMTPPort" ColumnName="SMTPPort" />
+                <ScalarProperty Name="SMTPEnableSsl" ColumnName="SMTPEnableSsl" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_SettingEdit" FunctionName="HotelDBModel.Store.usp_SettingEdit" />
+          <FunctionImportMapping FunctionImportName="usp_SocialProfileAdd" FunctionName="HotelDBModel.Store.usp_SocialProfileAdd" />
+          <FunctionImportMapping FunctionImportName="usp_SocialProfileEdit" FunctionName="HotelDBModel.Store.usp_SocialProfileEdit" />
+          <FunctionImportMapping FunctionImportName="usp_SocialProfileList" FunctionName="HotelDBModel.Store.usp_SocialProfileList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_SocialProfileList_Result">
+                <ScalarProperty Name="SocialProfileId" ColumnName="SocialProfileId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ButtonClass" ColumnName="ButtonClass" />
+                <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_SubscribeAdd" FunctionName="HotelDBModel.Store.usp_SubscribeAdd" />
+          <FunctionImportMapping FunctionImportName="usp_SubscribeById" FunctionName="HotelDBModel.Store.usp_SubscribeById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_SubscribeById_Result">
+                <ScalarProperty Name="SubscribeId" ColumnName="SubscribeId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsSubscribe" ColumnName="IsSubscribe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_SubscribeDelete" FunctionName="HotelDBModel.Store.usp_SubscribeDelete" />
+          <FunctionImportMapping FunctionImportName="usp_SubscribeEdit" FunctionName="HotelDBModel.Store.usp_SubscribeEdit" />
+          <FunctionImportMapping FunctionImportName="usp_SubscribeExists" FunctionName="HotelDBModel.Store.usp_SubscribeExists" />
+          <FunctionImportMapping FunctionImportName="usp_SubscribeList" FunctionName="HotelDBModel.Store.usp_SubscribeList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_SubscribeList_Result">
+                <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+                <ScalarProperty Name="SubscribeId" ColumnName="SubscribeId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsSubscribe" ColumnName="IsSubscribe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_SubscribeRemove" FunctionName="HotelDBModel.Store.usp_SubscribeRemove" />
+          <FunctionImportMapping FunctionImportName="usp_TagsList" FunctionName="HotelDBModel.Store.usp_TagsList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_TagsList_Result">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NoOfTimeView" ColumnName="NoOfTimeView" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TagsPopular" FunctionName="HotelDBModel.Store.usp_TagsPopular" />
+          <FunctionImportMapping FunctionImportName="usp_WidgetEdit" FunctionName="HotelDBModel.Store.usp_WidgetEdit" />
+          <FunctionImportMapping FunctionImportName="usp_WidgetList" FunctionName="HotelDBModel.Store.usp_WidgetList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelDBModel.usp_WidgetList_Result">
+                <ScalarProperty Name="WidgetId" ColumnName="WidgetId" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Help" ColumnName="Help" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="WidgetGroup" ColumnName="WidgetGroup" />
+                <ScalarProperty Name="WidgetOrder" ColumnName="WidgetOrder" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="RateSlabs">
+            <EntityTypeMapping TypeName="HotelDBModel.RateSlab">
+              <MappingFragment StoreEntitySet="RateSlab">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ExtraChildPrice" ColumnName="ExtraChildPrice" />
+                <ScalarProperty Name="ExtraAdultPrice" ColumnName="ExtraAdultPrice" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="RoomRate" ColumnName="RoomRate" />
+                <ScalarProperty Name="RoomCategoryCode" ColumnName="RoomCategoryCode" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taxes">
+            <EntityTypeMapping TypeName="HotelDBModel.Tax">
+              <MappingFragment StoreEntitySet="Tax">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DetectedAs" ColumnName="DetectedAs" />
+                <ScalarProperty Name="TaxName" ColumnName="TaxName" />
+                <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="HotelDBModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="ShortDescriptions" ColumnName="ShortDescriptions" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="DefaultImage" ColumnName="DefaultImage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="HotelDBModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="VoucherAmount" ColumnName="VoucherAmount" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+                <ScalarProperty Name="RatePlanId" ColumnName="RatePlanId" />
+                <ScalarProperty Name="ThemeColor" ColumnName="ThemeColor" />
+                <ScalarProperty Name="CheckStatusOut" ColumnName="CheckStatusOut" />
+                <ScalarProperty Name="CheckStatusIN" ColumnName="CheckStatusIN" />
+                <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="NoofGuest" ColumnName="NoofGuest" />
+                <ScalarProperty Name="PropertySource" ColumnName="PropertySource" />
+                <ScalarProperty Name="IsByPropertyOwner" ColumnName="IsByPropertyOwner" />
+                <ScalarProperty Name="MiscExtrasCharges" ColumnName="MiscExtrasCharges" />
+                <ScalarProperty Name="AgentCommission" ColumnName="AgentCommission" />
+                <ScalarProperty Name="BreakageWaiverFee" ColumnName="BreakageWaiverFee" />
+                <ScalarProperty Name="BreakageFee" ColumnName="BreakageFee" />
+                <ScalarProperty Name="ExtraCleaning" ColumnName="ExtraCleaning" />
+                <ScalarProperty Name="LinenTowelChange" ColumnName="LinenTowelChange" />
+                <ScalarProperty Name="WelcomePack" ColumnName="WelcomePack" />
+                <ScalarProperty Name="AirportPickandDrop" ColumnName="AirportPickandDrop" />
+                <ScalarProperty Name="TourismTax" ColumnName="TourismTax" />
+                <ScalarProperty Name="AccomodationRent" ColumnName="AccomodationRent" />
+                <ScalarProperty Name="BookingSequenceNo" ColumnName="BookingSequenceNo" />
+                <ScalarProperty Name="TotalRoomRate" ColumnName="TotalRoomRate" />
+                <ScalarProperty Name="bitIsLocal" ColumnName="bitIsLocal" />
+                <ScalarProperty Name="NotifyBit" ColumnName="NotifyBit" />
+                <ScalarProperty Name="DirectManaualBooking" ColumnName="DirectManaualBooking" />
+                <ScalarProperty Name="SOConfirmation" ColumnName="SOConfirmation" />
+                <ScalarProperty Name="BookingByBO" ColumnName="BookingByBO" />
+                <ScalarProperty Name="B_BookingAmmend" ColumnName="B_BookingAmmend" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="BackOfficeStatus" ColumnName="BackOfficeStatus" />
+                <ScalarProperty Name="DestinationID" ColumnName="DestinationID" />
+                <ScalarProperty Name="HotelCode" ColumnName="HotelCode" />
+                <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+                <ScalarProperty Name="RequestTime" ColumnName="RequestTime" />
+                <ScalarProperty Name="RoomTax" ColumnName="RoomTax" />
+                <ScalarProperty Name="RoomRate" ColumnName="RoomRate" />
+                <ScalarProperty Name="NoofDay" ColumnName="NoofDay" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="Children" ColumnName="Children" />
+                <ScalarProperty Name="Adults" ColumnName="Adults" />
+                <ScalarProperty Name="PaxDescription" ColumnName="PaxDescription" />
+                <ScalarProperty Name="PaxPhoneNumber" ColumnName="PaxPhoneNumber" />
+                <ScalarProperty Name="PaxEmail" ColumnName="PaxEmail" />
+                <ScalarProperty Name="RoomNum" ColumnName="RoomNum" />
+                <ScalarProperty Name="RoomCatCode" ColumnName="RoomCatCode" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="NoOfRooms" ColumnName="NoOfRooms" />
+                <ScalarProperty Name="PaxLName" ColumnName="PaxLName" />
+                <ScalarProperty Name="PaxFName" ColumnName="PaxFName" />
+                <ScalarProperty Name="PaxTitle" ColumnName="PaxTitle" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="BookingStatus" ColumnName="BookingStatus" />
+                <ScalarProperty Name="ConfirmationNo" ColumnName="ConfirmationNo" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="HotelDBModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="MaximumStay" ColumnName="MaximumStay" />
+                <ScalarProperty Name="MinimumStay" ColumnName="MinimumStay" />
+                <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="blocked" ColumnName="blocked" />
+                <ScalarProperty Name="ChildAge" ColumnName="ChildAge" />
+                <ScalarProperty Name="NoOfChild" ColumnName="NoOfChild" />
+                <ScalarProperty Name="Adult" ColumnName="Adult" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="NoOfRooms" ColumnName="NoOfRooms" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="Features" ColumnName="Features" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="BedType" ColumnName="BedType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="RoomDescription" ColumnName="RoomDescription" />
+                <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HotelDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="AccessCodes" ColumnName="AccessCodes" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="tiAccessType" ColumnName="tiAccessType" />
+                <ScalarProperty Name="dPOSMarkUp" ColumnName="dPOSMarkUp" />
+                <ScalarProperty Name="tiUserTypeID" ColumnName="tiUserTypeID" />
+                <ScalarProperty Name="intCompanyID" ColumnName="intCompanyID" />
+                <ScalarProperty Name="vActivationCode" ColumnName="vActivationCode" />
+                <ScalarProperty Name="intCreatedBy" ColumnName="intCreatedBy" />
+                <ScalarProperty Name="dtmDateCreated" ColumnName="dtmDateCreated" />
+                <ScalarProperty Name="vPassword" ColumnName="vPassword" />
+                <ScalarProperty Name="vUserName" ColumnName="vUserName" />
+                <ScalarProperty Name="tiStatus" ColumnName="tiStatus" />
+                <ScalarProperty Name="vTelephone" ColumnName="vTelephone" />
+                <ScalarProperty Name="vMobileNumber" ColumnName="vMobileNumber" />
+                <ScalarProperty Name="bitGender" ColumnName="bitGender" />
+                <ScalarProperty Name="vEmail" ColumnName="vEmail" />
+                <ScalarProperty Name="intCityID" ColumnName="intCityID" />
+                <ScalarProperty Name="vAddressLine2" ColumnName="vAddressLine2" />
+                <ScalarProperty Name="vAddressLine1" ColumnName="vAddressLine1" />
+                <ScalarProperty Name="dtmDateOfBirth" ColumnName="dtmDateOfBirth" />
+                <ScalarProperty Name="vLastName" ColumnName="vLastName" />
+                <ScalarProperty Name="vMiddleName" ColumnName="vMiddleName" />
+                <ScalarProperty Name="vFirstName" ColumnName="vFirstName" />
+                <ScalarProperty Name="intUserID" ColumnName="intUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlockedRooms">
+            <EntityTypeMapping TypeName="HotelDBModel.BlockedRoom">
+              <MappingFragment StoreEntitySet="BlockedRoom">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="RoomNum" ColumnName="RoomNum" />
+                <ScalarProperty Name="CateId" ColumnName="CateId" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vouchers">
+            <EntityTypeMapping TypeName="HotelDBModel.Voucher">
+              <MappingFragment StoreEntitySet="Voucher">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="VoucherId" ColumnName="VoucherId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

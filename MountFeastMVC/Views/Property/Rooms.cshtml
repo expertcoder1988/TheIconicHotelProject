@@ -1,0 +1,502 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-body">
+    <h5 class="callout callout-info">Rooms</h5>
+    <input type="hidden" id="AvoidReload" value="false" />
+    <input type="hidden" id="RoomCode1" value="false" />
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <label for="Properties">Properties</label>
+                <select class="form-control" style="height:34px;width:100%"
+                        id="Properties" name="Properties">
+                    <option selected="selected" value="0">Please select</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <table class="table" id="rooms">
+                    <tr>
+                        <th>Room ID</th>
+                        <th>Room Category</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <input type="button" ID="doaddnew" name="doaddnew" class="btn btn-info" value="Add New Room" />
+    </div>
+</div>
+
+<!-- Description Modal -->
+<div class="modal fade" id="basicInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Property Description</h5>
+            </div>
+            <div class="modal-body">
+                <form id="Property">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-4">
+                            <div class="form-group">
+                                <label for="propertyID">Room ID</label>
+                                <input type="text" disabled id="RoomCode" class="form-control" name="RoomCode" />
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">No Of Rooms</label>
+                                <input type="number" class="form-control" id="NoOfRooms" name="NoOfRooms">
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Maximum Guests</label>
+                                <input type="number" class="form-control" id="Capacity" name="Capacity">
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Child Age</label>
+                                <select class="form-control" style="height:34px;width:100%"
+                                        id="ChildAge" name="ChildAge">
+                                    <option selected="selected" value="0">Please select</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Short Code</label>
+                                <input type="text" maxlength="3" class="form-control" id="ShortCode" name="ShortCode">
+                            </div>
+                            <div style="display:none" class="form-group">
+                                <label for="propertyID">Minimum Price</label>
+                                <input type="number" class="form-control" value="0" id="MinimumPrice" name="MinimumPrice">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-xs-4">
+                            <div class="form-group">
+                                <label for="propertyType">Room Category</label>
+                                <select class="form-control" style="height:34px;width:100%"
+                                        id="RoomCategory" name="RoomCategory">
+                                    <option selected="selected" value="0">Please select</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Check In</label>
+                                <select class="form-control" style="height:34px;width:100%"
+                                        id="CheckIn" name="CheckIn">
+                                    <option selected="selected" value="0">Please select</option>
+                                    <option value="00:00">00:00</option>
+                                    <option value="01:00">01:00</option>
+                                    <option value="02:00">02:00</option>
+                                    <option value="03:00">03:00</option>
+                                    <option value="04:00">04:00</option>
+                                    <option value="05:00">05:00</option>
+                                    <option value="06:00">06:00</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="23:00">23:00</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Maximum Adults</label>
+                                <input type="number" class="form-control" id="Adult" name="Adult">
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Minimum Stay</label>
+                                <input type="number" class="form-control" id="MinimumStay" name="MinimumStay">
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Room Size (Square Meters)</label>
+                                <input type="number" class="form-control" id="Size" name="Size">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-xs-4">
+                            <div class="form-group">
+                                <label for="propertyID">Room Description</label>
+                                <input type="text" id="RoomDescription" maxlength="100" class="form-control" name="RoomDescription" />
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Check Out</label>
+                                <select class="form-control" style="height:34px;width:100%"
+                                        id="CheckOut" name="CheckOut">
+                                    <option selected="selected" value="0">Please select</option>
+                                    <option value="00:00">00:00</option>
+                                    <option value="01:00">01:00</option>
+                                    <option value="02:00">02:00</option>
+                                    <option value="03:00">03:00</option>
+                                    <option value="04:00">04:00</option>
+                                    <option value="05:00">05:00</option>
+                                    <option value="06:00">06:00</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="23:00">23:00</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Maximum Children</label>
+                                <input type="number" class="form-control" id="NoOfChild" name="NoOfChild">
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Maximum Stay</label>
+                                <input type="number" class="form-control" id="MaximumStay" name="MaximumStay">
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Bed Size</label>
+                                <select class="form-control" style="height:34px;width:100%"
+                                        id="BedType" name="BedType">
+                                    <option selected="selected" value="0">Please select</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Double">Double</option>
+                                    <option value="Queen">Queen</option>
+                                    <option value="King">King</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeBasic" class="btn btn-secondary">Close</button>
+                <input type="button" id="UpdateBasicInfo" class="btn btn-primary" value="Save changes" />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Room Numbers Modal -->
+<div class="modal fade" id="RoomNumModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Assign Room Numbers</h5>
+            </div>
+            <div class="modal-body">
+                <form method='post' action='' enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <table class="table" id="roomNumbers">
+                                <tr>
+                                    <th>Room Number</th>
+                                    <th>Floor</th>
+                                    <th></th>
+                                </tr>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeRoomNum" class="btn btn-secondary">Close</button>
+                <input type="button" id="SaveRoomNum" value="Save Room Numbers" class="btn btn-primary">
+
+
+                @*<input type="button" class="btn btn-primary" id="SaveRoomNum" value="Save Room Numbers" />*@
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fatures Modal -->
+<div class="modal fade" id="FaturesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Fatures</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div id="dvFeatures">
+                            <input type="hidden" id="hdFeatures" />
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Amenities</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-2 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LIVING_ROOM" value="LIVING_ROOM">&nbsp;Living Room</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_FIREPLACE" value="FIREPLACE">&nbsp;Fireplace</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WOOD_STOVE" value="WOOD_STOVE">&nbsp;Wood Stove</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_HEATING" value="HEATING">&nbsp;Heating</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_AIR_CONDITIONING" value="AIR_CONDITIONING">&nbsp;Air Conditioning</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CEILING_FAN" value="CEILING_FAN">&nbsp;Ceiling Fan</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_ELEVATOR" value="ELEVATOR">&nbsp;Elevator</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DOORBELL" value="DOORBELL">&nbsp;Doorbell</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TELEPHONE" value="TELEPHONE">&nbsp;Telephone</label></div>
+                            <div class="clearfix"></div>
+                            <hr class="featurepickerhr">
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BATHROBE" value="BATHROBE">&nbsp;Bathrobe</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_HAIR_DRYER" value="HAIR_DRYER">&nbsp;Hairdryer</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SLIPPERS" value="SLIPPERS">&nbsp;Slippers</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_HANGERS" value="HANGERS">&nbsp;Clothes hangers</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_IRON_BOARD" value="IRON_BOARD">&nbsp;Ironing Board</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LINENS" value="LINENS">&nbsp;Linens</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SHAMPOO" value="SHAMPOO">&nbsp;Shampoo</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TOILETRIES" value="TOILETRIES">&nbsp;Toiletries</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TOWELS" value="TOWELS">&nbsp;Towels</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DRYER" value="DRYER">&nbsp;Tumble Dryer</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WASHER" value="WASHER">&nbsp;Washing Machine</label></div>
+                            <div class="clearfix"></div>
+                            <hr class="featurepickerhr">
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BALCONY" value="BALCONY">&nbsp;Balcony</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DECK_PATIO_UNCOVERED" value="DECK_PATIO_UNCOVERED">&nbsp;Terrace</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LANAI_GAZEBO_COVERED" value="LANAI_GAZEBO_COVERED">&nbsp;Gazebo</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_GARDEN" value="GARDEN">&nbsp;Garden</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_GRILL" value="GRILL">&nbsp;Grill</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_GAME_ROOM" value="GAME_ROOM">&nbsp;Game Room</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SITTING_AREA" value="SITTING_AREA">&nbsp;Sitting Area</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_VERANDA" value="VERANDA">&nbsp;Veranda</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_ROOF_TERRACE" value="ROOF_TERRACE">&nbsp;Roof terrace</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PRIVATE_YARD" value="PRIVATE_YARD">&nbsp;Private yard</label></div>
+                            <div class="clearfix"></div>
+                            <hr class="featurepickerhr">
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_GARAGE" value="GARAGE">&nbsp;Garage</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PARKING_INCLUDED" value="PARKING_INCLUDED">&nbsp;Parking Included</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PARKING_POSSIBLE" value="PARKING_POSSIBLE">&nbsp;Parking Possible</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PARKING_PAID" value="PARKING_PAID">&nbsp;Paid Parking</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PRIVATE_ENTRANCE" value="PRIVATE_ENTRANCE">&nbsp;Private Entrance</label></div>
+                            <div class="clearfix"></div>
+                            <hr class="featurepickerhr">
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SAFE" value="SAFE">&nbsp;Safe</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LOCKERS" value="LOCKERS">&nbsp;Lockers</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_FIRE_EXTINGUISHER" value="FIRE_EXTINGUISHER">&nbsp;Fire Extinguisher</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_FIRST_AID_KIT" value="FIRST_AID_KIT">&nbsp;First Aid Kit</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SMOKE_DETECTOR" value="SMOKE_DETECTOR">&nbsp;Smoke Detector</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CO_DETECTOR" value="CO_DETECTOR">&nbsp;Co Detector</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SAFETY_CARD" value="SAFETY_CARD">&nbsp;Safety Card</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LOCK_BEDROOM" value="LOCK_BEDROOM">&nbsp;Lock On Bedroom</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Business</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BUSINESS_CENTER" value="BUSINESS_CENTER">&nbsp;Business Center</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DESK" value="DESK">&nbsp;Desk</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LAPTOP_FRIENDLY" value="LAPTOP_FRIENDLY">&nbsp;Laptop Friendly</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Entertainment</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BOOKS" value="BOOKS">&nbsp;Books</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DVD" value="DVD">&nbsp;DVD</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_FOOSBALL" value="FOOSBALL">&nbsp;Foosball</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_GAMES" value="GAMES">&nbsp;Games</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MUSIC_LIBRARY" value="MUSIC_LIBRARY">&nbsp;Music Library</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TABLE_TENNIS" value="TABLE_TENNIS">&nbsp;Table Tennis</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_POOL_TABLE" value="POOL_TABLE">&nbsp;Pool Table</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CABLE" value="CABLE">&nbsp;Cable</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SATELLITE" value="SATELLITE">&nbsp;Satellite</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_STEREO" value="STEREO">&nbsp;Stereo</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TV" value="TV">&nbsp;TV</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TOYS" value="TOYS">&nbsp;Toys</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_VIDEO_GAMES" value="VIDEO_GAMES">&nbsp;Video Games</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_VIDEO_LIBRARY" value="VIDEO_LIBRARY">&nbsp;Video Library</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_VIDEO_ON_DEMAND" value="VIDEO_ON_DEMAND">&nbsp;Video on Demand</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Food and Drink</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BREAKFAST_NONE" value="BREAKFAST_NONE">&nbsp;Breakfast None</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BREAKFAST_POSSIBLE" value="BREAKFAST_POSSIBLE">&nbsp;Breakfast Possible</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BREAKFAST_INCLUDED" value="BREAKFAST_INCLUDED">&nbsp;Breakfast Included</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BREAKFAST_IN_ROOM" value="BREAKFAST_IN_ROOM">&nbsp;Breakfast In Room</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DINNER_NONE" value="DINNER_NONE">&nbsp;Dinner None</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DINNER_POSSIBLE" value="DINNER_POSSIBLE">&nbsp;Dinner Possible</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DINNER_INCLUDED" value="DINNER_INCLUDED">&nbsp;Dinner Included</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LUNCH_NONE" value="LUNCH_NONE">&nbsp;Lunch None</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LUNCH_POSSIBLE" value="LUNCH_POSSIBLE">&nbsp;Lunch Possible</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LUNCH_INCLUDED" value="LUNCH_INCLUDED">&nbsp;Lunch Included</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MEALS_NONE" value="MEALS_NONE">&nbsp;Meals None</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MEALS_POSSIBLE" value="MEALS_POSSIBLE">&nbsp;Meals Possible</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MINIBAR" value="MINIBAR">&nbsp;Minibar</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CAFE" value="CAFE">&nbsp;Cafe</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_RESTAURANT" value="RESTAURANT">&nbsp;Restaurant</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_ROOM_SERVICE" value="ROOM_SERVICE">&nbsp;Room Service</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PRIVATE_CHEF" value="PRIVATE_CHEF">&nbsp;Private Chef</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Internet</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_INTERNET" value="INTERNET">&nbsp;Internet</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WIFI" value="WIFI">&nbsp;Wifi</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Kitchen</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_KITCHEN" value="KITCHEN">&nbsp;Kitchen</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DINING_AREA" value="DINING_AREA">&nbsp;Dining Area</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DINING_ROOM" value="DINING_ROOM">&nbsp;Dining Room</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_COFFEE_MAKER" value="COFFEE_MAKER">&nbsp;Coffee Maker</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DISHES_UTENSILS" value="DISHES_UTENSILS">&nbsp;Dishes, Utensils</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DISHWASHER" value="DISHWASHER">&nbsp;Dishwasher</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_FREEZER" value="FREEZER">&nbsp;Freezer</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_HIGHCHAIR" value="HIGHCHAIR">&nbsp;Highchair</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_KETTLE" value="KETTLE">&nbsp;Kettle</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MICROWAVE" value="MICROWAVE">&nbsp;Microwave</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_OVEN" value="OVEN">&nbsp;Oven</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_RACLETTE" value="RACLETTE">&nbsp;Raclette</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_REFRIGERATOR" value="REFRIGERATOR">&nbsp;Refrigerator</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SHARED_KITCHEN" value="SHARED_KITCHEN">&nbsp;Shared Kitchen</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SPICES" value="SPICES">&nbsp;Spices</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_STOVE" value="STOVE">&nbsp;Stove</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TOASTER" value="TOASTER">&nbsp;Toaster</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Location</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BEACH" value="BEACH">&nbsp;Beach</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BEACH_FRONT" value="BEACH_FRONT">&nbsp;Beach Front</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BEACH_VIEW" value="BEACH_VIEW">&nbsp;Beach View</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CITY" value="CITY">&nbsp;City</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DOWNTOWN" value="DOWNTOWN">&nbsp;Downtown</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_GOLF_COURSE_FRONT" value="GOLF_COURSE_FRONT">&nbsp;Golf Course Front</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_GOLF_COURSE_VIEW" value="GOLF_COURSE_VIEW">&nbsp;Golf Course View</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LAKE" value="LAKE">&nbsp;Lake</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LAKE_FRONT" value="LAKE_FRONT">&nbsp;Lake Front</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LAKE_VIEW" value="LAKE_VIEW">&nbsp;Lake View</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MONUMENT_VIEW" value="MONUMENT_VIEW">&nbsp;Monument View</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MOUNTAIN" value="MOUNTAIN">&nbsp;Mountain</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MOUNTAIN_VIEW" value="MOUNTAIN_VIEW">&nbsp;Mountain View</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_NEAR_OCEAN" value="NEAR_OCEAN">&nbsp;Near Ocean</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_OCEAN_FRONT" value="OCEAN_FRONT">&nbsp;Ocean Front</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_OCEAN_VIEW" value="OCEAN_VIEW">&nbsp;Ocean View</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_RESORT" value="RESORT">&nbsp;Resort</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_RIVER" value="RIVER">&nbsp;River</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_RURAL" value="RURAL">&nbsp;Rural</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SKI_IN" value="SKI_IN">&nbsp;Ski In</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SKI_OUT" value="SKI_OUT">&nbsp;Ski Out</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TOWN" value="TOWN">&nbsp;Town</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_VILLAGE" value="VILLAGE">&nbsp;Village</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WATER_VIEW" value="WATER_VIEW">&nbsp;Water View</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WATERFRONT" value="WATERFRONT">&nbsp;Water Front</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Pets</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PETS_CONSIDERED" value="PETS_CONSIDERED">&nbsp;Pets Considered</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PETS_NOT_ALLOWED" value="PETS_NOT_ALLOWED">&nbsp;Pets Not Allowed</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Pool and Wellness</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_HOT_TUB" value="HOT_TUB">&nbsp;Hot Tub</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MASSAGE" value="MASSAGE">&nbsp;Massage</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_POOL" value="POOL">&nbsp;Pool</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_POOL_HEATED" value="POOL_HEATED">&nbsp;Heated Pool</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_POOL_INDOOR" value="POOL_INDOOR">&nbsp;Indoor Pool</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_POOL_PRIVATE" value="POOL_PRIVATE">&nbsp;Private Pool</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_POOL_CHILDREN" value="POOL_CHILDREN">&nbsp;Children's pool</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SAUNA" value="SAUNA">&nbsp;Sauna</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Services</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_AIRPORT_SHUTTLE" value="AIRPORT_SHUTTLE">&nbsp;Airport Shuttle</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BAGGAGE_STORAGE" value="BAGGAGE_STORAGE">&nbsp;Baggage Storage</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BAR" value="BAR">&nbsp;Bar</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CAR_AVAILABLE" value="CAR_AVAILABLE">&nbsp;Car Available</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CHAUFFEUR" value="CHAUFFEUR">&nbsp;Chauffeur</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CLEANING_INCLUDED" value="CLEANING_INCLUDED">&nbsp;Cleaning Included</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CLEANING_POSSIBLE" value="CLEANING_POSSIBLE">&nbsp;Cleaning Possible</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CONCIERGE" value="CONCIERGE">&nbsp;Concierge</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DOORMAN" value="DOORMAN">&nbsp;Doorman</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_RECEPTION" value="RECEPTION">&nbsp;Reception</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_RECEPTION_24_HOUR" value="RECEPTION_24_HOUR">&nbsp;Reception 24 Hours</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_STAFF" value="STAFF">&nbsp;Staff</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SHOP" value="SHOP">&nbsp;Shop</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Sports</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BASKETBALL_COURT" value="BASKETBALL_COURT">&nbsp;Basketball Court</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BICYCLE" value="BICYCLE">&nbsp;Bicycle</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_BOAT" value="BOAT">&nbsp;Boat</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CYCLING" value="CYCLING">&nbsp;Cycling</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CROSS_COUNTRY_SKIING" value="CROSS_COUNTRY_SKIING">&nbsp;Cross Country Skiing</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_EQUESTRIAN_EVENTS" value="EQUESTRIAN_EVENTS">&nbsp;Equestarian Events</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_FISHING" value="FISHING">&nbsp;Fishing</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_FITNESS_ROOM" value="FITNESS_ROOM">&nbsp;Fitness Room</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_GOLF" value="GOLF">&nbsp;Golf</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_GYM" value="GYM">&nbsp;Gym</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_HIKING" value="HIKING">&nbsp;Hiking</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_HORSE_RIDING" value="HORSE_RIDING">&nbsp;Horse Riding</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_HUNTING" value="HUNTING">&nbsp;Hunting</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_ICE_SKATING" value="ICE_SKATING">&nbsp;Ice Skating</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_JET_SKIING" value="JET_SKIING">&nbsp;Jet Skiing</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_KAYAK_CANOE" value="KAYAK_CANOE">&nbsp;Kayak Kanu</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_KAYAKING" value="KAYAKING">&nbsp;Kayaking</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MOUNTAIN_BIKING" value="MOUNTAIN_BIKING">&nbsp;Mountain Biking</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MOUNTAIN_CLIMBING" value="MOUNTAIN_CLIMBING">&nbsp;Mountain Climbing</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MOUNTAINEERING" value="MOUNTAINEERING">&nbsp;Mountaineering</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PARAGLIDING" value="PARAGLIDING">&nbsp;Paragliding</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_PARASAILING" value="PARASAILING">&nbsp;Parasailing</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_RAFTING" value="RAFTING">&nbsp;Rafting</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_ROLLER_BLADING" value="ROLLER_BLADING">&nbsp;Roller Blading</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SAILING" value="SAILING">&nbsp;Sailing</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SCUBA_OR_SNORKELING" value="SCUBA_OR_SNORKELING">&nbsp;Scuba or Snorkling</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SKIING" value="SKIING">&nbsp;Ski</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SKIING_WATER" value="SKIING_WATER">&nbsp;Skiing Water</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SNOW_SPORTS_GEAR" value="SNOW_SPORTS_GEAR">&nbsp;Snow Sports Gear</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SNOWBOARDING" value="SNOWBOARDING">&nbsp;Snowboarding</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SURFING" value="SURFING">&nbsp;Surfing</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SWIMMING" value="SWIMMING">&nbsp;Swimming</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TENNIS" value="TENNIS">&nbsp;Tennis</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TRAMPOLINE" value="TRAMPOLINE">&nbsp;Trampoline</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_TUBING_WATER" value="TUBING_WATER">&nbsp;Tubing Water</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WATER_SPORTS" value="WATER_SPORTS">&nbsp;Watersports</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WATER_SPORTS_GEAR" value="WATER_SPORTS_GEAR">&nbsp;Water Sports Gear</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WHITEWATER_RAFTING" value="WHITEWATER_RAFTING">&nbsp;Whitewater Rafting</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WIND_SURFING" value="WIND_SURFING">&nbsp;Wind Surfing</label></div>
+                            <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Suitability</h4>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_ADULTS_ONLY" value="ADULTS_ONLY">&nbsp;Adults Only</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CAR_NECESSARY" value="CAR_NECESSARY">&nbsp;Car Necessary</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CAR_RECOMMENDED" value="CAR_RECOMMENDED">&nbsp;Car Recommended</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CAR_NOT_NECESSARY" value="CAR_NOT_NECESSARY">&nbsp;Car Not Necessary</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CHILDREN_NOT_ALLOWED" value="CHILDREN_NOT_ALLOWED">&nbsp;Children Not Allowed</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_CHILDREN_WELCOME" value="CHILDREN_WELCOME">&nbsp;Children Welcome</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_EVENTS_ALLOWED" value="EVENTS_ALLOWED">&nbsp;Events Allowed</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_INFANTS_NOT_ALLOWED" value="INFANTS_NOT_ALLOWED">&nbsp;Infants not allowed</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_LONG_TERM_RENTERS" value="LONG_TERM_RENTERS">&nbsp;Long Term Renters</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_MINIMUM_AGE_LIMIT" value="MINIMUM_AGE_LIMIT">&nbsp;Minimum Age Limit</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SENIOR_ADULTS_ONLY" value="SENIOR_ADULTS_ONLY">&nbsp;Senior Adults Only</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SMOKING_ALLOWED" value="SMOKING_ALLOWED">&nbsp;Smoking Allowed</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_SMOKING_NOT_ALLOWED" value="SMOKING_NOT_ALLOWED">&nbsp;Smoking Not Allowed</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_DISABLED_ACCESSIBLE" value="DISABLED_ACCESSIBLE">&nbsp;Accessible for Disabled</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WHEELCHAIR_YES" value="WHEELCHAIR_YES">&nbsp;Wheelchair accessible</label></div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label style="font-weight: normal"><input type="checkbox" id="chk_WHEELCHAIR_NO" value="WHEELCHAIR_NO">&nbsp;Not Wheelchair accessible</label></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeFeatures" class="btn btn-secondary">Close</button>
+                <input type="button" class="btn btn-primary" id="UpdateFeatures" value="Save changes" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/Room.js"></script>

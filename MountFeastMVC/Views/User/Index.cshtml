@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-body">
+    <div align="center" class="box-header with-border callout callout-info">
+        <h4>Users List</h4>
+    </div>
+    <div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <label for="Properties">Properties</label>
+                <select class="form-control" style="height:34px;"
+                        id="Properties" name="Properties">
+                    <option selected="selected" value="0">Please select</option>
+                </select>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <h3 align="center">
+                    <a href="@Url.Action("AddNewUser","User")" Class="add button">Add New User </a>
+                </h3>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <table class="table" id="userList">
+                    <tr>
+                        <th>User ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>User Id</th>
+                        <th>Email</th>
+                        <th>Mobile Num</th>
+                        <th>Date Created</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="PasswordReset" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Reset Password</h5>
+            </div>
+            <div class="modal-body">
+                <form method='post' action='' enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label>Password:</label>
+                                    <input type="text" ID="password" TextMode="Password"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password:</label>
+                                <input type="text" ID="cPassword" TextMode="Password"
+                                       class="form-control" />
+                                <input type="hidden" ID="Id" value="0"
+                                       class="form-control" />
+                            </div>                            
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeRoomNum" class="btn btn-secondary">Close</button>
+                <input type="button" class="btn btn-primary" id="ResetPassword" value="Reset Password" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/User.js"></script>

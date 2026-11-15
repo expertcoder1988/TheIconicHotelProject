@@ -1,0 +1,391 @@
+﻿
+@{
+    ViewBag.Title = "blog";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<div class="blog-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>Blog</h1>
+            <ul class="breadcrumbs">
+                <li><a href="index.html">Home</a></li>
+
+                <li class="active">Blog</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<h2>blog</h2>
+
+<!-- Banner start -->
+<div class="blog-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>Blog</h1>
+            <ul class="breadcrumbs">
+                <li><a href="RentalProperties.aspx">Home</a></li>
+                <li class="active">Blog</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Banner end -->
+<!-- Blog body start -->
+<div class="blog-body content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <div class="row">
+
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" ShowHeader="False" OnPageIndexChanging="GridView1_PageIndexChanging"
+                                  OnRowDataBound="GridView1_RowDataBound" AllowPaging="true" PageSize="50" DataKeyNames="BlogID" GridLines="None">
+                        <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 ">
+
+                                        <div class="thumbnailNew blog-box-2 clearfix">
+                                            <div class="blog-photo">
+                                                <a href='<%#"/BlogDetails.aspx?BlogTitle=" + Eval("BlogTitle")  +"/"+ "&BlogID=" + Eval("BlogID") %>' class="thumbnailFront">
+                                                    <img alt="Blogs-Images" height="450" src='<%# "/mo/Blog/BlogImages/"+Eval("imgURL") %>' />
+                                                </a>
+                                            </div>
+                                            <div class="caption detail">
+                                                <h4>
+                                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%#"/BlogDetails.aspx?BlogTitle=" + Eval("BlogTitle")  +"/"+ "&BlogID=" + Eval("BlogID")%>' Target="_self" Text='<%# Eval("BlogTitle") %>'> </asp:HyperLink>
+
+                                                </h4>
+                                                <p>
+                                                    <asp:Label runat="server" ID="lblDesc" Text='<%# Eval("ShortDescriptions") %>' />
+                                                </p>
+                                                <div class="clearfix"></div>
+                                                <a href='<%#"/BlogDetails.aspx?BlogTitle=" + Eval("BlogTitle")  +"/"+ "&BlogID=" + Eval("BlogID") %>' class="read-more">Read More...</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                    <%--  <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="thumbnail blog-box-2 clearfix">
+                            <div class="blog-photo">
+                                <img src="/images/vox5.jpg" alt="blog-2" class="img-responsive">
+                            </div>
+
+                            <!-- Detail -->
+                            <div class="caption detail">
+                                <h4><a href="blogDetails2.aspx">VOX Cinemas Dubai </a></h4>
+                                <!-- paragraph -->
+                                <p>At Vox Cinemas view the biggest blockbusters of the world. Vox Cinemas is one of the biggest cinemas in the region. If moves adore you, this is the right place to go </p>
+                                <div class="clearfix"></div>
+                                <!-- Btn -->
+                                <a href="blogDetails2.aspx" class="read-more">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="thumbnail blog-box-2 clearfix">
+                            <div class="blog-photo">
+                                <img src="/images/chinese3.jpg" alt="blog-3" class="img-responsive">
+                            </div>
+
+                            <!-- Detail -->
+                            <div class="caption detail">
+                                <h4><a href="blogDetails3.aspx">Chinese New Year 2019 </a></h4>
+                                <!-- paragraph -->
+                                <p>
+                                    Dubai is a great place to celebrate Chinese New Year. The whole city will come alive with vibrant celebrations for the New Year. Each year the Chinese community of this city celebrates
+                                </p>
+                                <div class="clearfix"></div>
+                                <!-- Btn -->
+                                <a href="blogDetails3.aspx" class="read-more">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="thumbnail blog-box-2 clearfix">
+                            <div class="blog-photo">
+                                <img src="/images/festival2.jpg" alt="blog-1" class="img-responsive">
+                            </div>
+
+                            <!-- Detail -->
+                            <div class="caption detail">
+                                <h4><a href="blogDetails4.aspx">Dubai Shopping Festival 2019 </a></h4>
+                                <!-- paragraph -->
+                                <p>This year Dubai Shopping Festival is come up with more than 700 brands at 3200 outlets across Dubai. This year the 24th edition of the Dubai shopping festival will the longest </p>
+                                <div class="clearfix"></div>
+                                <!-- Btn -->
+                                <a href="blogDetails4.aspx" class="read-more">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="thumbnail blog-box-2 clearfix">
+                            <div class="blog-photo">
+                                <img src="/images/food5.jpg" alt="blog-2" class="img-responsive">
+                            </div>
+                            <!-- Detail -->
+                            <div class="caption detail">
+                                <h4><a href="blogDetails5.aspx">Top 5 Street Food in Dubai </a></h4>
+                                <!--  -->
+                                <!-- paragraph -->
+                                <p>2nd of December Street is a kilometer and a half stretch of road in Satwa. It is home to old-school eateries and international Homestyle cuisines.</p>
+                                <div class="clearfix"></div>
+                                <!-- Btn -->
+                                <a href="blogDetails5.aspx" class="read-more">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="thumbnail blog-box-2 clearfix">
+                            <div class="blog-photo">
+                                <img src="/images/silvercup1.jpg" alt="blog-3" class="img-responsive">
+                            </div>
+                            <!-- Detail -->
+                            <div class="caption detail">
+                                <h4><a href="blogDetails6.aspx">Enjoy Silver Cup 2019</a></h4>
+                                <!-- paragraph -->
+                                <p>Dubai has become one of the top international polo destinations. This year the 10th edition of Dubai Polo Gold Club series will be the more competitive than ever.</p>
+                                <div class="clearfix"></div>
+                                <!-- Btn -->
+                                <a href="blogDetails6.aspx" class="read-more">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 ">
+                        <div class="thumbnail blog-box-2 clearfix">
+                            <div class="blog-photo">
+                                <img src="/images/paper4.jpg" alt="blog-1" class="img-responsive">
+                            </div>
+                            <!-- Detail -->
+                            <div class="caption detail">
+                                <h4><a href="blogDetails8.aspx">Paper World Middle East </a></h4>
+                                <!-- paragraph -->
+                                <p>Paper world Middle East returns to Dubai for its 9 release from 18 to 20 March. The exhibition comes with a promise of innovative stationery</p>
+                                <div class="clearfix"></div>
+                                <!-- Btn -->
+                                <a href="blogDetails8.aspx" class="read-more">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 ">
+                        <div class="thumbnail blog-box-2 clearfix">
+                            <div class="blog-photo">
+                                <img src="/images/metro2.jpg" alt="blog-1" class="img-responsive">
+                            </div>
+                            <!-- Detail -->
+                            <div class="caption detail">
+                                <h4><a href="blogDetails7.aspx">Dubai Metro</a></h4>
+                                <!-- paragraph -->
+                                <p>Dubai Metro is a rapid transit system in Dubai, UAE. It is a fully automated and driver-less rail network that connects the majors cities of Dubai. </p>
+                                <div class="clearfix"></div>
+                                <!-- Btn -->
+                                <a href="blogDetails7.aspx" class="read-more">Read More...</a>
+                            </div>
+                        </div>
+                    </div>--%>
+                </div>
+
+                <%-- <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                            </a>
+                        </li>
+                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        <li>
+                            <a href="blog-columns-3col.html" aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>--%>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="sidebar">
+                    <!-- Search box -->
+                    <div class="sidebar-widget search-box">
+                        <form class="form-inline form-search" method="GET">
+                            <div class="form-group">
+                                <label class="sr-only" for="textsearch2">Search</label>
+                                <input type="text" class="form-control" id="textsearch2" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    <!-- Category posts -->
+                    <div class="sidebar-widget category-posts">
+                        <div class="main-title-2">
+                            <h1><span>popular</span> Category</h1>
+                        </div>
+                        <ul class="list-unstyled list-cat">
+                            <li><a href="Short-Term-Rentals-Dubai">Short Term Rentals Dubai </a><span>Property on Rent  </span></li>
+                            <li><a href="FeaturedProperty">Special Offers  </a><span>Property on Rent  </span></li>
+                            <li><a href="ListProperty.aspx">List Your Property </a><span>Property on Rent</span></li>
+                            <li><a href="AboutUs">About US </a><span>About US  </span></li>
+                            <li><a href="Contact">Contact US </a><span>Contact US  </span></li>
+
+                            <li><a href="FAQS">FAQs  </a><span>Question Answer </span></li>
+                        </ul>
+                    </div>
+                    <!-- Popular posts -->
+                    <div class="sidebar-widget popular-posts">
+                        <div class="main-title-2">
+                            <h1><span>popular</span> posts</h1>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object" src="/images/blog1.jpg" width="90" height="63" alt="small-properties-1">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">
+                                    <a href="/RentalProperties">Beautiful Studio - Walking Distance to Dubai Mall (Ref. BNF18U08)</a>
+                                </h3>
+                                <p>Available Property for Booking</p>
+                                <div class="price">
+                                    AED 324 / 1 Night
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object" src="/images/property2.jpg" width="90" height="63" alt="small-properties-2">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">
+                                    <a href="/RentalProperties">Amazing Penthouse - Sea View (Ref. PTF86U01)</a>
+                                </h3>
+                                <p>Available Property for Booking</p>
+                                <div class="price">
+                                    AED 1615 / 1 Night
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object" src="/images/property.jpg" width="90" height="63" alt="small-properties-3">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">
+                                    <a href="/RentalProperties">Studio Apartment Close To Dubai Mall (Ref. BNF5U08)</a>
+                                </h3>
+                                <p>Available Property for Booking</p>
+                                <div class="price">
+                                    AED 324 / 1 Night
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Archives posts -->
+                    <div class="sidebar-widget archives">
+                        <div class="main-title-2">
+                            <h1><span>Popular</span> Archives</h1>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><a href="#">March 2019</a></li>
+                            <li><a href="#">April 2019</a></li>
+                            <li><a href="#">May 2019</a></li>
+                            <li><a href="#">June 2019</a></li>
+                            <li><a href="#">July 2019</a></li>
+                        </ul>
+                    </div>
+                    <!-- Tags box -->
+                    <div class="sidebar-widget tags-box">
+                        <div class="main-title-2">
+                            <h1><span>popular</span> Tags</h1>
+                        </div>
+                        <ul class="tags">
+                            <li><a href="#">Image</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Typography</a></li>
+                            <li><a href="#">Gallery</a></li>
+                            <li><a href="#">Slideshow</a></li>
+                            <li><a href="#">Post Formats</a></li>
+                            <li><a href="#">Sellers</a></li>
+                            <li><a href="#">WooCommerce</a></li>
+                            <li><a href="#">Shortcodes</a></li>
+                        </ul>
+                    </div>
+                    <!-- Social media -->
+                    <div class="social-media sidebar-widget clearfix">
+                        <!-- Main Title 2 -->
+                        <div class="main-title-2">
+                            <h1><span>Social</span> Media</h1>
+                        </div>
+                        <!-- Social list -->
+                        <ul class="social-list clearfix " id="social">
+                            <li><a class="facebookBtn smGlobalBtn" href="https://www.facebook.com/Express.Holiday.Homes.LLC/" target="_blank"></a></li>
+                            <li><a class="twitterBtn smGlobalBtn" href="https://twitter.com/HolidayHomesDXB" target="_blank"></a></li>
+                            <li><a class="googleplusBtn smGlobalBtn" href="https://plus.google.com/u/1/101032270206623459947" target="_blank"></a></li>
+                            <li><a class="pinterestBtn smGlobalBtn" href="https://www.pinterest.com/expressholidayhomesdubai/" target="_blank"></a></li>
+                            <li><a class="linkedinBtn smGlobalBtn" href="https://www.linkedin.com/company/express-holiday-homes-dubai/" target="_blank"></a></li>
+                        </ul>
+                    </div>
+                    <!-- Latest reviews -->
+                    <%--         <div class="sidebar-widget latest-reviews">
+                        <div class="main-title-2">
+                            <h1><span>Latest</span> Reviews</h1>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="/images/blog1.jpg" alt="avatar-1">
+                                </a>
+                            </div>
+                            <div class="media-body">
+
+                                <p>
+                                    Lorem ipsum dolor sit amet,
+                                    consectetur adipiscing elit.
+                                    Etiamrisus tortor, accumsan at nisi et,
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="/images/blog1.jpg" alt="avatar-2">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading"><a href="#">Karen Paran</a></h3>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet,
+                                    consectetur adipiscing elit.
+                                    Etiamrisus tortor, accumsan at nisi et,
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>--%>
+                    <!-- Latest tweet -->
+                    <div class="sidebar-widget latest-tweet">
+                        <div class="main-title-2">
+                            <h1><span>Latest</span> Tweet</h1>
+                        </div>
+                        <a class="twitter-timeline" href="https://twitter.com/HolidayHomesDXB" data-widget-id="661486332787580928" data-screen-name="Express Holiday Homes" width="350" height="400" data-chrome="noborders">Tweets by @HolidayHomesDXB</a>
+                        <script async defer>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

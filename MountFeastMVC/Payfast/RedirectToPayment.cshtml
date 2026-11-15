@@ -1,0 +1,62 @@
+﻿@*<script>
+        function redirectPost(url, data) {
+
+            var form = document.createElement('form');
+            form.action = url;
+            form.method = 'POST';
+
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = data[key];
+                    form.appendChild(input);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        var paymentData = {
+            "CURRENCY_CODE": "PKR",
+            "MERCHANT_ID": "21886",
+            "TOKEN": "@ViewBag.Token",
+            "SUCCESS_URL": "https://manilaheights.com/thankyou",
+            "FAILURE_URL": "https://manilaheights.com/thankyou",
+            "CHECKOUT_URL": "https://typedwebhook.tools/webhook/cfe4e40e-8c5c-4d5b-867a-017bce41070c",
+            "CUSTOMER_EMAIL_ADDRESS": "sale1@malikexpress.com",
+            "TXNAMT": "@ViewBag.GrandTotal",
+            "BASKET_ID": "@ViewBag.BillReference",
+            "ORDER_DATE": "@ViewBag.OrderDate",
+            "SIGNATURE": "",
+            "VERSION": "MERCHANT-CART-0.1",
+            "TXNDESC": "Item Purchased from Cart",
+            "PROCCODE": "00",
+            "TRAN_TYPE": "ECOMM_PURCHASE",
+            "STORE_ID": "",
+            "RECURRING_TXN": "true"
+        };
+
+        redirectPost("https://ipg1.apps.net.pk/Ecommerce/api/Transaction/PostTransaction", paymentData);
+    </script>*@
+
+@{
+    ViewBag.Title = "MakeFlightBooking";
+    // Assuming TempData contains a dictionary
+    var paymentData = (Dictionary<string, string>)TempData["FormData"];
+}
+
+<h2>Redirect to Payment Gateway</h2>
+
+<form id="FormPG" name="FormPG" action="https://ipg1.apps.net.pk/Ecommerce/api/Transaction/PostTransaction" method="POST">
+    @foreach (var keyValuePair in paymentData)
+    {
+        <input type="hidden" id="@keyValuePair.Key" name="@keyValuePair.Key" value="@keyValuePair.Value" /><br />
+    }
+</form>
+<script language='javascript'>
+    var vPostForm = document.getElementById("FormPG");
+    vPostForm.submit();
+</script>

@@ -1,0 +1,513 @@
+﻿@using MountFeastMVC.Models;
+
+@{
+    ViewBag.Title = "Iconic Hotel  at Naran | Rooms Booking";
+    ViewBag.keywords = "Hotel at Naran";
+
+    ViewBag.Description = "Iconic Hotel  at Naran is the best place to stay. Our hotel in Naran Pakistan offers luxurious rooms, equipped with all the amenities. Book Online.";
+
+
+    List<MountFeastMVC.Models.PropertySearch> results = new List<MountFeastMVC.Models.PropertySearch>();
+    MountFeastMVC.Models.RoomDetails result = (MountFeastMVC.Models.RoomDetails)ViewBag.room;
+
+    int? TotalAmount = 0;
+    List<MountFeastMVC.Models.Pictures> roomPictures = (List<MountFeastMVC.Models.Pictures>)TempData["roomPictures"];
+    //var pics = roomPictures.Select(x => x.title).ToList()
+    DateTime _CheckIn = DateTime.Now;
+    DateTime _CheckOut = DateTime.Now;
+    int? _RoomCatCode = 0;
+    int? _adults = 0;
+    int? _children = 0;
+    int? _NoOfRooms = 0;
+    int? _adultsRate = 0;
+    int? _childrenRate = 0;
+    int? roomPrice = 0;
+
+    int? _TotalPax = 0;
+
+    string _roomCateRoomNums = ViewBag.RoomCateRoomNums;
+    string RatePlanIDs = ViewBag.RatePlanIDs;
+    string RoomRates = ViewBag.RoomRates;
+    long TotalAmmount = ViewBag.TotalAmount;
+    long Taxes = (TotalAmmount * 5 / 100);
+    long AmountWithOutTaxes = TotalAmmount - Taxes;
+    long DiscountedAmount = AmountWithOutTaxes;
+
+    List<MountFeastMVC.Controllers.BookedRooms> brList = new List<MountFeastMVC.Controllers.BookedRooms>();
+
+    string[] RoomCateRoomNums;
+    string _RoomCateRoomNums = ViewBag.RoomCateRoomNums;
+    //RoomCateRoomNums = _RoomCateRoomNums.Split(',');
+
+    string[] RoomCates;
+    string _rooomCate = ViewBag.RoomCatCodes;
+    // RoomCates = _rooomCate.Split(',');
+    string roomCate = "";
+    var db = new HotelDBEntities();
+
+    // if (RoomCates.Length > 0)
+    {
+        // for (int i = 0; i < RoomCates.Length; i++)
+        {
+            int rc = 0;
+            //if (RoomCates[i] != "")
+            {
+                rc = Convert.ToInt32(_rooomCate);
+
+                roomCate = db.RoomCategories.Where(x => x.Id == rc).Select(x => x.Category).FirstOrDefault();
+                MountFeastMVC.Controllers.BookedRooms br = new MountFeastMVC.Controllers.BookedRooms();
+
+                br.RoomCate = roomCate;
+                br.Quantity = Convert.ToInt32(_RoomCateRoomNums);
+
+                brList.Add(br);
+            }
+
+
+        }
+    }
+
+    if (Session["results"] != null)
+    {
+
+        _adults = ViewBag.Adults;
+        _children = ViewBag.Children;
+        _NoOfRooms = ViewBag.NoOfRooms;
+        results = (List<MountFeastMVC.Models.PropertySearch>)Session["results"];
+
+        _TotalPax = _adults + _children;
+
+        if (_TotalPax == 0)
+        {
+            _TotalPax = 1;
+        }
+
+        TotalAmount = ViewBag.TotalAmount; ; //results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.TotalAmount).FirstOrDefault();
+                                             // string[] sDate = ViewBag.checkIn;
+                                             // string startDate = ViewBag.checkIn; // sDate[1] + "/" + sDate[0] + "/" + sDate[2];
+
+        //sDate = ViewBag.TotalAmount;
+        //string endDate = sDate[1] + "/" + sDate[0] + "/" + sDate[2];
+
+        _CheckIn = ViewBag.checkIn; // Convert.ToDateTime(startDate);
+        _CheckOut = ViewBag.checkOut; // Convert.ToDateTime(endDate);
+                                      // _RoomCatCode = result.RoomCategoryId;
+
+
+    }
+    int totalDays = (int)(_CheckOut - _CheckIn).TotalDays;
+}
+
+<div class="sub-banner overview-bgi">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>
+                    Hassle-free Naran Hotel Booking – Iconic Hotel Naran
+                </h1>
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">About Us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="properties-details-page bg-white py-5">
+    <div class="container">
+        <div class="py-2 text-center">
+            <h2>Booking Form</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 card p-4 m-2 order-md-2" style="background-color: #A85307 !important">
+                @*<h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted" style="color:white !important">Booking Summary</span>
+                    <span class="badge badge-secondary badge-pill"></span>
+                </h4>*@
+                <div class=" mb-2">
+                    <img src="@ViewBag.RoomImage" style="height: 230px; width: 335px" />
+                </div>
+                <div>
+                    <h4 style="color:white">Iconic Hotel</h4>
+                    <p class="pt-1" style="font-size:16px;color:white">
+                        Iconic Hotel Main Mansehra-Naran Road <a href="tel:+923465557221" style="color:#fff">
+                            +92 346 5557221
+                        </a>
+                    </p>
+                </div>
+
+                <div class="row" style="font-size: 16px; color: white">
+                    <div class="col-12">
+                        <label>Room Category :</label>
+                        <label style="font-size:14px"><strong>@ViewBag.Category.Category</strong></label>
+                    </div>
+                </div>
+
+                <div class="row pt-2" style="font-size: 15px; color: white">
+                    <div class="col-6">
+                        <label>Check-In</label>
+                        <strong>@_CheckIn.ToShortDateString()</strong>  
+                        <label>After 14:00</label>
+                    </div>
+                    <div class="col-6">
+                        <label>Check-Out</label>
+                        <strong>@_CheckOut.ToShortDateString()</strong> 
+                        <label>Before 12:00</label>
+                    </div>
+                </div>
+
+                <hr style="color: white; border: 1px solid " />
+                <div class="row" style="color:white">
+                    <div class="col-8">
+                        <label style="font-size:16px;font-weight:700">Total Days:</label>
+                    </div>
+                    <div class="col-4">
+                        <label id="totalDays"><strong>@totalDays</strong></label>
+                    </div>
+                </div>
+                <div class="row pt-2" style="color:white">
+                    <div class="col-7">
+                        <label style="font-size:16px; font-weight:700">Room Price</label>
+                    </div>
+                    <div class="col-5">
+                        <label><strong> @AmountWithOutTaxes<span>.00 PKR</span></strong></label>
+                    </div>
+                </div>
+
+                <div class="row pt-1" style="color: white; font-size:16px;">
+                    <div class="col-12">
+                        <label>Best Available Rate,Flexible</label>
+                    </div>
+                </div>
+
+                <div class="row pt-2" style="color:white">
+                    <div class="col-7">
+                        <label style="font-size:16px;font-weight:700">Taxes </label>
+                    </div>
+                    <div class="col-5">
+                        <label><strong> @Taxes<span>.00 PKR</span></strong></label>
+                    </div>
+                </div>
+
+                <hr style="color: white; border: 1px solid " />
+
+
+                <div class="row pt-2" style="color:white">
+                    <div class="col-7">
+                        <label style="font-size:18px;font-weight:700">Total for Stay </label>
+                    </div>
+                    <div class="col-5">
+                        <label style="font-size:16px;font-weight:700" id="totalPriceCell">@TotalAmmount<span>.00 PKR</span> </label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-7 m-2 card p-4 order-md-1" style="background-color:#f4f4f4">
+                <h4 class="mb-3">Personal Information</h4>
+
+                @using (Html.BeginForm("SaveBooking", "SearchResult", FormMethod.Post, new { @class = "needs-validation", id = "myForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-2 mb-3">
+                            <label for="firstName ">Title</label>
+                            <select class="form-control mt-2" name="PaxTitle" id="PaxTitle">
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="firstName">First name</label>
+                            <input type="text"
+                                   class="form-control mt-2"
+                                   id="PaxFName" name="PaxFName"
+                                   placeholder=""
+                                   value=""
+                                   required />
+                            <div class="invalid-feedback">Valid first name is required.</div>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="lastName">Last name</label>
+                            <input type="text"
+                                   class="form-control mt-2"
+                                   id="PaxLName" name="PaxLName"
+                                   placeholder=""
+                                   value=""
+                                   required />
+                            <div class="invalid-feedback">Valid last name is required.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+
+                            <input type="email"
+                                   class="form-control reservation_form mt-2"
+                                   id="PaxEmail"
+                                   name="PaxEmail"
+                                   placeholder="you@example.com" />
+                            <div class="invalid-feedback">
+                                Please enter a valid email address for booking updates.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text"
+                                   class="form-control reservation_form mt-2"
+                                   id="PaxPhoneNumber" name="PaxPhoneNumber"
+                                   placeholder="+92-3xxxxxxxxx"
+                                   required />
+                            <div class="invalid-feedback">Please enter your phone number.</div>
+                        </div>
+                    </div>
+                    @*<div class="mb-3">
+                            <label for="email">Email</label>
+                            <input type="email"
+                                   class="form-control mt-2"
+                                   id="PaxEmail"
+                                   name="PaxEmail"
+                                   placeholder="you@example.com" />
+                            <div class="invalid-feedback">
+                                Please enter a valid email address for booking updates.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="address">Phone Number</label>
+                            <input type="text"
+                                   class="form-control mt-2"
+                                   id="PaxPhoneNumber" name="PaxPhoneNumber"
+                                   placeholder="+92-3xxxxxxxxx"
+                                   required />
+                            <div class="invalid-feedback">Please enter your phone number.</div>
+                        </div>*@
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input id="voucherCode" class="form-control reservation_form mt-2" name="Code" type="text" placeholder="Coupon">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating mb-4 d-flex gap-2">
+                                <button id="applyVoucherBtn" type="button" class="btn btn-dark" style="width: 200px; height: 40px; font-size: 16px;" onclick="applyVoucher()">
+                                    <span id="voucherIcon" style="margin-right: 8px;"></span>
+                                    Apply
+                                </button>
+
+                                <button id="removeVoucherBtn" type="button" class="btn btn_remove" style="width: 200px; height: 40px; font-size: 16px; border:2px solid #A85307; color: #A85307 " onclick="removeVoucher()" disabled>
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-1">
+
+                                <input type="text" id="PaxDescription" name="PaxDescription" placeholder="Special Message" class="form-control reservation_form mt-2" />
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="row">
+                            <div class="mb-3">
+                                <label for="PaxDescription">Special Message</label>
+                                <input type="text" id="PaxDescription" name="PaxDescription" class="form-control mt-2" />
+                            </div>
+                        </div>*@
+                    <hr class="mb-2" />
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input mt-2"
+                               id="same-address" />
+                        <label class="custom-control-label" for="same-address" style="font-size:16px">
+                            I have read and agree to the <a href="@Url.Action("Index","TermsandConditions")" style=" font-size: 18px; color: #a85307; text-decoration: underline !important;">Terms & Conditions</a> and
+                            <a href="@Url.Action("Index","PrivacyPolicy")" style=" font-size: 18px; color: #a85307; text-decoration: underline !important;">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <hr class="mb-2" />
+
+                    <input type="hidden" id="PaymentType" name="PaymentType" value="2" />
+
+                    <div class="payment-section">
+                        <h4 class="mb-3">Payment Method</h4>
+
+                        <div class="row position-relative">
+                            <!-- Online Payment Card -->
+                            <div class="col-md-6 col-sm-12 mb-3">
+                                <div class="payment-card rounded p-4 h-100 selectable selected"
+                                     onclick="setPaymentType(this, 2)">
+                                    <div class="checkmark"><span class="text-white fw-bold">✓</span></div>
+                                    <h5 class="mb-3">Online Payment</h5>
+                                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                                        <img src="~/Content/Assets/img/mastercard.svg" alt="MasterCard" class="payment-icon">
+                                        <img src="~/Content/Assets/img/visa.svg" alt="Visa" class="payment-icon">
+                                        <img src="~/Content/Assets/img/easypaisa.svg" alt="Easypaisa" class="payment-icon">
+                                        <img src="~/Content/Assets/img/Jazzcash.svg" alt="JazzCash" class="payment-icon">
+                                        <img src="~/Content/Assets/img/upasia.svg" alt="Upaisa" class="payment-icon">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Deposit Card -->
+                            <div class="col-md-6 col-sm-12 mb-3">
+                                <div class="payment-card rounded p-4 h-100 selectable"
+                                     onclick="setPaymentType(this, 1)">
+                                    <div class="checkmark d-none"><span class="text-white fw-bold">✓</span></div>
+                                    <h5 class="mb-2">50% Deposit</h5>
+                                    <p class="text-muted mb-0">To confirm your booking.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-2" />
+
+                    <button type="submit" id="submitButton" class="btn-sm btn-block justify-content-center m-auto btn-2 btn-defaults">
+                        <span id="spinner" class="spinner-border hidden" role="status" aria-hidden="true"></span>
+                        <span id="buttonText">Book Now</span>
+                    </button>
+                    <input type="hidden" name="CheckIn" value="@_CheckIn" />
+                    <input type="hidden" name="CheckOut" value="@_CheckOut" />
+                    <input type="hidden" name="RoomCatCode" value="@ViewBag.RoomCatCodes" />
+                    <input type="hidden" name="Adults" value="@_adults" />
+                    <input type="hidden" name="Children" value="@_children" />
+                    <input type="hidden" name="NoOfRooms" value="@_NoOfRooms" />
+                    <input type="hidden" name="RoomRate" value="@roomPrice" />
+                    <input type="hidden" name="Taxes" value="@Taxes" />
+                    <input type="hidden" name="AmountWithoutTaxes" value="@AmountWithOutTaxes" />
+                    <input type="hidden" name="TotalAmount" value="@TotalAmount" />
+                    <input type="hidden" name="RoomCateRoomNums" value="@_roomCateRoomNums" />
+                    <input type="hidden" name="RatePlanIDs" value="@RatePlanIDs" />
+                    <input type="hidden" name="RoomRates" value="@RoomRates" />
+                    <input type="hidden" name="VoucherCode" id="hiddenVoucherCode" value="" />
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('myForm');
+        var submitButton = document.getElementById('submitButton');
+        var spinner = document.getElementById('spinner');
+        var buttonText = document.getElementById('buttonText');
+
+        form.addEventListener('submit', function (event) {
+            // Show the spinner
+            spinner.classList.remove('hidden');
+
+            // Disable the button
+            submitButton.disabled = true;
+
+            // Optional: change text if needed
+            // buttonText.textContent = "Booking...";
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('.payment-card.selectable').click(function () {
+            $('.payment-card.selectable').removeClass('selected');
+            $('.checkmark').addClass('d-none');
+            $(this).addClass('selected');
+            $(this).find('.checkmark').removeClass('d-none');
+        });
+    });
+</script>
+
+<script>
+    function setPaymentType(element, value) {
+        // Set hidden input value
+        document.getElementById("PaymentType").value = value;
+
+        // Deselect all cards
+        document.querySelectorAll(".payment-card").forEach(card => {
+            card.classList.remove("selected");
+            card.querySelector(".checkmark").classList.add("d-none");
+        });
+
+        // Select the clicked card
+        element.classList.add("selected");
+        element.querySelector(".checkmark").classList.remove("d-none");
+    }
+</script>
+<script>
+    var isVoucherApplied = false;
+
+    function applyVoucher() {
+        if (isVoucherApplied) {
+            alert('Voucher has already been applied.');
+            return;
+        }
+
+        var voucherCode = document.getElementById('voucherCode').value;
+        var totalAmountField = document.getElementById('totalPriceCell');
+        var hiddenVoucherCodeField = document.getElementById('hiddenVoucherCode');
+
+        if (!totalAmountField || !hiddenVoucherCodeField) {
+            console.error('Total Amount or Hidden Voucher Code field is not found');
+            return;
+        }
+
+        $.ajax({
+            url: '/SearchResult/GetDiscountAmount',
+            type: 'POST',
+            data: { code: voucherCode },
+            success: function (response) {
+                if (response.success) {
+                    var totalAmount = parseFloat(totalAmountField.innerText.replace('Rs. ', '').replace(',', ''));
+                    var discountAmount = response.discountAmount;
+                    var newTotalAmount = totalAmount - discountAmount;
+
+                    totalAmountField.innerText = newTotalAmount + ".00 PKR";
+
+                    isVoucherApplied = true;
+                    hiddenVoucherCodeField.value = voucherCode;
+                    document.getElementById('voucherIcon').innerHTML = '<i class="fa fa-check" style="color: #a85307;"></i>';
+                    const applyBtn = document.getElementById('applyVoucherBtn');
+                    applyBtn.disabled = true;
+                    applyBtn.innerHTML = '<span id="voucherIcon" style="margin-right: 8px;"><i class="fa fa-check" style="color: #a85307;"></i></span>Applied';
+
+                    document.getElementById('removeVoucherBtn').disabled = false;
+
+                    // Store the discount amount for restoration later
+                    document.getElementById('removeVoucherBtn').setAttribute('data-discount', discountAmount);
+                    document.getElementById('removeVoucherBtn').setAttribute('data-original-amount', totalAmount);
+                } else {
+                    alert('Invalid voucher code');
+                }
+            },
+            error: function () {
+                alert('An error occurred while applying the voucher code.');
+            }
+        });
+    }
+
+    function removeVoucher() {
+        var totalAmountField = document.getElementById('totalPriceCell');
+        var hiddenVoucherCodeField = document.getElementById('hiddenVoucherCode');
+
+        if (!totalAmountField || !hiddenVoucherCodeField) {
+            console.error('Total Amount or Hidden Voucher Code field is not found');
+            return;
+        }
+
+        var originalAmount = document.getElementById('removeVoucherBtn').getAttribute('data-original-amount');
+
+        totalAmountField.innerText = originalAmount + ".00 PKR";
+        hiddenVoucherCodeField.value = '';
+        isVoucherApplied = false;
+
+        document.getElementById('voucherIcon').innerHTML = '';
+        document.getElementById('applyVoucherBtn').disabled = false;
+        document.getElementById('removeVoucherBtn').disabled = true;
+        const applyBtn = document.getElementById('applyVoucherBtn');
+        applyBtn.innerHTML = '<span id="voucherIcon" style="margin-right: 8px;"></span>Apply';
+
+    }
+
+</script>

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Iconic Hotel Login Panel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Assets/fonts/font-awesome/css/font-awesome.min.css">
+    @*<link rel="stylesheet" href="css/style.css">*@
+
+</head>
+<body>
+    <section class="ftco-section">
+        <div class="container ">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Admin Login</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center shadow-lg ">
+
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 shadow-lg img" style="background-image: url(/Content/TemplateFiles/img/Main/MainImage.png);">
+                    @*<div class="wrap d-md-flex">
+                            <div class="img" style="background-image: url(/Content/Assets/img/Property/13.png);">
+                            </div>
+                        </div>*@
+                </div>
+                <div class="login-wrap p-4 p-md-5 col-12 col-sm-12 col-md-6 col-lg-6 shadow-lg">
+                    <div class="d-flex">
+                        <div class="w-100">
+                            <h3 class="mb-4">Sign In</h3>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @*<form action="#" class="signin-form">*@
+                        <div class="form-group mb-3">
+                            <label class="label" for="name">Username</label>
+                            <input type="text" id="txtUsername" name="username" required class="form-control" placeholder="User Name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="label" for="password">Password</label>
+                            <input type="password" ID="txtPassword" name="password" required class="form-control" placeholder="Password" required>
+                            <div type="button" id="show-password"><i class="fa fa-eye " style="position: absolute; right: 16px; top: 53px;"></i></div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                        </div>
+
+                        @*</form>*@
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/Content/Assets/js/jquery-2.2.0.min.js"></script>
+    <script>
+        $('#show-password').click(function () {
+            var passwordInput = $('#txtPassword');
+            var passwordFieldType = passwordInput.attr('type');
+            if (passwordFieldType === 'password') {
+                passwordInput.attr('type', 'text');
+            } else {
+                passwordInput.attr('type', 'password');
+            }
+        });
+    </script>
+    @*<script src="js/jquery.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>*@
+
+</body>
+</html>
+
+
+

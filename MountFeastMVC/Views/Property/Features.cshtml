@@ -1,0 +1,236 @@
+﻿
+@{
+    ViewBag.Title = "Features";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-body">
+    <h2>Features</h2>
+    <input type="button" ID="doaddnew" name="doaddnew" class="btn btn-info" data-bind="click:showIndex" value="Save" />
+    <div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Amenities</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LIVING_ROOM" name="LIVING_ROOM">&nbsp;Living Room</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_FIREPLACE" name="FIREPLACE">&nbsp;Fireplace</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WOOD_STOVE" name="WOOD_STOVE">&nbsp;Wood Stove</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_HEATING" name="HEATING">&nbsp;Heating</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_AIR_CONDITIONING" name="AIR_CONDITIONING">&nbsp;Air Conditioning</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CEILING_FAN" name="CEILING_FAN">&nbsp;Ceiling Fan</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_ELEVATOR" name="ELEVATOR">&nbsp;Elevator</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DOORBELL" name="DOORBELL">&nbsp;Doorbell</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TELEPHONE" name="TELEPHONE">&nbsp;Telephone</label></div>
+        <div class="clearfix"></div>
+        <hr class="featurepickerhr">
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BATHROBE" name="BATHROBE">&nbsp;Bathrobe</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_HAIR_DRYER" name="HAIR_DRYER">&nbsp;Hairdryer</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SLIPPERS" name="SLIPPERS">&nbsp;Slippers</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_HANGERS" name="HANGERS">&nbsp;Clothes hangers</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_IRON_BOARD" name="IRON_BOARD">&nbsp;Ironing Board</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LINENS" name="LINENS">&nbsp;Linens</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SHAMPOO" name="SHAMPOO">&nbsp;Shampoo</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TOILETRIES" name="TOILETRIES">&nbsp;Toiletries</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TOWELS" name="TOWELS">&nbsp;Towels</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DRYER" name="DRYER">&nbsp;Tumble Dryer</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WASHER" name="WASHER">&nbsp;Washing Machine</label></div>
+        <div class="clearfix"></div>
+        <hr class="featurepickerhr">
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BALCONY" name="BALCONY">&nbsp;Balcony</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DECK_PATIO_UNCOVERED" name="DECK_PATIO_UNCOVERED">&nbsp;Terrace</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LANAI_GAZEBO_COVERED" name="LANAI_GAZEBO_COVERED">&nbsp;Gazebo</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_GARDEN" name="GARDEN">&nbsp;Garden</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_GRILL" name="GRILL">&nbsp;Grill</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_GAME_ROOM" name="GAME_ROOM">&nbsp;Game Room</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SITTING_AREA" name="SITTING_AREA">&nbsp;Sitting Area</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_VERANDA" name="VERANDA">&nbsp;Veranda</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_ROOF_TERRACE" name="ROOF_TERRACE">&nbsp;Roof terrace</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PRIVATE_YARD" name="PRIVATE_YARD">&nbsp;Private yard</label></div>
+        <div class="clearfix"></div>
+        <hr class="featurepickerhr">
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_GARAGE" name="GARAGE">&nbsp;Garage</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PARKING_INCLUDED" name="PARKING_INCLUDED">&nbsp;Parking Included</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PARKING_POSSIBLE" name="PARKING_POSSIBLE">&nbsp;Parking Possible</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PARKING_PAID" name="PARKING_PAID">&nbsp;Paid Parking</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PRIVATE_ENTRANCE" name="PRIVATE_ENTRANCE">&nbsp;Private Entrance</label></div>
+        <div class="clearfix"></div>
+        <hr class="featurepickerhr">
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SAFE" name="SAFE">&nbsp;Safe</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LOCKERS" name="LOCKERS">&nbsp;Lockers</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_FIRE_EXTINGUISHER" name="FIRE_EXTINGUISHER">&nbsp;Fire Extinguisher</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_FIRST_AID_KIT" name="FIRST_AID_KIT">&nbsp;First Aid Kit</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SMOKE_DETECTOR" name="SMOKE_DETECTOR">&nbsp;Smoke Detector</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CO_DETECTOR" name="CO_DETECTOR">&nbsp;Co Detector</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SAFETY_CARD" name="SAFETY_CARD">&nbsp;Safety Card</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LOCK_BEDROOM" name="LOCK_BEDROOM">&nbsp;Lock On Bedroom</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Business</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BUSINESS_CENTER" name="BUSINESS_CENTER">&nbsp;Business Center</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DESK" name="DESK">&nbsp;Desk</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LAPTOP_FRIENDLY" name="LAPTOP_FRIENDLY">&nbsp;Laptop Friendly</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Entertainment</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BOOKS" name="BOOKS">&nbsp;Books</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DVD" name="DVD">&nbsp;DVD</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_FOOSBALL" name="FOOSBALL">&nbsp;Foosball</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_GAMES" name="GAMES">&nbsp;Games</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MUSIC_LIBRARY" name="MUSIC_LIBRARY">&nbsp;Music Library</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TABLE_TENNIS" name="TABLE_TENNIS">&nbsp;Table Tennis</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_POOL_TABLE" name="POOL_TABLE">&nbsp;Pool Table</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CABLE" name="CABLE">&nbsp;Cable</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SATELLITE" name="SATELLITE">&nbsp;Satellite</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_STEREO" name="STEREO">&nbsp;Stereo</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TV" name="TV">&nbsp;TV</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TOYS" name="TOYS">&nbsp;Toys</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_VIDEO_GAMES" name="VIDEO_GAMES">&nbsp;Video Games</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_VIDEO_LIBRARY" name="VIDEO_LIBRARY">&nbsp;Video Library</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_VIDEO_ON_DEMAND" name="VIDEO_ON_DEMAND">&nbsp;Video on Demand</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Food and Drink</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BREAKFAST_NONE" name="BREAKFAST_NONE">&nbsp;Breakfast None</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BREAKFAST_POSSIBLE" name="BREAKFAST_POSSIBLE">&nbsp;Breakfast Possible</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BREAKFAST_INCLUDED" name="BREAKFAST_INCLUDED">&nbsp;Breakfast Included</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BREAKFAST_IN_ROOM" name="BREAKFAST_IN_ROOM">&nbsp;Breakfast In Room</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DINNER_NONE" name="DINNER_NONE">&nbsp;Dinner None</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DINNER_POSSIBLE" name="DINNER_POSSIBLE">&nbsp;Dinner Possible</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DINNER_INCLUDED" name="DINNER_INCLUDED">&nbsp;Dinner Included</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LUNCH_NONE" name="LUNCH_NONE">&nbsp;Lunch None</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LUNCH_POSSIBLE" name="LUNCH_POSSIBLE">&nbsp;Lunch Possible</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LUNCH_INCLUDED" name="LUNCH_INCLUDED">&nbsp;Lunch Included</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MEALS_NONE" name="MEALS_NONE">&nbsp;Meals None</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MEALS_POSSIBLE" name="MEALS_POSSIBLE">&nbsp;Meals Possible</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MINIBAR" name="MINIBAR">&nbsp;Minibar</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CAFE" name="CAFE">&nbsp;Cafe</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_RESTAURANT" name="RESTAURANT">&nbsp;Restaurant</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_ROOM_SERVICE" name="ROOM_SERVICE">&nbsp;Room Service</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PRIVATE_CHEF" name="PRIVATE_CHEF">&nbsp;Private Chef</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Internet</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_INTERNET" name="INTERNET">&nbsp;Internet</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WIFI" name="WIFI">&nbsp;Wifi</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Kitchen</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_KITCHEN" name="KITCHEN">&nbsp;Kitchen</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DINING_AREA" name="DINING_AREA">&nbsp;Dining Area</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DINING_ROOM" name="DINING_ROOM">&nbsp;Dining Room</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_COFFEE_MAKER" name="COFFEE_MAKER">&nbsp;Coffee Maker</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DISHES_UTENSILS" name="DISHES_UTENSILS">&nbsp;Dishes, Utensils</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DISHWASHER" name="DISHWASHER">&nbsp;Dishwasher</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_FREEZER" name="FREEZER">&nbsp;Freezer</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_HIGHCHAIR" name="HIGHCHAIR">&nbsp;Highchair</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_KETTLE" name="KETTLE">&nbsp;Kettle</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MICROWAVE" name="MICROWAVE">&nbsp;Microwave</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_OVEN" name="OVEN">&nbsp;Oven</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_RACLETTE" name="RACLETTE">&nbsp;Raclette</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_REFRIGERATOR" name="REFRIGERATOR">&nbsp;Refrigerator</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SHARED_KITCHEN" name="SHARED_KITCHEN">&nbsp;Shared Kitchen</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SPICES" name="SPICES">&nbsp;Spices</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_STOVE" name="STOVE">&nbsp;Stove</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TOASTER" name="TOASTER">&nbsp;Toaster</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Location</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BEACH" name="BEACH">&nbsp;Beach</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BEACH_FRONT" name="BEACH_FRONT">&nbsp;Beach Front</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BEACH_VIEW" name="BEACH_VIEW">&nbsp;Beach View</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CITY" name="CITY">&nbsp;City</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DOWNTOWN" name="DOWNTOWN">&nbsp;Downtown</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_GOLF_COURSE_FRONT" name="GOLF_COURSE_FRONT">&nbsp;Golf Course Front</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_GOLF_COURSE_VIEW" name="GOLF_COURSE_VIEW">&nbsp;Golf Course View</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LAKE" name="LAKE">&nbsp;Lake</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LAKE_FRONT" name="LAKE_FRONT">&nbsp;Lake Front</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LAKE_VIEW" name="LAKE_VIEW">&nbsp;Lake View</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MONUMENT_VIEW" name="MONUMENT_VIEW">&nbsp;Monument View</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MOUNTAIN" name="MOUNTAIN">&nbsp;Mountain</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MOUNTAIN_VIEW" name="MOUNTAIN_VIEW">&nbsp;Mountain View</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_NEAR_OCEAN" name="NEAR_OCEAN">&nbsp;Near Ocean</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_OCEAN_FRONT" name="OCEAN_FRONT">&nbsp;Ocean Front</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_OCEAN_VIEW" name="OCEAN_VIEW">&nbsp;Ocean View</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_RESORT" name="RESORT">&nbsp;Resort</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_RIVER" name="RIVER">&nbsp;River</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_RURAL" name="RURAL">&nbsp;Rural</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SKI_IN" name="SKI_IN">&nbsp;Ski In</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SKI_OUT" name="SKI_OUT">&nbsp;Ski Out</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TOWN" name="TOWN">&nbsp;Town</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_VILLAGE" name="VILLAGE">&nbsp;Village</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WATER_VIEW" name="WATER_VIEW">&nbsp;Water View</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WATERFRONT" name="WATERFRONT">&nbsp;Water Front</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Pets</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PETS_CONSIDERED" name="PETS_CONSIDERED">&nbsp;Pets Considered</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PETS_NOT_ALLOWED" name="PETS_NOT_ALLOWED">&nbsp;Pets Not Allowed</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Pool and Wellness</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_HOT_TUB" name="HOT_TUB">&nbsp;Hot Tub</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MASSAGE" name="MASSAGE">&nbsp;Massage</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_POOL" name="POOL">&nbsp;Pool</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_POOL_HEATED" name="POOL_HEATED">&nbsp;Heated Pool</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_POOL_INDOOR" name="POOL_INDOOR">&nbsp;Indoor Pool</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_POOL_PRIVATE" name="POOL_PRIVATE">&nbsp;Private Pool</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_POOL_CHILDREN" name="POOL_CHILDREN">&nbsp;Children's pool</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SAUNA" name="SAUNA">&nbsp;Sauna</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Services</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_AIRPORT_SHUTTLE" name="AIRPORT_SHUTTLE">&nbsp;Airport Shuttle</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BAGGAGE_STORAGE" name="BAGGAGE_STORAGE">&nbsp;Baggage Storage</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BAR" name="BAR">&nbsp;Bar</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CAR_AVAILABLE" name="CAR_AVAILABLE">&nbsp;Car Available</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CHAUFFEUR" name="CHAUFFEUR">&nbsp;Chauffeur</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CLEANING_INCLUDED" name="CLEANING_INCLUDED">&nbsp;Cleaning Included</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CLEANING_POSSIBLE" name="CLEANING_POSSIBLE">&nbsp;Cleaning Possible</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CONCIERGE" name="CONCIERGE">&nbsp;Concierge</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DOORMAN" name="DOORMAN">&nbsp;Doorman</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_RECEPTION" name="RECEPTION">&nbsp;Reception</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_RECEPTION_24_HOUR" name="RECEPTION_24_HOUR">&nbsp;Reception 24 Hours</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_STAFF" name="STAFF">&nbsp;Staff</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SHOP" name="SHOP">&nbsp;Shop</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Sports</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BASKETBALL_COURT" name="BASKETBALL_COURT">&nbsp;Basketball Court</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BICYCLE" name="BICYCLE">&nbsp;Bicycle</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_BOAT" name="BOAT">&nbsp;Boat</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CYCLING" name="CYCLING">&nbsp;Cycling</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CROSS_COUNTRY_SKIING" name="CROSS_COUNTRY_SKIING">&nbsp;Cross Country Skiing</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_EQUESTRIAN_EVENTS" name="EQUESTRIAN_EVENTS">&nbsp;Equestarian Events</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_FISHING" name="FISHING">&nbsp;Fishing</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_FITNESS_ROOM" name="FITNESS_ROOM">&nbsp;Fitness Room</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_GOLF" name="GOLF">&nbsp;Golf</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_GYM" name="GYM">&nbsp;Gym</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_HIKING" name="HIKING">&nbsp;Hiking</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_HORSE_RIDING" name="HORSE_RIDING">&nbsp;Horse Riding</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_HUNTING" name="HUNTING">&nbsp;Hunting</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_ICE_SKATING" name="ICE_SKATING">&nbsp;Ice Skating</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_JET_SKIING" name="JET_SKIING">&nbsp;Jet Skiing</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_KAYAK_CANOE" name="KAYAK_CANOE">&nbsp;Kayak Kanu</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_KAYAKING" name="KAYAKING">&nbsp;Kayaking</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MOUNTAIN_BIKING" name="MOUNTAIN_BIKING">&nbsp;Mountain Biking</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MOUNTAIN_CLIMBING" name="MOUNTAIN_CLIMBING">&nbsp;Mountain Climbing</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MOUNTAINEERING" name="MOUNTAINEERING">&nbsp;Mountaineering</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PARAGLIDING" name="PARAGLIDING">&nbsp;Paragliding</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_PARASAILING" name="PARASAILING">&nbsp;Parasailing</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_RAFTING" name="RAFTING">&nbsp;Rafting</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_ROLLER_BLADING" name="ROLLER_BLADING">&nbsp;Roller Blading</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SAILING" name="SAILING">&nbsp;Sailing</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SCUBA_OR_SNORKELING" name="SCUBA_OR_SNORKELING">&nbsp;Scuba or Snorkling</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SKIING" name="SKIING">&nbsp;Ski</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SKIING_WATER" name="SKIING_WATER">&nbsp;Skiing Water</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SNOW_SPORTS_GEAR" name="SNOW_SPORTS_GEAR">&nbsp;Snow Sports Gear</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SNOWBOARDING" name="SNOWBOARDING">&nbsp;Snowboarding</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SURFING" name="SURFING">&nbsp;Surfing</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SWIMMING" name="SWIMMING">&nbsp;Swimming</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TENNIS" name="TENNIS">&nbsp;Tennis</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TRAMPOLINE" name="TRAMPOLINE">&nbsp;Trampoline</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_TUBING_WATER" name="TUBING_WATER">&nbsp;Tubing Water</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WATER_SPORTS" name="WATER_SPORTS">&nbsp;Watersports</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WATER_SPORTS_GEAR" name="WATER_SPORTS_GEAR">&nbsp;Water Sports Gear</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WHITEWATER_RAFTING" name="WHITEWATER_RAFTING">&nbsp;Whitewater Rafting</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WIND_SURFING" name="WIND_SURFING">&nbsp;Wind Surfing</label></div>
+        <h4 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Suitability</h4>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_ADULTS_ONLY" name="ADULTS_ONLY">&nbsp;Adults Only</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CAR_NECESSARY" name="CAR_NECESSARY">&nbsp;Car Necessary</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CAR_RECOMMENDED" name="CAR_RECOMMENDED">&nbsp;Car Recommended</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CAR_NOT_NECESSARY" name="CAR_NOT_NECESSARY">&nbsp;Car Not Necessary</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CHILDREN_NOT_ALLOWED" name="CHILDREN_NOT_ALLOWED">&nbsp;Children Not Allowed</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_CHILDREN_WELCOME" name="CHILDREN_WELCOME">&nbsp;Children Welcome</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_EVENTS_ALLOWED" name="EVENTS_ALLOWED">&nbsp;Events Allowed</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_INFANTS_NOT_ALLOWED" name="INFANTS_NOT_ALLOWED">&nbsp;Infants not allowed</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_LONG_TERM_RENTERS" name="LONG_TERM_RENTERS">&nbsp;Long Term Renters</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_MINIMUM_AGE_LIMIT" name="MINIMUM_AGE_LIMIT">&nbsp;Minimum Age Limit</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SENIOR_ADULTS_ONLY" name="SENIOR_ADULTS_ONLY">&nbsp;Senior Adults Only</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SMOKING_ALLOWED" name="SMOKING_ALLOWED">&nbsp;Smoking Allowed</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_SMOKING_NOT_ALLOWED" name="SMOKING_NOT_ALLOWED">&nbsp;Smoking Not Allowed</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_DISABLED_ACCESSIBLE" name="DISABLED_ACCESSIBLE">&nbsp;Accessible for Disabled</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WHEELCHAIR_YES" name="WHEELCHAIR_YES">&nbsp;Wheelchair accessible</label></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3"><label><input type="checkbox" value="1" id="chk_WHEELCHAIR_NO" name="WHEELCHAIR_NO">&nbsp;Not Wheelchair accessible</label></div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/KOScripts/Property.js"></script>

@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "ArrivalReport";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-body">
+    <h3 class="callout callout-info" align="center">ARRIVAL REPORT</h3>
+
+
+    <div class="row">
+        <div class="col-md-4 col-xs-4">
+            <div class="form-group">
+                <label>
+                    Date From:
+                </label>
+
+                <input type="text" ID="txtCheckin"  ToolTip="Enter From Date"
+                             class="form-control"  />
+                </div>
+        </div>
+
+        <div class="col-md-4  col-xs-4">
+            <div class="form-group">
+                <label>
+                    Date To:
+                </label>
+                <input type="text" ID="txtCheckInTo"   ToolTip="Enter To Date" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-4  col-xs-4">
+            <div class="form-group">
+                <label>
+                    Status
+                </label>
+
+                <select ID="ddlStatus"  class="fstdropdown-select">
+                    <options Selected="True" Value="1">Both</options>
+                    <options Value="2">Arrival</options>
+                    <options Value="3">Departure</options>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4  col-xs-4">
+            <div class="form-group">
+                <label>
+                    Property
+                </label>
+
+                <select ID="ddlProperty" class="fstdropdown-select" >
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4  col-xs-4">
+            <div class="form-group">
+                <label>
+                    Booking Source
+                </label>
+                <select ID="ddlPropertySource"  class="fstdropdown-select">
+                    <options Value="ALL">ALL</options>
+                    <options Value="Apartment">Apartment</options>
+                    <options Value="AirBnb.com">AirBnb.com</options>
+                    <options Value="Agoda">Agoda</options>
+                    <options Value="Booking.com">Booking.com</options>
+                    <options Value="Departure">Departure</options>
+                    <options Value="Direct Booking">Direct Booking</options>
+                    <options Value="Dubizzle">Dubizzle</options>
+                    <options Value="EHH Web">EHH Web</options>
+                    <options Value="HomeAway">HomeAway</options>
+                    <options Value="Online">Online</options>
+                    <options Value="Other">Other</options>
+                    <options Value="TripAdvisor">TripAdvisor</options>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4  col-xs-4">
+            <div class="form-group">
+                <label>
+                    Direct Search
+                </label>
+                <input type="text" ID="txtDirectSearch" class="form-control"  ToolTip="Direct Search Booking ID" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+
+                <div align="center">
+                    <button ID="btnSearch" Width="100px" class="btn btn-primary"  Text="Search"
+                                OnClick="btnSearch_Click" />
+                    <button ID="btnDirectSearch" ToolTip="Search Booking No" class="btn btn-primary"  Text="Booking #" OnClick="btnDirectSearch_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-6">
+            <button ID="btnExport" ToolTip="Export To PDF" CssClass="btns"  Text="Export To PDF" OnClick="btnExportToPDF_Click" />
+            <button ID="btnExportToExcel" ToolTip="Export To Excel" CssClass="btns"  Text="Export To Excel" OnClick="btnExportToExcel_Click" />
+        </div>
+    </div>
+</div>
+
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "Rate Plans";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-body">
+    <h5 class="callout callout-info">Rate Plans</h5>
+    <input type="hidden" id="AvoidReload" value="false" />
+    <input type="hidden" id="Id" value="0" />
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <label for="Properties">Properties</label>
+                <select class="form-control" style="height:34px;width:100%"
+                        id="Properties" name="Properties">
+                    <option selected="selected" value="0">Please select</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <table class="table" id="RatePlan">
+                    <tr>
+                        <th>Rate Plan ID</th>
+                        <th>Rate Plan Name</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <input type="button" ID="doaddnew" name="doaddnew" class="btn btn-info" value="Create New Rate Plan" />
+    </div>
+</div>
+<!-- Description Modal -->
+<div class="modal fade" id="basicInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">New Rate Plan</h5>
+            </div>
+            <div class="modal-body">
+                <form id="Property">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="propertyID">What do you want to call this rate plan?</label>
+                                <input type="text" maxlength="50" id="RatePlanName" class="form-control" name="RatePlanName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">
+                                    Want to set a minimum length of stay for this rate plan?
+                                </label>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" checked id="radioPrimary1" name="r1" value="1">
+                                    <label for="radioPrimary2">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary2" name="r1" vale="0">
+                                    <label for="radioPrimary2">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="long" class="form-group">
+                                <label>Minimum length of stay for this rate plan:</label>
+                                <input type="number" id="minimumstay" class="form-control" name="RatePlanName" />
+                            </div>
+                            <div class="form-group">
+                                <label>Which cancellation policy do you want to use for this rate plan?</label>
+                                <select id="cancellation" class="form-control">
+                                    <option value="-1">Please select...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="propertyID">Want to include meals in this rate plan?</label>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" checked id="radioPrimary3" name="r2" value="0">
+                                    <label for="radioPrimary2">
+                                        No
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary4" name="r2" value="1">
+                                    <label for="radioPrimary2">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div id="dvmeals" class="form-group">
+                                    <div class="form-group clearfix">
+                                        <div class="icheck-primary d-inline">
+                                            <input type="checkbox" id="Breakfast" value="Breakfast">
+                                            <label for="Breakfast">
+                                                Breakfast
+                                            </label>
+                                        </div>
+                                        <div class="icheck-primary d-inline">
+                                            <input type="checkbox" id="Lunch" value="Lunch">
+                                            <label for="Lunch">
+                                                Lunch
+                                            </label>
+                                        </div>
+                                        <div class="icheck-primary d-inline">
+                                            <input type="checkbox" id="Dinner" value="Dinner">
+                                            <label for="Dinner">
+                                                Dinner
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>How many days before check-in can guests book this rate plan?</label>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" checked id="radioPrimary5" name="r3" value="0">
+                                    <label for="radioPrimary2">
+                                        Any time (this rate plan is always available)
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary6" name="r3" value="1">
+                                    <label for="radioPrimary2">
+                                        Set number of days before check-in
+                                    </label>
+                                </div>
+
+                                <div id="numberofdays">
+                                    <input type="number" id="numofdays" class="form-control" /><spna> day(s) or more before check-in</spna>
+                                </div>
+                            </div>
+                            <div id="discount" class="form-group">
+                                <label>How do you want to set the discount for this rate plan?</label>
+                                <input type="number" id="Discount" class="form-control" /><spna>%</spna>
+                            </div>
+                            <div id="roomtypes" class="form-group">
+                                <label><span>Which room types will be bookable with this rate plan?</span></label>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeBasic" class="btn btn-secondary">Close</button>
+                <input type="button" id="UpdateBasicInfo" class="btn btn-primary" value="Save Policy" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/RatePlan.js"></script>

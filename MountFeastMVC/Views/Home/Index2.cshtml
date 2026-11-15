@@ -1,0 +1,703 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+    List<MountFeastMVC.Models.PropertySearch> results = new List<MountFeastMVC.Models.PropertySearch>();
+
+
+    if (TempData.ContainsKey("roomList"))
+    {
+        results = (List<MountFeastMVC.Models.PropertySearch>)TempData["roomList"];
+    }
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/Assets/css/PlusMinus.css">
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+    var $j = jQuery.noConflict();
+    $j(document).ready(function () {
+        var dateToday = new Date();
+        $j("#CheckIn").datepicker({
+            numberOfMonths: 1,
+            minDate: dateToday,
+            constrainInput: true,
+            showButtonPanel: true,
+            hideIfNoPrevNext: true,
+            dateFormat: 'dd-mm-yy',
+            onSelect: function (date) {
+                var dt = $j("#CheckIn").val();
+                var res = dt.split("-");
+                dt = res[1] + "/" + res[0] + "/" + res[2];
+                //alert(dt);
+                var d1 = new Date(dt);
+                //alert(d1);
+                var d = new Date();
+                d1.setDate(d1.getDate() + 1);
+                // alert(d1);
+                var m = d1.getMonth() + 1;
+                // alert(m);
+                var d2 = d1.getDate();
+                var y = d1.getFullYear();
+                if (d2 < 10) {
+                    d2 = "0" + d2;
+                }
+
+                if (m < 10) {
+                    m = "0" + m;
+                }
+                var z = [d2, m, y].join('-');
+                $j("#CheckOut").datepicker('setDate', null);
+                $j('#CheckOut').datepicker('option', { minDate: z });
+            },
+            onClose: function (dateText, inst) {
+                //$("#start").removeClass('hasDatepicker').datepicker(),
+                $j('#CheckOut').datepicker("show");
+            }
+        });
+        $j("#CheckOut").datepicker({
+
+            numberOfMonths: 1,
+            constrainInput: true,
+            //minDate: dateToday,
+            showButtonPanel: false,
+            dateFormat: 'dd-mm-yy',
+            showOn: "focus",
+            hideIfNoPrevNext: true,
+            //defaultDate: +1
+        });
+
+        $j("#CheckInM").datepicker({
+            numberOfMonths: 1,
+            minDate: dateToday,
+            constrainInput: true,
+            showButtonPanel: true,
+            hideIfNoPrevNext: true,
+            dateFormat: 'dd-mm-yy',
+            onSelect: function (date) {
+                var dt = $j("#CheckInM").val();
+                var res = dt.split("-");
+                dt = res[1] + "/" + res[0] + "/" + res[2];
+                //alert(dt);
+                var d1 = new Date(dt);
+                //alert(d1);
+                var d = new Date();
+                d1.setDate(d1.getDate() + 1);
+                // alert(d1);
+                var m = d1.getMonth() + 1;
+                // alert(m);
+                var d2 = d1.getDate();
+                var y = d1.getFullYear();
+                if (d2 < 10) {
+                    d2 = "0" + d2;
+                }
+
+                if (m < 10) {
+                    m = "0" + m;
+                }
+                var z = [d2, m, y].join('-');
+                $j("#CheckOutM").datepicker('setDate', null);
+                $j('#CheckOutM').datepicker('option', { minDate: z });
+            },
+            onClose: function (dateText, inst) {
+                //$("#start").removeClass('hasDatepicker').datepicker(),
+                $j('#CheckOutM').datepicker("show");
+            }
+        });
+        $j("#CheckOutM").datepicker({
+
+            numberOfMonths: 1,
+            constrainInput: true,
+            //minDate: dateToday,
+            showButtonPanel: false,
+            dateFormat: 'dd-mm-yy',
+            showOn: "focus",
+            hideIfNoPrevNext: true,
+            //defaultDate: +1
+        });
+
+        $j("#CheckInMob").datepicker({
+            numberOfMonths: 1,
+            minDate: dateToday,
+            constrainInput: true,
+            showButtonPanel: true,
+            hideIfNoPrevNext: true,
+            dateFormat: 'dd-mm-yy',
+            onSelect: function (date) {
+                var dt = $j("#CheckInMob").val();
+                var res = dt.split("-");
+                dt = res[1] + "/" + res[0] + "/" + res[2];
+                //alert(dt);
+                var d1 = new Date(dt);
+                //alert(d1);
+                var d = new Date();
+                d1.setDate(d1.getDate() + 1);
+                // alert(d1);
+                var m = d1.getMonth() + 1;
+                // alert(m);
+                var d2 = d1.getDate();
+                var y = d1.getFullYear();
+                if (d2 < 10) {
+                    d2 = "0" + d2;
+                }
+
+                if (m < 10) {
+                    m = "0" + m;
+                }
+                var z = [d2, m, y].join('-');
+                $j("#CheckOutMob").datepicker('setDate', null);
+                $j('#CheckOutMob').datepicker('option', { minDate: z });
+            },
+            onClose: function (dateText, inst) {
+                //$("#start").removeClass('hasDatepicker').datepicker(),
+                $j('#CheckOutMob').datepicker("show");
+            }
+        });
+        $j("#CheckOutMob").datepicker({
+
+            numberOfMonths: 1,
+            constrainInput: true,
+            //minDate: dateToday,
+            showButtonPanel: false,
+            dateFormat: 'dd-mm-yy',
+            showOn: "focus",
+            hideIfNoPrevNext: true,
+            //defaultDate: +1
+        });
+
+        $('[data-quantity="plus"]').click(function (e) {
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            fieldName = $(this).attr('data-field');
+            // Get its current value
+            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+            // If is not undefined
+            if (!isNaN(currentVal)) {
+                // Increment
+                $('input[name=' + fieldName + ']').val(currentVal + 1);
+            } else {
+                // Otherwise put a 0 there
+                $('input[name=' + fieldName + ']').val(0);
+            }
+        });
+        // This button will decrement the value till 0
+        $('[data-quantity="minus"]').click(function (e) {
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            fieldName = $(this).attr('data-field');
+            // Get its current value
+            var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+            // If it isn't undefined or its greater than 0
+            if (!isNaN(currentVal) && currentVal > 0) {
+                // Decrement one
+                $('input[name=' + fieldName + ']').val(currentVal - 1);
+            } else {
+                // Otherwise put a 0 there
+                $('input[name=' + fieldName + ']').val(0);
+            }
+        });
+
+    });
+</script>
+
+<input type="hidden" id="AvoidReload" value="false" />
+<!-- Banner start -->
+<div class="banner" id="banner3">
+    <div id="carouselExampleCaptions2" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item item-bg active">
+                <img class="d-block w-100 h-100 center" src="../content/assets/img/Slider/Mount Feast Banner.jpg" alt="banner-photo">
+                <div class="carousel-caption banner-slider-inner d-flex h-100">
+                    <div class="container align-self-center">
+                        <div class="row">
+                            <div class="col-lg-12 wow fadeInLeft delay-04s align-self-center">
+                                <div class="banner-detail-box text-start">
+                                    <h2 data-animation="animated fadeInDown delay-05s">
+                                        Welcom to <span>Mount Feast Hotel </span>At
+                                        <span>Naran</span>
+                                    </h2>
+                                    <p data-animation="animated fadeInUp delay-1s">
+                                        A secure and harmonious retreat nestled among the lush
+                                        Valley, Mount Feast Hotel at Naran seamlessly captures the
+                                        beauty while offering every modern comfort. Arriving guests
+                                        marvel at our Art Deco styles. Scenic views of the tranquil
+                                        Himalaya Mountains complement the inviting architecture.
+                                    </p>
+                                    <a class="btn-2 btn-defaults"
+                                       href="#"
+                                       data-animation="animated fadeInUp delay-15s">
+                                        <span>Explore</span> <i class="arrow"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner end -->
+<!-- Search area start -->
+<div class="search-area sr2">
+    <div class="containe-fluidr">
+        <div class="search-area-inner">
+            <div class="search-contents ">
+                @using (Html.BeginForm("PropertySearchMob", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+                            <div class="form-group">
+                                <input ID="CheckInMob"
+                                       name="CheckInMob"
+                                       required
+                                       type="text"
+                                       autocomplete="off"
+                                       PlaceHolder="CHECK IN DATE"
+                                       class="form-control " />
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+                            <div class="form-group">
+                                <input ID="CheckOutMob"
+                                       name="CheckOutMob"
+                                       required
+                                       type="text"
+                                       autocomplete="off"
+                                       PlaceHolder="CHECK OUT DATE"
+                                       class="form-control" />
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+                                <!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
+                               <input type="button" class="btn btn-primary" onclick="return showGuestModal()" value="Add Guests" />
+                            </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select ID="Children"
+                                        class="form-control"
+                                        name="Children"
+                                        data-live-search="true"
+                                        data-live-search-placeholder="Search value">
+                                    <option selected Value="0">CHILDREN</option>
+                                    <option Value="1">1</option>
+                                    <option Value="2">2</option>
+                                    <option Value="3">3</option>
+                                    <option Value="4">4</option>
+                                    <option Value="5">5</option>
+                                    <option Value="6">6</option>
+                                    <option Value="7">7</option>
+                                    <option Value="8">8</option>
+                                    <option Value="9">9</option>
+                                    <option Value="10">10</option>
+                                    <option Value="10">11</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select ID="NoOfRooms"
+                                        name="NoOfRooms"
+                                        class="form-control"
+                                        data-live-search="true"
+                                        data-live-search-placeholder="Search value">
+                                    <option selected Value="0">No. Of Rooms</option>
+                                    <option Value="1">1</option>
+                                    <option Value="2">2</option>
+                                    <option Value="3">3</option>
+                                    <option Value="4">4</option>
+                                    <option Value="5">5</option>
+                                    <option Value="6">6</option>
+                                    <option Value="7">7</option>
+                                    <option Value="8">8</option>
+                                    <option Value="9">9</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+                            <div class="form-group mb-0">
+                                <button class="search-button" style="height:40px">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Search area start -->
+<!-- Featured properties start -->
+<div class="content-area featured-properties">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Available Rooms</h1>
+        </div>
+        <div class="row">
+            @foreach (var item in results)
+            {
+                string[] features = null;
+
+                <div class="col-lg-6 col-md-12 col-sm-12 wow fadeInLeft delay-04s">
+                    <div class="row g-0 property fp2">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <!-- Property img -->
+                            <div class="property-img">
+                                <div class="property-tag button alt featured">Featured</div>
+                                <div class="property-price">@item.TotalAmount</div>
+                                @*<img src="~/uploads/@item.imgURL" alt="fp-list" class="img-responsive hp-2">*@
+                                <img src="@Url.Action("Image", "Home", new { img = @item.imgURL })" alt="fp-list" class="img-responsive hp-2">
+
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 property-content">
+                            <!-- Info -->
+                            <div class="info">
+                                <!-- title -->
+                                <h1 class="title">
+                                    @*<a href="@Url.Action("RoomDetails", "SearchResult", new { Id = @item.RoomCateCode })">@item.RoomCategory</a>*@
+                                    <a role="button" onclick='return check()'>@item.RoomCategory</a>
+                                </h1>
+                                <!-- Property address -->
+                                <h3 class="property-address">
+                                </h3>
+                                <!-- Facilities List -->
+                                <ul class="facilities-list fl-2 clearfix">
+                                    @{
+                                        if (item.Features != null)
+                                        {
+                                            features = item.Features.Split(',');
+                                            for (int i = 0; i < 4; i++)
+                                            {
+                                                if (features[i] != "")
+                                                {
+                                                    <li style="font-size:10px">
+                                                        <i class="fa fa-check"></i>
+                                                        <span>@features[i].Replace('_', ' ')</span>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                </ul>
+                                <!-- Property footer -->
+                            </div>
+                            <!-- Property footer -->
+                            <div class="property-footer">
+                                <span class="left">
+                                    <a href="#"></a>
+                                </span>
+                                <span class="right">
+                                    <i class="fa fa-calendar"></i>@item.NoOfRooms <span>    Rooms Left</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+
+<!-- Popular Places strat -->
+<div class="popular-places pp2 content-area-12">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Popular Places</h1>
+            <p>Top 5 Best Places to Visit in Naran-Kaghan</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 wow fadeInLeft delay-04s col-pad">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100"
+                                         src="~/Content/assets/img/popular-places/Siri Paye.jpg"
+                                         alt="popular-places" />
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">Siri Paye</a>
+                                        <span class="float-end">20 Km Away</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100"
+                                         src="~/Content/assets/img/popular-places/Babusar-top.jpg"
+                                         alt="popular-places" />
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">Babusar Top</a>
+                                        <span class="float-end">12 Km Away</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp delay-04s col-pad">
+                <div class="popular-places-box">
+                    <div class="popular-places-overflow">
+                        <div class="popular-places-photo">
+                            <img class="img-fluid w-100 big"
+                                 src="~/Content/assets/img/popular-places/Saif-ul-Mulk.jpg"
+                                 alt="popular-places" />
+                        </div>
+                    </div>
+                    <div class="ling">
+                        <div class="ling-section">
+                            <h3>
+                                <a href="#">Saif-Ul-Muluk</a>
+                                <span class="float-end">6 Km Away</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInRight delay-04s col-pad">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100"
+                                         src="~/Content/assets/img/popular-places/Lulusar-Lake.jpg"
+                                         alt="popular-places" />
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">Lulusar Lake</a>
+                                        <span class="float-end">26 km Away</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100"
+                                         src="~/Content/assets/img/popular-places/Shogran.jpg"
+                                         alt="popular-places" />
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">Shogran</a>
+                                        <span class="float-end">15 Km Away</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popular places end -->
+<!-- Modal -->
+<div id="myModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" onclick='close()' class="close" data-dismiss="modal">&times;</button>
+                <h4 class="title">Check Availability</h4>
+            </div>
+            @using (Html.BeginForm("PropertySearchMod", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+
+                    <div class="search-area-inner">
+                        <div class="search-contents">
+                            <div>
+                                <div class="form-group">
+                                    <input ID="CheckInM"
+                                           name="CheckInM"
+                                           required
+                                           type="text"
+                                           autocomplete="off"
+                                           PlaceHolder="CHECK IN DATE"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <div class="form-group">
+                                    <input ID="CheckOutM"
+                                           name="CheckOutM"
+                                           required
+                                           type="text"
+                                           autocomplete="off"
+                                           PlaceHolder="CHECK OUT DATE"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <div class="form-group">
+                                    <select ID="Adults"
+                                            name="Adults"
+                                            class="form-control"
+                                            data-live-search="true"
+                                            data-live-search-placeholder="Search value">
+                                        <option selected Value="0">ADULTS</option>
+                                        <option Value="1">1</option>
+                                        <option Value="2">2</option>
+                                        <option Value="3">3</option>
+                                        <option Value="4">4</option>
+                                        <option Value="5">5</option>
+                                        <option Value="6">6</option>
+                                        <option Value="7">7</option>
+                                        <option Value="8">8</option>
+                                        <option Value="9">9</option>
+                                        <option Value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <select ID="Children"
+                                        name="Children"
+                                        class="form-control"
+                                        data-live-search="true"
+                                        data-live-search-placeholder="Search value">
+                                    <option selected Value="0">CHILDREN</option>
+                                    <option Value="1">1</option>
+                                    <option Value="2">2</option>
+                                    <option Value="3">3</option>
+                                    <option Value="4">4</option>
+                                    <option Value="5">5</option>
+                                    <option Value="6">6</option>
+                                    <option Value="7">7</option>
+                                    <option Value="8">8</option>
+                                    <option Value="9">9</option>
+                                    <option Value="10">10</option>
+                                    <option Value="10">11</option>
+                                </select>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <select ID="NoOfRooms"
+                                        name="NoOfRooms"
+                                        class="form-control"
+                                        data-live-search="true"
+                                        data-live-search-placeholder="Search value">
+                                    <option selected Value="0">No. Of Rooms</option>
+                                    <option Value="1">1</option>
+                                    <option Value="2">2</option>
+                                    <option Value="3">3</option>
+                                    <option Value="4">4</option>
+                                    <option Value="5">5</option>
+                                    <option Value="6">6</option>
+                                    <option Value="7">7</option>
+                                    <option Value="8">8</option>
+                                    <option Value="9">9</option>
+                                </select>
+                            </div>
+                            <br />
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-dark" style="width:100%" value="Search" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="display:none" class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-secondary" style="width:90%" value="Search" />
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+<div id="GuestModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+                <div class="modal-body">
+                    <div class="search-area-inner">
+                        <div class="search-contents">
+                            <div class="input-group plus-minus-input">
+                                <div class="input-group-button">
+                                    <button type="button" class="button hollow circle" data-quantity="minus" data-field="quantity">
+                                        <i class="fa fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <input class="form-control input-group-field" type="number" name="quantity" value="0">
+                                <div class="input-group-button">
+                                    <button type="button" class="button hollow circle" data-quantity="plus" data-field="quantity">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Featured properties end -->
+<div class="clearfix"></div>
+
+
+
+<script type="text/javascript">
+    function check() {
+        $('#myModal').modal('show');
+    }
+
+    function close() {
+        $('#myModal').modal('hide');
+    }
+
+    function showGuestModal() {
+        $('#GuestModal').modal('show');
+    }
+
+</script>

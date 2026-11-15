@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "AddChannel";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script type="text/javascript">
+    function fnCheck() {
+        if ($('#ddlProducts').val() == '') {
+            $('#ddlProducts').css('border-color', 'red');
+            $('#ddlProducts').focus();
+            return false;
+        }
+        if ($('#ddlChannelName').val() == '') {
+            $('#ddlChannelName').css('border-color', 'red');
+            $('#ddlChannelName').focus();
+            return false;
+        }
+        if ($('#txturl').val() == '') {
+            $('#txturl').css('border-color', 'red');
+            $('#txturl').focus();
+            return false;
+        }
+        if ($('#txtDuration').val() == '') {
+            $('#txtDuration').css('border-color', 'red');
+            $('#txtDuration').focus();
+            return false;
+        }
+    }
+
+</script>
+
+
+<div class="box-body">
+    <h3 class="callout callout-info" align="center">ADD CHANNEL RECORD</h3>
+    <div class="row">
+        <div class="col-md-3 col-xs-6">
+            <div class="form-group">
+                <label>Property Name:</label>
+                <select ID="ddlProducts"   class="fstdropdown-select" OnDataBound="ddlProducts_DataBound"
+                                  OnSelectedIndexChanged="ddlProducts_SelectedIndexChanged">
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-xs-6">
+            <div class="form-group">
+                <label>Channel Name:</label>
+
+                <select ID="ddlChannelName"   class="fstdropdown-select">
+                    <options Value="1">Booking.com</options>
+                    <options Value="2">AirBnb.com</options>
+                    <options Value="3">HomeAway</options>
+                    <options Value="4">TripAdvisor</options>
+                    <options Value="5">Agoda</options>
+                    <options Value="6">9Flats</options>
+                    <options Value="7">Rental System</options>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-6">
+            <div class="form-group">
+                <label>Duration:</label>
+                <input type="text" ID="txtDuration"   class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-3 col-xs-6">
+            <div class="form-group">
+                <label>Status:</label>
+                <asp:CheckBox ID="chkSelect" AutoPostBack="true" class="form-control"  />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group">
+                <label>Channel Url:</label>
+                <input type="text" ID="txturl" TextMode="MultiLine" Height="150px"   class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" align="center">
+                <Button ID="btnAddHotelInfo"  class="btn btn-primary" Text="Add Channel" />
+            </div>
+        </div>
+    </div>
+</div>

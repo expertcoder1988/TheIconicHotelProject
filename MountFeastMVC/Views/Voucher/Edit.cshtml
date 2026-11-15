@@ -1,0 +1,77 @@
+﻿@model MountFeastMVC.Models.Voucher
+
+@{
+    ViewBag.Title = "Update Voucher";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-body">
+    <h2 class="callout callout-info">Update Voucher</h2>
+
+    @using (Html.BeginForm("Edit", "Voucher", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.VoucherId)
+
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="form-group">
+                    <label for="Code">Voucher Code</label>
+                    @Html.TextBoxFor(model => model.Code, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="form-group">
+                    <label for="DiscountAmount">Discount Amount</label>
+                    @Html.TextBoxFor(model => model.DiscountAmount, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="form-group">
+                    <label for="ExpiryDate">Expiry Date</label>
+                    @Html.TextBoxFor(model => model.ExpiryDate, "{0:MM-dd-yyyy}", new { @class = "form-control", @id = "ExpiryDate" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="form-group">
+                    <label for="CategoryId">Category</label>
+                    @Html.DropDownList("CategoryId", ViewBag.Categories as SelectList, "Select Category", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="form-group">
+                    <label for="Remarks">Remarks</label>
+                    @Html.TextBoxFor(model => model.Remarks, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="form-group">
+                    <label for="IsActive">Is Active</label>
+                    @Html.DropDownListFor(model => model.IsActive, new SelectList(new[] {
+                        new SelectListItem { Text = "Yes", Value = "true" },
+                        new SelectListItem { Text = "No", Value = "false" }
+                    }, "Value", "Text"), new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 col-xs-6">
+                <div class="form-group">
+                    <input type="submit" id="UpdateVoucher" name="UpdateVoucher" value="Update Record" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+<!-- Script for Voucher functionality -->
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/Voucher.js"></script>
+<!-- Bootstrap Datepicker JS -->

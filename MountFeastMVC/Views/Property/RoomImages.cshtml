@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Room Images";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-header with-border">
+    <h3 class="callout callout-info" style="text-align: center; font-weight: bold; font-size: 20px">Upload Images Of Hotel Rooms</h3>
+</div>
+
+
+<h3 style="text-align: center; font-weight: bold; font-size: 16px; color: red">
+    Uploading Image size Must Be Less then 1MB
+</h3>
+<input type="hidden" id="AvoidReload" value="false" />
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label id="lblProduct">
+                        Please Select Property
+                    </label>
+                    <select ID="ddlProperty" class="form-control">
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label id="lblProduct">
+                        Please Select Room
+                    </label>
+                    <select ID="rooms" class="form-control">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="roomPic">Upload Picture</label>
+                <input type="file" id="roomPic" class="form-control" name="roomPic" />
+                <input type="hidden" id="PicNum" value="false" />
+            </div>
+        </div>
+    </div>
+
+    <div align="center">
+        <input type="button" class="btn btn-primary" id="PicUpload" value="Upload Picture" />
+    </div>
+
+</div>
+<div class="box-body">
+
+    <div class="row">
+        <div class="col-md-8 col-xs-12">
+            <table class="table" id="images">
+                <tr>
+                    <th>S No.</th>
+                    <th>Image Name</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/EntityScript/RoomImages.js"></script>

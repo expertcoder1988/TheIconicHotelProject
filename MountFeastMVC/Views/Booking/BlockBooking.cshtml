@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "BlockBooking";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<input type="hidden" ID="hdnHotelCode"  />
+<input type="hidden" ID="hdnProductID"  />
+<input type="hidden" ID="hdnSupplierID"  />
+<input type="hidden" ID="hdnBookingID"  />
+
+<div class="box-header with-border">
+    <h3 class="callout callout-info">Block Booking</h3>
+</div>
+
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>
+                    Arrival Date
+                    <asp:Label ID="Label3"  ForeColor="Red" Text="*"></asp:Label>
+                </label>
+                <div class="input-group date">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" ID="txtCheckin" autocomplete="off"  ToolTip="" class="form-control pull-right" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Departure Date</label>
+                <div class="input-group date">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" ID="txtCheckout" autocomplete="off"  ToolTip="" class="form-control pull-right" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Property
+                </label>
+                <select ID="ddlProperty"  class="fstdropdown-select" OnDataBound="ddlProperty_DataBound">
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Source</label>
+
+                <select ID="ddlSource"  AutoPostBack="True" class="fstdropdown-select">
+                    <options Value="0">--Select--</options>
+                    <options Value="1">EHH Web</options>
+                    <options Value="2">Booking.com</options>
+                    <options Value="3">AirBnb.com</options>
+                    <options Value="4">HomeAway</options>
+                    <options Value="5">Tripadvisor</options>
+                    <options Value="6">Dubizzle</options>
+                    <options Value="7">Agoda</options>
+                    <options Value="8">Direct Booking</options>
+                    <options Value="9">Apartment</options>
+                    <options Value="10">Other</options>
+                </select>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div align="center">
+            <Button ID="btnAddHotelInfo"  class="btn btn-primary" Width="100px" Text="Save" />
+        </div>
+    </div>
+</div>
+

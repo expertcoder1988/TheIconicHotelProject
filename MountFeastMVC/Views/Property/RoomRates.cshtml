@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "RoomRates";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box-header with-border">
+    <h4 class="callout callout-info" style="text-align: center; font-weight: bold; font-size: 20px">Define Rates For Rooms On The Bases Of Room Category For Hotel</h4>
+</div>
+
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-1">
+            <div class="form-group">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Search Rooms Prices through Category Selection:</label>
+                <select ID="ddlProducts" class="fstdropdown-select" >
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr style="background-color: #000; color: white">
+                            <th>Room Catagory</th>
+                            <th>Normal Price  </th>
+                            <th>Discount Price  </th>
+                            <th>Slab Start Date </th>
+                            <th>Slab End Date</th>
+                            <th>Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="border: thin groove #008080">
+                                <asp:DropDownList ID="ddlRoomCategory" runat="server" Width="200px" class="form-control" AutoPostBack="True"
+                                                  OnDataBound="ddlRoomCategory_DataBound">
+                                </asp:DropDownList>
+                            </th>
+                            <th style="border: thin groove #008080">
+                                <asp:TextBox runat="server" ID="txtNormalPrice" class="form-control"></asp:TextBox>
+                            </th>
+                            <th style="border: thin groove #008080">
+                                <asp:TextBox runat="server" ID="txtRate0" class="form-control"></asp:TextBox>
+                            </th>
+                            <th style="border: thin groove #008080">
+                                <asp:TextBox runat="server" autocomplete="off" ID="txtSlabStartDate"
+                                             ClientIDMode="Static" class="form-control"></asp:TextBox>
+                                <asp:CalendarExtender ID="CalendarExtender2" Format="yyyy-MM-dd" runat="server" Enabled="True" TargetControlID="txtSlabStartDate"></asp:CalendarExtender>
+                            </th>
+                            <th style="border: thin groove #008080">
+                                <asp:TextBox runat="server" autocomplete="off" ID="txtSlabEndDate"
+                                             ClientIDMode="Static" class="form-control"></asp:TextBox>
+                                <asp:CalendarExtender ID="CalendarExtender1" Format="yyyy-MM-dd" runat="server" Enabled="True" TargetControlID="txtSlabEndDate"></asp:CalendarExtender>
+                            </th>
+                            <td style="border: thin groove #008080">
+                                <asp:Button runat="server" Text="Save &amp; Add New" ID="btnAdd" OnClick="btnAdd_Click"
+                                            class="btn btn-primary"></asp:Button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box-header with-border">
+    <h3 class="callout callout-info" align="center">Prices for the Rooms</h3>
+</div>
+<div>
+
+
+</div>
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                
+            </div>
+        </div>
+    </div>
+</div>
+

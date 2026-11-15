@@ -1,0 +1,126 @@
+﻿
+
+#container {
+    width: 700px;
+    margin: 10px auto;
+}
+
+.mGrid {
+    width: 100%;
+    background-color: #fff;
+    margin: 5px 0 10px 0;
+    border: solid 1px #19a1cd;
+    border-collapse: collapse;
+
+}
+
+    .mGrid td {
+        padding: 2px;
+        border: solid 1px #19a1cd;
+        color: #000;
+        font: bold 12px Times;
+    }
+
+    .mGrid th {
+        padding: 4px 2px;
+        color: #fff;
+        background: #19a1cd  ;
+        border-left: solid 1px #19a1cd ;
+        font: bold 14px Times;
+        text-align: center;
+    }
+
+    .mGrid .pgr {
+        
+        height: 30px;
+    }
+
+        .mGrid .pgr table {
+            margin: 5px 0;
+        }
+
+        .mGrid .pgr td {
+            border-width: 0;
+            padding: 0 6px;
+            border-left: solid 1px #19a1cd;
+            font-weight: bold;
+            color: #000;
+            line-height: 12px;
+        }
+
+        .mGrid .pgr a {
+            color: #000;
+            text-decoration: none;
+        }
+
+            .mGrid .pgr a:hover {
+                color: #000;
+                text-decoration: none;
+            }
+
+    .mGrid td:hover, .mGrid td:hover {
+        background-color: yellow;
+        color: #000;
+        font-weight: bold;
+    }
+
+.footer {
+    padding: 4px 2px;
+    color: #fff;
+    background: #424242;
+    border-left: solid 1px #19a1cd;
+    font: bold 14px Times;
+    text-align: center;
+}
+
+/*.btn {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #95c41f;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    text-transform: uppercase;
+    font-weight: bold;
+}*/
+
+    .btn:hover {
+        background-color: #3e8e41;
+    }
+
+    .btn:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+    .btns {
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #95c41f;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px #999;
+    font-weight: bold;
+}
+    .btns:hover {
+        background-color: #3e8e41;
+    }
+
+    .btns:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }

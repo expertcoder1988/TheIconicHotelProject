@@ -1,0 +1,32 @@
+﻿@model MountFeastMVC.Models.PostViewModel
+@{
+    ViewBag.Title = "Post Detail";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h5 class="d-inline align-middle">Post Detail</h5>
+        <a href="@Url.Action("Manage", "Post", new { id = Model.PostId, Area = "Admin" })" class="btn btn-primary btn-sm pull-right">Edit Post</a>
+    </div>
+</div>
+<hr />
+<div class="card">
+    <img  class="card-img-top" src="@Model.ViewDefaultImage?w=770&h=180&mode=crop" alt="" />
+    <div class="card-block">
+        <h4 class="card-title">@Html.DisplayFor(p => p.Title)</h4>
+        @Html.Raw(Model.Description)
+        @if (!string.IsNullOrWhiteSpace(Model.Tags))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    @foreach (var item in Model.Tags.Split(','))
+                    {
+                        <a href="/search/label/@item"><span class="badge badge-primary">@item</span></a>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div class="card-footer">
+        <small class="text-muted">Last updated @Html.DisplayFor(p => p.ModifyDate)</small>
+    </div>
+</div>

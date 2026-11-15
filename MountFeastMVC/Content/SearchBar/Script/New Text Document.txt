@@ -1,0 +1,205 @@
+<script type="text/javascript">
+    //jQuery.noConflict();
+    var StartDate = new Date();
+    var EndDate = new Date();
+    var ChildValue = 0;
+    var AdultValue = 0;
+    var RoomValue = 0;
+
+    $(document).ready(function () {
+        if ($(window).width() > 700) {
+            $("#MobileSearch").remove();
+            $("#WindowSearch").show();
+        }
+        else {
+            $("#MobileSearch").show();
+            $("#WindowSearch").remove();
+        }
+    });
+
+    function ShowInputContainer() {
+        $('#InputOverlay').show();
+        $('#InputContainer').show();
+    }
+    function HideInputContainer() {
+        $('#InputOverlay').hide();
+        $('#InputContainer').hide();
+    }
+    function ShowDatepickerContainer() {
+        $('#DatepickerOverlay').show();
+        $('#DatepickerContainer').show();
+        $('html, body').css({
+            overflow: 'hidden',
+            height: '100%'
+        });
+        $('#MobileDaterangePicker').click()
+
+    }
+    function HideDatepickerContainer() {
+        $('#DatepickerOverlay').hide();
+        $('#DatepickerContainer').hide();
+        $('html, body').css({
+            overflow: 'auto',
+            height: 'auto'
+        });
+    }
+
+
+    function CalculatePlusAdult() {
+        var value = parseInt($("#AdultValue").html());
+        value = value + 1;
+        $("#AdultValue").html(value);
+        $("#AdultValueUpper").html(value + "&nbsp adults");
+        $('.adults-select').val(value);
+        AdultValue = value;
+    }
+    function CalculateMinusAdult() {
+        var value = parseInt($("#AdultValue").html());
+        value = value - 1;
+        if (value <= 0) {
+            return;
+        }
+        $("#AdultValue").html(value);
+        $("#AdultValueUpper").html(value + "&nbsp adults");
+        $('.adults-select').val(value);
+        AdultValue = value;
+    }
+    function CalculatePlusChildren() {
+        var value = parseInt($("#ChildValue").html());
+        value = value + 1;
+        $("#ChildValue").html(value);
+        $("#ChildrenValueUpper").html(value + "&nbsp children");
+        $('.children-select').val(value);
+        ChildValue = value;
+        ShowHideChildSelect(value);
+    }
+    function CalculateMinusChildren() {
+        var value = parseInt($("#ChildValue").html());
+        value = value - 1;
+        if (value < 0) {
+            return;
+        }
+        $("#ChildValue").html(value);
+        $("#ChildrenValueUpper").html(value + "&nbsp children");
+        $('.children-select').val(value);
+        ChildValue = value;
+        ShowHideChildSelect(value);
+    }
+    function CalculatePlusRooms() {
+        var value = parseInt($("#RoomValue").html());
+        value = value + 1;
+        $("#RoomValue").html(value);
+        $("#RoomValueUpper").html(value + "&nbsp rooms");
+        $('.room-select').val(value);
+        RoomValue = value
+
+    }
+    function CalculateMinusRooms() {
+        var value = parseInt($("#RoomValue").html());
+        value = value - 1;
+        if (value <= 0) {
+            return;
+        }
+        $("#RoomValue").html(value);
+        $("#RoomValueUpper").html(value + "&nbsp rooms");
+        $('.room-select').val(value);
+        RoomValue = value
+    }
+    function ShowHideChildSelect(Customvalue) {
+        if (Customvalue == 0) {
+            $("#AgeEntryContainer").hide();
+            $("#AgeEntryContainer2").hide();
+            $("#AgeEntryContainer3").hide();
+            $("#AgeEntryContainer4").hide();
+        }
+        else if (Customvalue == 1) {
+            $("#AgeEntryContainer").show();
+            $("#AgeEntryContainer2").hide();
+            $("#AgeEntryContainer3").hide();
+            $("#AgeEntryContainer4").hide();
+        }
+        else if (Customvalue == 2) {
+            $("#AgeEntryContainer").show();
+            $("#AgeEntryContainer2").show();
+            $("#AgeEntryContainer3").hide();
+            $("#AgeEntryContainer4").hide();
+        }
+        else if (Customvalue == 3) {
+            $("#AgeEntryContainer").show();
+            $("#AgeEntryContainer2").show();
+            $("#AgeEntryContainer3").show();
+            $("#AgeEntryContainer4").hide();
+        }
+        else if (Customvalue == 4) {
+            $("#AgeEntryContainer").show();
+            $("#AgeEntryContainer2").show();
+            $("#AgeEntryContainer3").show();
+            $("#AgeEntryContainer4").show();
+        }
+    }
+    function ToggleView(InputContainer) {
+        var e = document.getElementById(InputContainer);
+        if (e.style.display == 'block') {
+            e.style.display = 'none';
+        }
+        else {
+            e.style.display = 'block';
+
+        }
+    }
+    $(document).ready(function () {
+        if ($(window).width() < 700) {
+            $('#MobileDaterangePicker').daterangepicker({
+                opens: 'center',
+                parentEl: '#DatepickerParentEl',
+                alwaysShowCalendars: true,
+                locale: {
+                    format: 'YYYY/MM/DD',
+                    separator: " to"
+                },
+                minDate: new Date(),
+                endDate: new Date(),
+            }, function (start, end) {
+                var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                var startDayName = days[new Date(start).getDay()];
+                var endDayName = days[new Date(end).getDay()];
+                HideDatepickerContainer();
+                StartDate = moment(start).format('MM/DD/YYYY');
+                EndDate = moment(end).format('MM/DD/YYYY');
+                $('#ci_date_text').text(startDayName + " " + start.format('DD MMM YYYY'));
+                $('#co_date_text').text(endDayName + " " + end.format('DD MMM YYYY'));
+
+            });
+        }
+        else {
+            $('#DesktopDaterangePicker').daterangepicker({
+                opens: 'left',
+                locale: {
+                    format: 'DD MMM YYYY',
+                    separator: " to"
+                },
+                "autoApply": true,
+                autoUpdateInput: false,
+                minDate: new Date(),
+                endDate: new Date(),
+            }, function (start, end, label,) {
+                StartDate = moment(start).format('MM/DD/YYYY');
+                EndDate = moment(end).format('MM/DD/YYYY');
+
+            });
+            $('#DesktopDaterangePicker').on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            });
+
+            $('#DesktopDaterangePicker').on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+        }
+
+    });
+    function SearchResults() {
+        window.location.href = "/Home/PropertySearch?CheckIn=" + StartDate + "&CheckOut=" + EndDate + "&Adults=" + AdultValue + "&Children=" + ChildValue + "&NoOfRooms=" + RoomValue;
+    }
+    
+   
+</script>
